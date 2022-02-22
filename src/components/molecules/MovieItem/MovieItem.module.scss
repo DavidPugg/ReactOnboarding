@@ -1,0 +1,26 @@
+.imgbox {
+  position: relative;
+}
+
+.img {
+  width: 10rem;
+  border-radius: 0.5rem;
+}
+
+.title {
+  font-size: 1rem;
+  margin-top: 0.8rem;
+}
+
+.release {
+  font-size: 0.9rem;
+  color: grey;
+}
+
+.rating {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(30%) translateX(40%);
+}

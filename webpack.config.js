@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const dotEnv = require('dotenv-webpack')
+const dotEnv = require("dotenv-webpack");
 
 module.exports = {
   entry: {
@@ -46,6 +46,10 @@ module.exports = {
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        type: "asset/resource",
+      },
+      {
+        test: /\.(png|jpeg)/,
         type: 'asset/resource'
       }
     ],

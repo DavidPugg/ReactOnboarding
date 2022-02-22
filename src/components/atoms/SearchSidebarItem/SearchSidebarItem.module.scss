@@ -1,0 +1,27 @@
+.label {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  font-size: .9rem;
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    background-color: lighten(lightgrey, 5%);
+  }
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lighten(lightgrey, 10%);
+  padding: 0.1rem 0.6rem;
+  border-radius: 0.3rem;
+  font-size: .7rem;
+}
+
+.selected {
+    background-color: lighten(lightgrey, 5%);
+  }
+  

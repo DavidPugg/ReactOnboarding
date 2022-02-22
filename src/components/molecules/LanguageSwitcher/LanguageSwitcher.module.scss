@@ -1,0 +1,19 @@
+.toggle {
+    font-size: 0.8rem;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    transform: translateX(-50%);
+    border-radius: 0.2rem;
+    user-select: none;
+    color: white;
+    transition: all 0.2s ease;
+  
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }

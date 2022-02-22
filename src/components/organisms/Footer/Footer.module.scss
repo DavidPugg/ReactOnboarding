@@ -1,0 +1,11 @@
+.background {
+  background-color: darken(darkblue, $amount: 15%);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem 0;
+  justify-items: center;
+}

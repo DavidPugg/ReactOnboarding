@@ -1,0 +1,23 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  min-height: 100vh;
+  gap: 1rem;
+}
+
+.main {
+  grid-row: 2/3;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  gap: 1rem;
+
+//   .sidebar {
+//   }
+
+//   .content {
+//   }
+}
+.footer {
+  grid-row: 3/4;
+  margin-top: auto;
+}

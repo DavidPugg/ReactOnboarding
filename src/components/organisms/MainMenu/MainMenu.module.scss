@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  flex-wrap: wrap;
+}
+
+.background {
+  background-color: darken(darkblue, $amount: 15%);
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  background: linear-gradient(to right bottom, lightgreen, lightblue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

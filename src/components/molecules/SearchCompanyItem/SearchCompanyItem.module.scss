@@ -1,0 +1,21 @@
+
+.name {
+  font-size: 1rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.img {
+  width: 1.5rem;
+}
+
+.country {
+  font-size: .8rem;
+  background-color: lighten($color: grey, $amount: 40%);
+  padding: .3rem;
+  border-radius: .5rem;
+}

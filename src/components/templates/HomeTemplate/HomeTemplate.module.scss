@@ -1,0 +1,14 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  min-height: 100vh;
+  gap: 1rem;
+}
+
+// .content {
+// }
+
+.footer {
+  grid-row: 3/4;
+  margin-top: auto;
+}
