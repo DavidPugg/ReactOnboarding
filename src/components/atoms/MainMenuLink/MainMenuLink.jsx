@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import { Link} from 'react-router-dom'
 
-import c from './MainMenuLink.module.scss'
+import styles from './MainMenuLink.module.scss'
 function MainMenuLink({ label, url, ...rest }) {
   return (
-    <Link className={c.link} to={url} {...rest}>
+    <Link className={styles.link} to={url} {...rest}>
       {label}
     </Link>
   );

@@ -2,11 +2,11 @@ import React from "react";
 
 import LanguageOption from "../../atoms/LanguageOption/LanguageOption";
 
-import c from './LanguageList.module.scss'
+import styles from './LanguageList.module.scss'
 
 export default function LanguageList({ languages, onLanguageChange, type }) {
   return (
-    <ul className={c.list}>
+    <ul className={styles.list}>
       {languages.map(({label, code}) => (
       <li
       key={code}

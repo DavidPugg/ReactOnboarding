@@ -1,4 +1,6 @@
+@import '@css/variables';
+
 .link {
-    color: white;
+    color: $color-primary;
     text-decoration: none;
 }

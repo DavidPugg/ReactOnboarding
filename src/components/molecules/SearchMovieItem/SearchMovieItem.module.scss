@@ -1,9 +1,15 @@
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .item {
   display: flex;
   gap: 1rem;
   box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2);
   border-radius: 0.5rem;
   overflow: hidden;
+  text-decoration: none;
 
   .img {
     width: 5.5rem;

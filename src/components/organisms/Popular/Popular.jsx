@@ -3,7 +3,7 @@ import axios from "axios";
 
 import MovieItem from "../../molecules/MovieItem/MovieItem";
 
-import c from './Popular.module.scss'
+import styles from './Popular.module.scss'
 
 export default function Popular() {
   const [items, setItems] = useState([]);
@@ -30,21 +30,21 @@ export default function Popular() {
 
   return (
     <div className="container">
-      <div className={c.titlebox}>
-        <h2 className={c.title}>What's Popular</h2>
-        <div className={c.select}>
+      <div className={styles.titlebox}>
+        <h2 className={styles.title}>What's Popular</h2>
+        <div className={styles.select}>
           <div
             onClick={() => handleItems("tv")}
-            className={`${c.option} ${
-              type == "tv" ? c.selected : ""
+            className={`${styles.option} ${
+              type == "tv" ? styles.selected : ""
             }`}
           >
             On TV
           </div>
           <div
             onClick={() => handleItems("movie")}
-            className={`${c.option} ${
-              type == "movie" ? c.selected : ""
+            className={`${styles.option} ${
+              type == "movie" ? styles.selected : ""
             }`}
           >
             In Theaters
@@ -52,12 +52,13 @@ export default function Popular() {
         </div>
       </div>
 
-      <div className={c.main}>
+      <div className={styles.main}>
         {type == "movie" &&
           items.map(
             ({ id, poster_path, title, release_date, vote_average }) => (
               <MovieItem
                 key={id}
+                id={id}
                 img={poster_path}
                 title={title}
                 release={release_date}
@@ -71,6 +72,7 @@ export default function Popular() {
             ({ id, poster_path, name, first_air_date, vote_average }) => (
               <MovieItem
                 key={id}
+                id={id}
                 img={poster_path}
                 title={name}
                 release={first_air_date}

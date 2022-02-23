@@ -7,11 +7,10 @@ import Popular from "../../organisms/Popular/Popular";
 import Footer from "../../organisms/Footer/Footer";
 
 export default function HomePage() {
+
   return (
-    <HomeTemplate
-      header={<MainMenu />}
-      content={<Popular />}
-      footer={<Footer />}
-    />
+    <HomeTemplate header={<MainMenu />} footer={<Footer />}>
+      <Popular />
+    </HomeTemplate>
   );
 }

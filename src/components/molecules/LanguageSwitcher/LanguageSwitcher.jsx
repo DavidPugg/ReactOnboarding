@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 import LanguageDropdown from "../LanguageDropdown/LanguageDropdown";
 
-import c from "./LanguageSwitcher.module.scss";
+import styles from "./LanguageSwitcher.module.scss";
 
 import clickOutside from "../../hooks/clickOutside";
 
@@ -35,7 +35,7 @@ export default function LanguageSwitcher() {
 
   return (
     <div ref={wrapperRef}>
-      <p onClick={() => setDropdown(!dropdown)} className={c.toggle}>
+      <p onClick={() => setDropdown(!dropdown)} className={styles.toggle}>
         {currentLanguage.code}
       </p>
       {dropdown && (

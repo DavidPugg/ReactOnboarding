@@ -3,7 +3,7 @@ import { useLocation, Link, useParams } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
-import c from "./SearchSidebarItem.module.scss";
+import styles from "./SearchSidebarItem.module.scss";
 
 function SearchSidebarItem({ label, to, count }) {
   let location = useLocation();
@@ -13,10 +13,10 @@ function SearchSidebarItem({ label, to, count }) {
   return (
     <Link
       to={`/search/${to}${location.search}`}
-      className={`${c.label} ${type == `${to}` ? c.selected : ""}`}
+      className={`${styles.label} ${type == `${to}` ? styles.selected : ""}`}
     >
       {label}
-      <span className={c.count}>{count || 0}</span>
+      <span className={styles.count}>{count || 0}</span>
     </Link>
   );
 }

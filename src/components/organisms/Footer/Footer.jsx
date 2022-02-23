@@ -1,6 +1,6 @@
 import React from "react";
 
-import c from "./Footer.module.scss";
+import styles from "./Footer.module.scss";
 
 import FooterColumn from "../../molecules/FooterColumn/FooterColumn";
 
@@ -34,9 +34,9 @@ const columns = [
 
 export default function Footer() {
   return (
-    <div className={c.background}>
+    <div className={styles.background}>
       <div className="container">
-        <div className={c.content}>
+        <div className={styles.content}>
           {columns.map(({ label, links }) => (
             <FooterColumn key={label} label={label} links={links} />
           ))}

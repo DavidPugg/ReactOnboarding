@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import MainLanguageOption from "../../atoms/MainLanguageOption/MainLanguageOption";
 import LanguageList from "../LanguageList/LanguageList";
 
-import c from "./LanguageDropdown.module.scss";
+import styles from "./LanguageDropdown.module.scss";
 
 export default function LanguageDropdown({
   languages,
@@ -14,9 +14,9 @@ export default function LanguageDropdown({
   const [currentDropdown, setCurrentDropdown] = useState(false);
   const [fallbackDropdown, setFallbackDropdown] = useState(false);
   return (
-    <div className={c.dropdown}>
-      <p className={c.title}>Language preferences</p>
-      <div className={c.selection}>
+    <div className={styles.dropdown}>
+      <p className={styles.title}>Language preferences</p>
+      <div className={styles.selection}>
         <p>Default language</p>
         <span onClick={() => setCurrentDropdown(!currentDropdown)}>
           <MainLanguageOption
@@ -33,7 +33,7 @@ export default function LanguageDropdown({
         )}
       </div>
 
-      <div className={c.selection}>
+      <div className={styles.selection}>
         <p>Fallback language</p>
         <span onClick={() => setFallbackDropdown(!fallbackDropdown)}>
           <MainLanguageOption

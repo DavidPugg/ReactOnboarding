@@ -10,6 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "[name].bundle.js",
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -50,12 +51,17 @@ module.exports = {
       },
       {
         test: /\.(png|jpeg)/,
-        type: 'asset/resource'
-      }
+        type: "asset/resource",
+      },
     ],
   },
   resolve: {
     extensions: ["*", ".js", ".jsx", ".css"],
+    alias: {
+      '@css': path.resolve(__dirname, 'src/css'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@assets': path.resolve(__dirname, 'src/assets')
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -68,4 +74,8 @@ module.exports = {
   ],
 
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
+
+  devServer: {
+    historyApiFallback: true,
+  },
 };

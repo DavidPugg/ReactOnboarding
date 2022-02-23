@@ -1,9 +1,9 @@
 import React from "react";
-import c from "./FooterLink.module.scss";
+import styles from "./FooterLink.module.scss";
 
 export default function FooterLink({ label, url }) {
   return (
-    <a className={c.link} href={url}>
+    <a className={styles.link} href={url}>
       {label}
     </a>
   );

@@ -1,15 +1,15 @@
 import React from "react";
 
-import c from './HomeTemplate.module.scss'
+import styles from "./HomeTemplate.module.scss";
 
-function MainTemplate({ header, content, footer }) {
+function HomeTemplate({ header, footer, children }) {
   return (
-    <div className={c.wrapper}>
+    <div className={styles.wrapper}>
       <header>{header}</header>
-      <div className={c.content}>{content}</div>
-      <footer className={c.footer}>{footer}</footer>
+      <main className={styles.main}>{children}</main>
+      <footer className={styles.footer}>{footer}</footer>
     </div>
   );
 }
 
-export default MainTemplate;
+export default HomeTemplate;

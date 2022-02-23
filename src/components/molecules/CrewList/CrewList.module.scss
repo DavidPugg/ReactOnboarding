@@ -1,0 +1,6 @@
+
+  .crew {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 10rem));
+    gap: 1rem;
+  }

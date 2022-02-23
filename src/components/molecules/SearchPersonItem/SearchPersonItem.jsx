@@ -1,6 +1,6 @@
 import React from "react";
 
-import c from "./SearchPersonItem.module.scss";
+import styles from "./SearchPersonItem.module.scss";
 
 import notfound from "../../../assets/personnotfound.png";
 
@@ -11,10 +11,10 @@ export default function SearchPersonItem({ name, known_for, movie, img }) {
   }
 
   return (
-    <div className={c.item}>
-      <img className={c.img} src={returnImage()} alt="Movie poster" />
-      <div className={c.content}>
-        <h3 className={c.name}>{name}</h3>
+    <div className={styles.item}>
+      <img className={styles.img} src={returnImage()} alt="Movie poster" />
+      <div className={styles.content}>
+        <h3 className={styles.name}>{name}</h3>
         <p>
           {known_for} • {movie}
         </p>

@@ -1,0 +1,50 @@
+@import '@css/variables';
+
+.item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-primary;
+    border-radius: 100px;
+    width: 2.2rem;
+    height: 2.2rem;
+
+    &:hover .text {
+        visibility: visible;
+    }
+}
+
+.svg {
+    width: .8rem;
+    height: .8rem;
+    fill: white;
+}
+
+.text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    visibility: hidden;
+    color: white;
+    font-size: .8rem;
+    transform: translateY(170%) translateX(-50%);
+    background-color: $color-primary;
+    padding: .4rem;
+    line-height: 1;
+    border-radius: .3rem;
+    z-index: 1000;
+    white-space: nowrap;
+}
+
+.text::after {
+    content: '';
+    position: absolute;
+    transform: rotate(45deg) translate(-50%, 20%);
+    top: 0;
+    left: 50%;
+    width: 1rem;
+    height: 1rem;
+    background-color: $color-primary;
+    z-index: -1;
+}

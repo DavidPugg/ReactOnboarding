@@ -5,7 +5,6 @@ import axios from "axios";
 import SearchInput from "../../atoms/SearchInput/SearchInput";
 import SearchResult from "../../atoms/SearchResult/SearchResult";
 
-import c from "./Searchbar.module.scss";
 
 export default function Searchbar() {
   const navigate = useNavigate();
@@ -30,14 +29,15 @@ export default function Searchbar() {
       });
   }
 
-  return [
-    <SearchInput onInput={handleItems} onSubmit={handleSubmit} />,
-
-    items.length > 0 &&
-      items.map(({ title, id }) => {
-        if (title) {
-          return <SearchResult key={id} label={title} />;
-        }
-      }),
-  ];
+  return (
+    <>
+      <SearchInput onInput={handleItems} onSubmit={handleSubmit} />
+      {items.length > 0 &&
+        items.map(({ title, id }) => {
+          if (title) {
+            return <SearchResult key={id} label={title} />;
+          }
+        })}
+    </>
+  );
 }

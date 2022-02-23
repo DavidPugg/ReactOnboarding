@@ -1,6 +1,6 @@
 import React from "react";
 
-import c from "./SearchSidebar.module.scss";
+import styles from "./SearchSidebar.module.scss";
 
 import SearchSidebarItem from "../../atoms/SearchSidebarItem/SearchSidebarItem";
 
@@ -15,29 +15,28 @@ export default function SearchSidebar({
   collections,
   networks,
 }) {
-
   function getCount(to) {
-    if (to == 'movie') {
+    if (to == "movie") {
       return movies;
-    } else if ( to == 'tv') {
+    } else if (to == "tv") {
       return shows;
-    } else if ( to == 'person') {
+    } else if (to == "person") {
       return people;
-    } else if ( to == 'company') {
+    } else if (to == "company") {
       return companies;
-    } else if ( to == 'keyword') {
+    } else if (to == "keyword") {
       return keywords;
-    } else if ( to == 'collection') {
+    } else if (to == "collection") {
       return collections;
-    } else if ( to == 'network') {
+    } else if (to == "network") {
       return networks;
     }
   }
 
   return (
-    <div className={c.main}>
-      <p className={c.title}>Search Results</p>
-      <div className={c.container}>
+    <div className={styles.main}>
+      <p className={styles.title}>Search Results</p>
+      <div className={styles.container}>
         {options.map(({ label, to }) => (
           <SearchSidebarItem
             key={label}

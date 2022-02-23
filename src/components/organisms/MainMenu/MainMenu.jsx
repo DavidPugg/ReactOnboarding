@@ -6,7 +6,7 @@ import LanguageSwitcher from "../../molecules/LanguageSwitcher/LanguageSwitcher"
 
 import menus from "./mainMenuArray";
 
-import c from "./MainMenu.module.scss";
+import styles from "./MainMenu.module.scss";
 
 import MainMenuLink from "../../atoms/MainMenuLink/MainMenuLink";
 import SearchToggle from "../../atoms/SearchToggle/SearchToggle";
@@ -34,31 +34,33 @@ export default function MainMenu() {
 
   useEffect(() => {
     setSearchbar(false);
-    return () => setSearchbar(true)
-  }, [search])
+    return () => setSearchbar(true);
+  }, [search]);
 
-  return [
-    <div className={c.background}>
-      <div className="container">
-        <div className={c.main}>
-          <div className={c.left}>
-            <MainMenuLink className={c.title} url="/" label="TMDB" />
-            {menus.map(({ label, links }) => (
-              <MainMenuItem key={label} label={label} links={links} />
-            ))}
-          </div>
-          <div className={c.right}>
-            <LanguageSwitcher />
-            <MainMenuLink label="Login" />
-            <SearchToggle
-              onToggle={() => {
-                setSearchbar(!searchbar);
-              }}
-            />
+  return (
+    <>
+      <div className={styles.background}>
+        <div className="container">
+          <div className={styles.main}>
+            <div className={styles.left}>
+              <MainMenuLink className={styles.title} url="/" label="TMDB" />
+              {menus.map(({ label, links }) => (
+                <MainMenuItem key={label} label={label} links={links} />
+              ))}
+            </div>
+            <div className={styles.right}>
+              <LanguageSwitcher />
+              <MainMenuLink label="Login" />
+              <SearchToggle
+                onToggle={() => {
+                  setSearchbar(!searchbar);
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>,
-    searchbar && <SearchBar />,
-  ];
+      {searchbar && <SearchBar />}
+    </>
+  );
 }

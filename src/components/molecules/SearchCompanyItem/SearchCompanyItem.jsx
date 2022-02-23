@@ -1,19 +1,19 @@
 import React from "react";
 
-import c from "./SearchCompanyItem.module.scss";
+import styles from "./SearchCompanyItem.module.scss";
 
 export default function SearchPersonItem({ name, img, country }) {
   return (
-    <div className={c.item}>
-      <h4 className={c.name}>{name}</h4>
+    <div className={styles.item}>
+      <h4 className={styles.name}>{name}</h4>
       {img && (
         <img
-          className={c.img}
+          className={styles.img}
           src={`https://image.tmdb.org/t/p/w500/${img}`}
           alt="Company"
         />
       )}
-      {country && <p className={c.country}>{country}</p>}
+      {country && <p className={styles.country}>{country}</p>}
     </div>
   );
 }
