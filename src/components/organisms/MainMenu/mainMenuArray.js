@@ -4,7 +4,7 @@ export default [
     links: [
       {
         label: "Popular",
-        url: "#",
+        url: "/movie",
       },
       {
         label: "Now playing",

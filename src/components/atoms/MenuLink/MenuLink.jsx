@@ -1,12 +1,14 @@
 import React from "react";
+import {Link} from 'react-router-dom'
+
 import PropTypes from "prop-types";
 
 import styles from "./MenuLink.module.scss";
 function MenuLink({ label, url }) {
   return (
-    <a className={styles.link} href={url}>
+    <Link className={styles.link} to={url}>
       {label}
-    </a>
+    </Link>
   );
 }
 

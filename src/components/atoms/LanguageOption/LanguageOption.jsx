@@ -1,6 +1,19 @@
 import React from "react";
 
-import styles from './LanguageOption.module.scss'
-export default function LanguageOption({label, code}) {
-    return <p className={styles.option}>{label} ({code}-{code.toUpperCase()})</p>
+import PropTypes from "prop-types";
+
+import styles from "./LanguageOption.module.scss";
+function LanguageOption({ label, code, onClick }) {
+  return (
+    <p className={styles.option} onClick={onClick}>
+      {label} {code && `${code}-${code.toUpperCase()}`}
+    </p>
+  );
 }
+
+LanguageOption.propTypes = {
+  label: PropTypes.string.isRequired,
+  url: PropTypes.string,
+};
+
+export default LanguageOption;

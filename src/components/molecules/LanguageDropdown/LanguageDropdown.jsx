@@ -56,16 +56,11 @@ export default function LanguageDropdown({
       <p className={styles.title}>Language preferences</p>
       <div className={styles.selection}>
         <p className={styles.text}>Default language</p>
-        <span
-          onClick={() => {
-            handleDropdown("current");
-          }}
-        >
-          <MainLanguageOption
-            label={currentLanguage.label}
-            code={currentLanguage.code}
-          />
-        </span>
+        <MainLanguageOption
+          onClick={() => handleDropdown("current")}
+          label={currentLanguage.label}
+          code={currentLanguage.code}
+        />
         {currentDropdown && (
           <UniversalDropdown style={{ paddingRight: "0", paddingLeft: "0" }}>
             <LanguageSearch onInput={handleInput} />
@@ -85,16 +80,11 @@ export default function LanguageDropdown({
 
       <div className={styles.selection}>
         <p className={styles.text}>Fallback language</p>
-        <span
-          onClick={() => {
-            handleDropdown("fallback");
-          }}
-        >
-          <MainLanguageOption
-            label={fallbackLanguage.label}
-            code={fallbackLanguage.code}
-          />
-        </span>
+        <MainLanguageOption
+          onClick={() => handleDropdown("fallback")}
+          label={fallbackLanguage.label}
+          code={fallbackLanguage.code}
+        />
         {fallbackDropdown && (
           <UniversalDropdown style={{ paddingRight: "0", paddingLeft: "0" }}>
             <LanguageSearch onInput={handleInput} />

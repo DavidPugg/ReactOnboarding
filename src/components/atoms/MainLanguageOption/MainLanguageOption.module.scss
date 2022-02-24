@@ -1,10 +1,10 @@
 @import '@css/variables';
 
 .label {
-  width: 13rem;
   font-size: 0.8rem;
   background-color: lightgrey;
   padding: 0.35rem 0.7rem;
+  cursor: pointer;
 
   background-color: $color-grey-light;
   border-radius: 0.2rem;

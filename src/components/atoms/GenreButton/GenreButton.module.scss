@@ -1,0 +1,20 @@
+@import '@css/variables';
+
+.genre {
+    font-size: .7rem;
+    display: inline-block;
+    margin: .2rem;
+    padding: .2rem .6rem;
+    border-radius: 100px;
+    border: 1px solid $color-grey-dark;
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+        background-color: $color-primary-light !important;
+    }
+}
+
+.selected {
+    background-color: $color-primary-light;
+}
