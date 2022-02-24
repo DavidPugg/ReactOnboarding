@@ -30,7 +30,7 @@ export default function Popular() {
 
   function getPosition() {
     if (type == "tv") return { left: "0%" };
-    return { left: "calc(50% + .5rem)"};
+    return { left: "calc(50% + .5rem)" };
   }
 
   return (
@@ -62,14 +62,15 @@ export default function Popular() {
         {type == "movie" &&
           items.map(
             ({ id, poster_path, title, release_date, vote_average }) => (
-              <MovieItem
-                key={id}
-                id={id}
-                img={poster_path}
-                title={title}
-                release={release_date}
-                rating={vote_average}
-              />
+                <MovieItem
+                style={{width: `8rem`}}
+                  key={id}
+                  id={id}
+                  img={poster_path}
+                  title={title}
+                  release={release_date}
+                  rating={vote_average}
+                />
             )
           )}
 

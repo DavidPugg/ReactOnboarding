@@ -1,0 +1,14 @@
+@import '@css/variables';
+
+.button {
+    color: darken($color-grey-dark, 25%);
+    background-color: $color-grey-light;
+    border: none;
+    padding: .8rem 1.6rem;
+    border-radius: 100px;
+}
+
+.updated {
+    background-color: $color-primary-light;
+    color: white;
+}

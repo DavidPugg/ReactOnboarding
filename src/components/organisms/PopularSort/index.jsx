@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+
+import { Appcontext } from "../../pages/PopularPage/context";
 
 import SidebarItem from "../../molecules/SidebarItem";
-
 import MainLanguageOption from "@components/atoms/MainLanguageOption/MainLanguageOption";
 import UniversalDropdown from "@components/atoms/UniversalDropdown";
 import LanguageOption from "../../atoms/LanguageOption/LanguageOption";
 
-import sort from "./sort";
+import sortItems from "./sort";
 
 export default function PopularSort() {
   const [dropdown, setDropdown] = useState(false);
+  const { sort, updateSort } = useContext(Appcontext);
 
   return (
     <SidebarItem label="Sort">
       <p>Sort results by</p>
       <MainLanguageOption
-        label="Popularity descending"
+        label={sortItems.find((e) => e.sort == sort).label}
         onClick={() => setDropdown(!dropdown)}
       />
       {dropdown && (
@@ -27,8 +29,8 @@ export default function PopularSort() {
             paddingLeft: "0",
           }}
         >
-          {sort.map(({ label }) => (
-            <LanguageOption key={label} label={label} />
+          {sortItems.filter((e) => e.sort !== sort).map(({ label, sort }) => (
+            <LanguageOption key={sort} label={label} onClick={() => {updateSort(sort); setDropdown(false)}} />
           ))}
         </UniversalDropdown>
       )}

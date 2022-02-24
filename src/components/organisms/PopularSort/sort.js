@@ -1,34 +1,34 @@
 export default [
   {
     label: "Popularity Descending",
-    sort: "#",
+    sort: "popularity.desc",
   },
   {
     label: "Popularity Ascending",
-    sort: "#",
+    sort: "popularity.asc",
   },
   {
     label: "Rating Descending",
-    sort: "#",
+    sort: "vote_average.desc",
   },
   {
     label: "Rating Aescending",
-    sort: "#",
+    sort: "vote_average.asc",
   },
   {
     label: "Release Date Descending",
-    sort: "#",
+    sort: "release_date.desc",
   },
   {
     label: "Release Date Aescending",
-    sort: "#",
+    sort: "release_date.asc",
   },
   {
     label: "Title (A-Z)",
-    sort: "#",
+    sort: "original_title.desc",
   },
   {
     label: "Title (Z-A)",
-    sort: "#",
+    sort: "original_title.asc",
   },
 ];
