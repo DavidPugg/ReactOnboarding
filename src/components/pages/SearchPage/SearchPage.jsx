@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import axios from "axios";
 
@@ -20,7 +20,6 @@ export default function SearchPage() {
   const [collections, setCollections] = useState({ results: [], count: null });
   const [networks, setNetworks] = useState({ results: [], count: null });
 
-  const { type } = useParams();
   let { search } = useLocation();
 
   const types = [
@@ -96,18 +95,17 @@ export default function SearchPage() {
           networks={networks.count}
         />
       }
-      content={
-        <SearchContent
-          movies={movies.results}
-          shows={shows.results}
-          people={people.results}
-          companies={companies.results}
-          keywords={keywords.results}
-          collections={collections.results}
-          networks={networks.results}
-        />
-      }
       footer={<Footer />}
-    />
+    >
+      <SearchContent
+        movies={movies.results}
+        shows={shows.results}
+        people={people.results}
+        companies={companies.results}
+        keywords={keywords.results}
+        collections={collections.results}
+        networks={networks.results}
+      />
+    </MainTemplate>
   );
 }
