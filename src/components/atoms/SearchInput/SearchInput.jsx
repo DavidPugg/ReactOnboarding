@@ -13,11 +13,16 @@ export default function SearchInput({ onSubmit, onInput }) {
   return (
     <div className={styles.border}>
       <div className="container">
-        <form
+        <form className={styles.box}
           onSubmit={(e) => {
             handleSubmit(e);
           }}
         >
+          <svg className={styles.svg} onClick={() => onToggle()}>
+            <use
+              href={require(`@assets/svgs.svg`) + `#icon-magnifying-glass`}
+            ></use>
+          </svg>
           <input
             ref={inputEl}
             onInput={() => {

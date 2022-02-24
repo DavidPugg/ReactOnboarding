@@ -13,23 +13,15 @@ export default function SearchSidebar({
   companies,
   keywords,
   collections,
-  networks,
 }) {
   function getCount(to) {
-    if (to == "movie") {
-      return movies;
-    } else if (to == "tv") {
-      return shows;
-    } else if (to == "person") {
-      return people;
-    } else if (to == "company") {
-      return companies;
-    } else if (to == "keyword") {
-      return keywords;
-    } else if (to == "collection") {
-      return collections;
-    } else if (to == "network") {
-      return networks;
+    switch(to) {
+      case 'movie': return movies;
+      case 'tv': return shows;
+      case 'person': return people;
+      case 'company': return companies;
+      case 'keyword': return keywords;
+      case 'collection': return collections;
     }
   }
 

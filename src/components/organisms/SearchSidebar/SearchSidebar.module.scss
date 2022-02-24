@@ -1,10 +1,12 @@
+@import '@css/variables';
+
 .container {
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
 }
 
 .title {
-  background-color: darken(cyan, 10%);
+  background-color: $color-primary-light;
   padding: 1rem;
   color: white;
   font-weight: bold;
@@ -13,6 +15,6 @@
 .main {
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid lighten(lightgrey, 10%);
+  border: 1px solid $color-grey-light;
   overflow: hidden;
 }

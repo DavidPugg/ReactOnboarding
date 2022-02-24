@@ -3,15 +3,14 @@ import { useLocation } from "react-router-dom";
 
 import MainMenuItem from "../../molecules/MainMenuItem/MainMenuItem";
 import LanguageSwitcher from "../../molecules/LanguageSwitcher/LanguageSwitcher";
+import MainMenuLink from "../../atoms/MainMenuLink/MainMenuLink";
+import SearchToggle from "../../atoms/SearchToggle/SearchToggle";
+import SearchBar from "../../molecules/SearchBar/Searchbar";
+import PlusMenuItem from "../../molecules/PlusMenuItem";
 
 import menus from "./mainMenuArray";
 
 import styles from "./MainMenu.module.scss";
-
-import MainMenuLink from "../../atoms/MainMenuLink/MainMenuLink";
-import SearchToggle from "../../atoms/SearchToggle/SearchToggle";
-import SearchBar from "../../molecules/SearchBar/Searchbar";
-
 export default function MainMenu() {
   const [searchbar, setSearchbar] = useState(false);
   const { search } = useLocation();
@@ -49,6 +48,7 @@ export default function MainMenu() {
               ))}
             </div>
             <div className={styles.right}>
+              <PlusMenuItem/>
               <LanguageSwitcher />
               <MainMenuLink label="Login" />
               <SearchToggle

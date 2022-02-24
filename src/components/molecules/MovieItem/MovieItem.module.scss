@@ -1,3 +1,9 @@
+@import '@css/variables';
+
+.box {
+  position: relative;
+}
+
 .link {
   text-decoration: none;
   color: black;
@@ -8,18 +14,8 @@
 }
 
 .img {
-  width: 10rem;
+  width: 8rem;
   border-radius: 0.5rem;
-}
-
-.title {
-  font-size: 1rem;
-  margin-top: 0.8rem;
-}
-
-.release {
-  font-size: 0.9rem;
-  color: grey;
 }
 
 .rating {
@@ -28,4 +24,18 @@
   position: absolute;
   bottom: 0;
   transform: translateY(30%) translateX(40%);
+}
+
+.textbox {
+  padding: 0 0.3rem;
+
+  .title {
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+  }
+
+  .release {
+    font-size: 0.8rem;
+    color: $color-grey-dark;
+  }
 }

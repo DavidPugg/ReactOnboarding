@@ -1,6 +1,8 @@
+@import '@css/variables';
+
 .svg {
     width: 1.5rem;
     height: 1.5rem;
-    fill: cyan;
+    fill: $color-primary-light;
     cursor: pointer;
 }

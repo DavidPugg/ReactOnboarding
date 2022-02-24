@@ -3,7 +3,7 @@ import axios from "axios";
 
 import MovieItem from "../../molecules/MovieItem/MovieItem";
 
-import styles from './Popular.module.scss'
+import styles from "./Popular.module.scss";
 
 export default function Popular() {
   const [items, setItems] = useState([]);
@@ -28,11 +28,17 @@ export default function Popular() {
       });
   }
 
+  function getPosition() {
+    if (type == "tv") return { left: "0%" };
+    return { left: "calc(50% + .5rem)"};
+  }
+
   return (
-    <div className="container">
+    <div className={`container`}>
       <div className={styles.titlebox}>
         <h2 className={styles.title}>What's Popular</h2>
         <div className={styles.select}>
+          <div className={styles.toggler} style={getPosition()}></div>
           <div
             onClick={() => handleItems("tv")}
             className={`${styles.option} ${

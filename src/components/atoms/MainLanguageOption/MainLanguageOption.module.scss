@@ -1,7 +1,21 @@
+@import '@css/variables';
+
 .label {
-    background-color: lightgrey;
-    padding: 0.2rem 0.5rem;
-  
-    background-color: darken(lightgrey, $amount: 10%);
-  }
-  
+  width: 13rem;
+  font-size: 0.8rem;
+  background-color: lightgrey;
+  padding: 0.35rem 0.7rem;
+
+  background-color: $color-grey-light;
+  border-radius: 0.2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.svg {
+  width: .8rem;
+  height: .8rem;
+  transform: rotate(90deg);
+}

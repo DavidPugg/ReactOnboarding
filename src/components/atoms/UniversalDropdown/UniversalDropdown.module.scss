@@ -1,0 +1,27 @@
+@import '@css/variables';
+
+.dropdown {
+  position: absolute;
+  left: 50%;
+  border: 1px solid $color-grey-light;
+  padding: .7rem;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
+  border-radius: 0.2rem;
+  background-color: white;
+  z-index: 1000;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -5%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: white;
+  }
+}

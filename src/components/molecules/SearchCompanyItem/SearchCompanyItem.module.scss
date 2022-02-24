@@ -1,3 +1,4 @@
+@import '@css/variables';
 
 .name {
   font-size: 1rem;
@@ -15,7 +16,7 @@
 
 .country {
   font-size: .8rem;
-  background-color: lighten($color: grey, $amount: 40%);
+  background-color: $color-grey-light;
   padding: .3rem;
   border-radius: .5rem;
 }

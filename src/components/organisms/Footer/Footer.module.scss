@@ -1,5 +1,7 @@
+@import '@css/variables';
+
 .background {
-  background-color: darken(darkblue, $amount: 15%);
+  background-color: $color-primary;
 }
 
 .content {

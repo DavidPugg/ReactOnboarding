@@ -35,16 +35,16 @@
     border-radius: .3rem;
     z-index: 1000;
     white-space: nowrap;
-}
 
-.text::after {
-    content: '';
-    position: absolute;
-    transform: rotate(45deg) translate(-50%, 20%);
-    top: 0;
-    left: 50%;
-    width: 1rem;
-    height: 1rem;
-    background-color: $color-primary;
-    z-index: -1;
+    &::after {
+        content: '';
+        position: absolute;
+        transform: rotate(45deg) translate(-50%, 20%);
+        top: 0;
+        left: 50%;
+        width: 1rem;
+        height: 1rem;
+        background-color: $color-primary;
+        z-index: -1;
+    }
 }

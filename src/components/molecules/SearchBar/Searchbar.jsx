@@ -5,6 +5,7 @@ import axios from "axios";
 import SearchInput from "../../atoms/SearchInput/SearchInput";
 import SearchResult from "../../atoms/SearchResult/SearchResult";
 
+import styles from "./Searchbar.module.scss";
 
 export default function Searchbar() {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ export default function Searchbar() {
   function handleSubmit(query) {
     navigate(`/search/movie?q=${query}`);
   }
-
   function handleItems(input) {
     if (input == "") {
       setItems([]);
@@ -28,9 +28,8 @@ export default function Searchbar() {
         setItems(res.data.results);
       });
   }
-
   return (
-    <>
+    <div className={styles.bar}>
       <SearchInput onInput={handleItems} onSubmit={handleSubmit} />
       {items.length > 0 &&
         items.map(({ title, id }) => {
@@ -38,6 +37,6 @@ export default function Searchbar() {
             return <SearchResult key={id} label={title} />;
           }
         })}
-    </>
+    </div>
   );
 }

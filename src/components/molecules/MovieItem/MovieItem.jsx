@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import TripleDot from "../TripleDot";
+
 import styles from "./MovieItem.module.scss";
 
-import {
-  CircularProgressbar,
-  buildStyles,
-} from "react-circular-progressbar";
-import "../../../css/progressbar.scss";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "@css/progressbar.scss";
 
 export default function MovieItem({ id, img, title, release, rating }) {
   return (
-    <Link className={styles.link} to={`/movie/${id}`}>
+    <div className={styles.box}>
+      <TripleDot />
+      <Link className={styles.link} to={`/movie/${id}`}>
         <div className={styles.imgbox}>
           <img
             className={styles.img}
@@ -33,8 +34,11 @@ export default function MovieItem({ id, img, title, release, rating }) {
             />
           </div>
         </div>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.release}>{release}</p>
-    </Link>
+        <div className={styles.textbox}>
+          <h3 className={styles.title}>{title}</h3>
+          <p className={styles.release}>{release}</p>
+        </div>
+      </Link>
+    </div>
   );
 }

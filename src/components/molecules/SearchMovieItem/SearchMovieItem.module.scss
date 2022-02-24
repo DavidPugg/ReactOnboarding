@@ -1,3 +1,5 @@
+@import '@css/variables';
+
 .link {
   text-decoration: none;
   color: black;
@@ -26,7 +28,7 @@
 
     .release {
       font-size: 0.9rem;
-      color: grey;
+      color: $color-grey-dark;
     }
   }
 }

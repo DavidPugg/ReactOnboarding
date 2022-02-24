@@ -29,9 +29,4 @@ export default [
       results: 0,
       to: "collection",
     },
-    {
-      label: "Networks",
-      results: 0,
-      to: "network",
-    },
   ];

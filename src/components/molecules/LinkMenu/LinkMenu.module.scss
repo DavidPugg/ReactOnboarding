@@ -1,21 +1,23 @@
+@import '@css/variables';
+
 .link {
     text-decoration: none;
-    color: black;
+    color: $color-primary;
     padding: 0.5rem 0.8rem;
   
     &:hover {
-      background-color: lighten(grey, $amount: 40%);
+      background-color: $color-grey-light;
     }
   }
   
   .list {
     z-index: 1000;
     position: absolute;
-    padding: 1rem 0;
+    padding: .5rem 0;
     box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: 0.3);
     list-style: none;
     margin-top: 1rem;
-    transform: translateY(0.7rem);
-    border-radius: 0.5rem;
+    transform: translateY(0.5rem);
+    border-radius: 0.2rem;
     background-color: white;
   }

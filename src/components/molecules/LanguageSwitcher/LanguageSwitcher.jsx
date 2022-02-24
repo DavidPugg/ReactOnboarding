@@ -34,7 +34,7 @@ export default function LanguageSwitcher() {
   });
 
   return (
-    <div ref={wrapperRef}>
+    <div className={styles.box} ref={wrapperRef}>
       <p onClick={() => setDropdown(!dropdown)} className={styles.toggle}>
         {currentLanguage.code}
       </p>

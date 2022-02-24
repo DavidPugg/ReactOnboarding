@@ -1,3 +1,5 @@
+
+@import '@css/variables';
 .content {
   display: flex;
   gap: 1rem;
@@ -21,7 +23,7 @@
     }
 
     .year {
-      color: lightgrey;
+      color: $color-grey-light;
       font-weight: 400;
     }
 
@@ -45,7 +47,7 @@
     }
 
     .tagline {
-      color: lightgrey;
+      color: $color-grey-light;
       font-size: .9rem;
     }
 

@@ -7,4 +7,12 @@ export default [
     label: "German",
     code: "de",
   },
+  {
+    label: "French",
+    code: 'fr'
+  },
+  {
+    label: "Croatian",
+    code: 'hr'
+  }
 ];
