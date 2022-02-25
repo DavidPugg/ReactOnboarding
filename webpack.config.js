@@ -60,7 +60,8 @@ module.exports = {
     alias: {
       '@css': path.resolve(__dirname, 'src/css'),
       '@components': path.resolve(__dirname, 'src/components'),
-      '@assets': path.resolve(__dirname, 'src/assets')
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@src': path.resolve(__dirname, 'src')
     }
   },
   plugins: [

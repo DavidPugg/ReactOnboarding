@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
-import { Appcontext } from "../../pages/PopularPage/context";
+import { setSort } from "../../../app/sortSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 import SidebarItem from "../../molecules/SidebarItem";
 import MainLanguageOption from "@components/atoms/MainLanguageOption/MainLanguageOption";
@@ -10,8 +11,11 @@ import LanguageOption from "../../atoms/LanguageOption/LanguageOption";
 import sortItems from "./sort";
 
 export default function PopularSort() {
+  const dispatch = useDispatch();
+  const sort = useSelector((state) => state.sort.value)
   const [dropdown, setDropdown] = useState(false);
-  const { sort, updateSort } = useContext(Appcontext);
+
+
 
   return (
     <SidebarItem label="Sort">
@@ -30,7 +34,7 @@ export default function PopularSort() {
           }}
         >
           {sortItems.filter((e) => e.sort !== sort).map(({ label, sort }) => (
-            <LanguageOption key={sort} label={label} onClick={() => {updateSort(sort); setDropdown(false)}} />
+            <LanguageOption key={sort} label={label} onClick={() => {dispatch(setSort(sort)); setDropdown(false)}} />
           ))}
         </UniversalDropdown>
       )}

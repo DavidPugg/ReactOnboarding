@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import DetailsPage from "./pages/DetailsPage";
 import PopularPage from "./pages/PopularPage";
 
+
 export default function App() {
   return (
     <Router>

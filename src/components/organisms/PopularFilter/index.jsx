@@ -1,14 +1,16 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Appcontext } from "../../pages/PopularPage/context";
+import { setFilters } from "../../../app/filtersSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 import SidebarItem from "../../molecules/SidebarItem";
 import GenreButton from "../../atoms/GenreButton";
 
 export default function PopularFilter() {
+  const dispatch = useDispatch();
+  const filters = useSelector((state) => state.filters.value);
   const [genres, setGenres] = useState([]);
-  const { filters, updateFilters } = useContext(Appcontext);
 
   useEffect(() => {
     axios
@@ -32,7 +34,7 @@ export default function PopularFilter() {
           key={id}
           label={name}
           isActive={isActive(id)}
-          onClick={() => updateFilters(id)}
+          onClick={() => dispatch(setFilters(id))}
         />
       ))}
     </SidebarItem>
