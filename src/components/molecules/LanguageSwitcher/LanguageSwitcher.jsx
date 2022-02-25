@@ -4,8 +4,6 @@ import LanguageDropdown from "../LanguageDropdown/LanguageDropdown";
 
 import styles from "./LanguageSwitcher.module.scss";
 
-import clickOutside from "../../hooks/clickOutside";
-
 import languages from "./languages";
 
 export default function LanguageSwitcher() {
@@ -28,18 +26,16 @@ export default function LanguageSwitcher() {
 
   const [dropdown, setDropdown] = useState(false);
 
-  const wrapperRef = useRef("menu");
-  clickOutside(wrapperRef, () => {
-    setDropdown(false);
-  });
-
   return (
-    <div className={styles.box} ref={wrapperRef}>
+    <div className={styles.box}>
       <p onClick={() => setDropdown(!dropdown)} className={styles.toggle}>
         {currentLanguage.code}
       </p>
       {dropdown && (
         <LanguageDropdown
+          onClickOutside={() => {
+            setDropdown(false);
+          }}
           onLanguageChange={onLanguageChange}
           languages={languages}
           currentLanguage={currentLanguage}

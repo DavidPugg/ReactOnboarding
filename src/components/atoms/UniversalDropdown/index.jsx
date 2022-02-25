@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 
-import styles from './UniversalDropdown.module.scss'
+import clickOutside from "../../hooks/clickOutside";
 
-export default function UniversalDropdown({children, style}){
-    return (
-        <div style={style} className={styles.dropdown}>{children}</div>
-    )
+import styles from "./UniversalDropdown.module.scss";
+
+export default function UniversalDropdown({
+  children,
+  style,
+  ref,
+  onClickOutside,
+}) {
+  const myRef = useRef(ref);
+  clickOutside(myRef, () => {
+    setTimeout(() => {
+      onClickOutside();
+    }, 150);
+  });
+
+  return (
+    <div ref={myRef} style={style} className={styles.dropdown}>
+      {children}
+    </div>
+  );
 }

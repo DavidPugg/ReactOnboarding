@@ -12,6 +12,7 @@ export default function LanguageDropdown({
   currentLanguage,
   fallbackLanguage,
   onLanguageChange,
+  onClickOutside,
 }) {
   const [currentDropdown, setCurrentDropdown] = useState(false);
   const [fallbackDropdown, setFallbackDropdown] = useState(false);
@@ -31,38 +32,29 @@ export default function LanguageDropdown({
     }
   }
 
-  function handleDropdown(type) {
-    if (type == "current") {
-      setCurrentDropdown(!currentDropdown);
-      if (currentDropdown == false) {
-        setFallbackDropdown(false);
-      }
-    } else if (type == "fallback") {
-      setFallbackDropdown(!fallbackDropdown);
-      if (fallbackDropdown == false) {
-        setCurrentDropdown(false);
-      }
-    }
-    setFilteredLanguages(languages);
-  }
-
   function handleLanguageChange() {
     setCurrentDropdown(false);
     setFallbackDropdown(false);
   }
 
   return (
-    <UniversalDropdown>
+    <UniversalDropdown onClickOutside={onClickOutside}>
       <p className={styles.title}>Language preferences</p>
       <div className={styles.selection}>
         <p className={styles.text}>Default language</p>
         <MainLanguageOption
-          onClick={() => handleDropdown("current")}
+          onClick={() => setCurrentDropdown(!currentDropdown)}
           label={currentLanguage.label}
           code={currentLanguage.code}
         />
         {currentDropdown && (
-          <UniversalDropdown style={{ paddingRight: "0", paddingLeft: "0" }}>
+          <UniversalDropdown
+            onClickOutside={() => {
+              setCurrentDropdown(false);
+              setFilteredLanguages(languages);
+            }}
+            style={{ paddingRight: "0", paddingLeft: "0" }}
+          >
             <LanguageSearch onInput={handleInput} />
             <LanguageList
               languages={filteredLanguages.filter(
@@ -81,12 +73,18 @@ export default function LanguageDropdown({
       <div className={styles.selection}>
         <p className={styles.text}>Fallback language</p>
         <MainLanguageOption
-          onClick={() => handleDropdown("fallback")}
+          onClick={() => {
+            setFallbackDropdown(!fallbackDropdown);
+            setFilteredLanguages(languages);
+          }}
           label={fallbackLanguage.label}
           code={fallbackLanguage.code}
         />
         {fallbackDropdown && (
-          <UniversalDropdown style={{ paddingRight: "0", paddingLeft: "0" }}>
+          <UniversalDropdown
+            onClickOutside={() => setFallbackDropdown(false)}
+            style={{ paddingRight: "0", paddingLeft: "0" }}
+          >
             <LanguageSearch onInput={handleInput} />
             <LanguageList
               languages={filteredLanguages.filter(

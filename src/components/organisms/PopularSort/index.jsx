@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { setSort } from "../../../app/sortSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,14 +8,14 @@ import MainLanguageOption from "@components/atoms/MainLanguageOption/MainLanguag
 import UniversalDropdown from "@components/atoms/UniversalDropdown";
 import LanguageOption from "../../atoms/LanguageOption/LanguageOption";
 
+import clickOutside from "../../hooks/clickOutside";
+
 import sortItems from "./sort";
 
 export default function PopularSort() {
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.sort.value)
+  const sort = useSelector((state) => state.sort.value);
   const [dropdown, setDropdown] = useState(false);
-
-
 
   return (
     <SidebarItem label="Sort">
@@ -26,6 +26,9 @@ export default function PopularSort() {
       />
       {dropdown && (
         <UniversalDropdown
+          onClickOutside={() => {
+            setDropdown(false);
+          }}
           style={{
             width: `calc(100% - 1.6rem)`,
             marginTop: `0rem`,
@@ -33,9 +36,18 @@ export default function PopularSort() {
             paddingLeft: "0",
           }}
         >
-          {sortItems.filter((e) => e.sort !== sort).map(({ label, sort }) => (
-            <LanguageOption key={sort} label={label} onClick={() => {dispatch(setSort(sort)); setDropdown(false)}} />
-          ))}
+          {sortItems
+            .filter((e) => e.sort !== sort)
+            .map(({ label, sort }) => (
+              <LanguageOption
+                key={sort}
+                label={label}
+                onClick={() => {
+                  dispatch(setSort(sort));
+                  setDropdown(false);
+                }}
+              />
+            ))}
         </UniversalDropdown>
       )}
     </SidebarItem>

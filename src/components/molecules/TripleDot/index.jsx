@@ -1,7 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import clickOutside from "../../hooks/clickOutside";
 import UniversalDropdown from "@components/atoms/UniversalDropdown";
 
 import styles from "./TripleDot.module.scss";
@@ -9,23 +8,15 @@ import styles from "./TripleDot.module.scss";
 export default function TripleDot() {
   const [dropdown, setDropdown] = useState(false);
 
-  function onToggle() {
-    setDropdown(!dropdown);
-  }
-
-  const myRef = useRef("dropdown");
-  clickOutside(myRef, () => {
-    setDropdown(false);
-  });
-
   return (
-    <div className={styles.box} ref={myRef}>
-      <svg className={styles.svg} onClick={() => onToggle()}>
+    <div className={styles.box}>
+      <svg className={styles.svg} onClick={() => setDropdown(!dropdown)}>
         <use href={require(`@assets/svgs.svg`) + `#icon-dots`}></use>
       </svg>
       {dropdown && (
         <UniversalDropdown
-          style={{ "paddingLeft": "0", "paddingRight": "0" }}
+          onClickOutside={() => setDropdown(false)}
+          style={{ paddingLeft: "0", paddingRight: "0" }}
         >
           <p className={styles.text}>
             Want to rate or add this iten to a list?
