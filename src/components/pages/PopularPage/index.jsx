@@ -5,15 +5,17 @@ import MainMenu from "@components/organisms/MainMenu/MainMenu";
 import PopularSidebar from "../../organisms/PopularSidebar";
 import PopularContent from "../../organisms/PopularContent";
 import Footer from "@components/organisms/Footer/Footer";
+import PageSelector from "../../molecules/PageSelector";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "@src/app/moviesSlice";
 
 export default function PopularPage() {
   const dispatch = useDispatch();
+  const totalPages = useSelector((state) => state.movies.totalPages)
 
   useEffect(() => {
-    dispatch(getMovies());
+    dispatch(getMovies({page: 1}));
   }, []);
 
   return (
@@ -23,6 +25,7 @@ export default function PopularPage() {
       footer={<Footer />}
     >
       <PopularContent />
+      <PageSelector totalPages={totalPages} onPageChange={(page) => dispatch(getMovies({page}))} />
     </MainTemplate>
   );
 }

@@ -34,7 +34,7 @@ export default function PopularSidebar() {
         label="Search"
         updated={hasUpdated()}
         onClick={() => {
-          hasUpdated() ? dispatch(getMovies()) : "";
+          hasUpdated() ? dispatch(getMovies({page: 1})) : "";
         }}
       />
     </div>

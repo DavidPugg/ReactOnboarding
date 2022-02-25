@@ -6,7 +6,7 @@ import { setPrevSort } from "./sortSlice";
 
 export const getMovies = createAsyncThunk(
   "movies/getMovies",
-  async (_, { dispatch, getState }) => {
+  async ({ page }, { dispatch, getState }) => {
     dispatch(setPrevFilters());
     dispatch(setPrevSort());
     const { filters, sort } = getState();
@@ -16,11 +16,11 @@ export const getMovies = createAsyncThunk(
           process.env.API_KEY
         }&language=en-US&sort_by=${
           sort.value
-        }&include_adult=false&include_video=false&page=1&with_genres=${filters.value.join(
+        }&include_adult=false&include_video=false&page=${page}&with_genres=${filters.value.join(
           ","
         )}`
       )
-      .then((res) => res.data.results);
+      .then((res) => res.data);
   }
 );
 
@@ -29,14 +29,20 @@ export const moviesSlice = createSlice({
   initialState: {
     value: [],
     status: "",
+    totalPages: null,
   },
-  reducers: {},
+  reducers: {
+    setTotalPages: (state, { payload }) => {
+      state.totalPages = payload;
+    },
+  },
   extraReducers: {
     [getMovies.pending]: (state) => {
       state.status = "loading";
     },
     [getMovies.fulfilled]: (state, { payload }) => {
-      state.value = payload;
+      state.totalPages = payload.total_pages;
+      state.value = payload.results;
       state.status = "success";
     },
     [getMovies.rejected]: (state) => {

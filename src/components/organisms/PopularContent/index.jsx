@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styles from "./PopularContent.module.scss";
 
@@ -8,6 +8,10 @@ import MovieItem from "../../molecules/MovieItem/MovieItem";
 
 export default function PopularContent() {
   const movies = useSelector((state) => state.movies.value)
+
+  useEffect(() => {
+    console.log('refresh')
+  }, [movies])
   
   return (
     <div className={styles.grid}>
