@@ -1,10 +1,10 @@
 import React from "react";
-
-import HomeTemplate from "../../templates/HomeTemplate/HomeTemplate";
-
+import Footer from "../../organisms/Footer/Footer";
 import MainMenu from "../../organisms/MainMenu/MainMenu";
 import Popular from "../../organisms/Popular/Popular";
-import Footer from "../../organisms/Footer/Footer";
+import HomeTemplate from "../../templates/HomeTemplate/HomeTemplate";
+
+
 
 export default function HomePage() {
 

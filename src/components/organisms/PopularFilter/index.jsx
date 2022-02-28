@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-import { setFilters } from "../../../app/filtersSlice";
 import { useDispatch, useSelector } from "react-redux";
-
-import SidebarItem from "../../molecules/SidebarItem";
+import { setFilters } from "../../../app/filtersSlice";
 import GenreButton from "../../atoms/GenreButton";
+import SidebarItem from "../../molecules/SidebarItem";
+
+
 
 export default function PopularFilter() {
   const dispatch = useDispatch();

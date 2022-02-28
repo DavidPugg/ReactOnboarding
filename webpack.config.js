@@ -2,25 +2,30 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const dotEnv = require("dotenv-webpack");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, "./src/index.js"),
+    main: path.resolve(__dirname, "./src/index.tsx"),
   },
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "[name].bundle.js",
-    publicPath: '/',
+    publicPath: "/",
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react",
+              "@babel/preset-typescript",
+            ],
           },
         },
       },
@@ -56,13 +61,13 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".css"],
+    extensions: ["*", ".js", ".jsx", ".css", ".tsx"],
     alias: {
-      '@css': path.resolve(__dirname, 'src/css'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@src': path.resolve(__dirname, 'src')
-    }
+      "@css": path.resolve(__dirname, "src/css"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@src": path.resolve(__dirname, "src"),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -72,6 +77,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new dotEnv(),
+    new TsconfigPathsPlugin(),
   ],
 
   mode: process.env.NODE_ENV === "production" ? "production" : "development",

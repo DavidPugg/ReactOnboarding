@@ -1,8 +1,8 @@
 import React from "react";
-
+import FooterColumn from "../../molecules/FooterColumn/FooterColumn";
 import styles from "./Footer.module.scss";
 
-import FooterColumn from "../../molecules/FooterColumn/FooterColumn";
+
 
 const columns = [
   {

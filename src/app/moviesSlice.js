@@ -49,11 +49,11 @@ export const moviesSlice = createSlice({
   initialState: {
     value: [],
     status: "",
-    totalPages: null,
+    totalResults: null,
   },
   reducers: {
-    setTotalPages: (state, { payload }) => {
-      state.totalPages = payload;
+    setTotalResults: (state, { payload }) => {
+      state.totalResults = payload;
     },
   },
   extraReducers: {
@@ -61,7 +61,7 @@ export const moviesSlice = createSlice({
       state.status = "loading";
     },
     [getMovies.fulfilled]: (state, { payload }) => {
-      state.totalPages = payload.total_pages;
+      state.totalResults = payload.total_results;
       state.value = payload.results
       state.status = "success";
     },
@@ -73,7 +73,7 @@ export const moviesSlice = createSlice({
       state.status = "loading";
     },
     [loadMore.fulfilled]: (state, { payload }) => {
-      state.totalPages = payload.total_pages;
+      state.totalResults = payload.total_results;
       state.value.push(...payload.results);
       state.status = "success";
     },
@@ -82,6 +82,6 @@ export const moviesSlice = createSlice({
     },
   },
 });
-export const { setTotalPages } = moviesSlice.actions;
+export const { setTotalResults } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

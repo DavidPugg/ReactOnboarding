@@ -1,6 +1,6 @@
 import React from "react";
-
 import styles from "./HomeTemplate.module.scss";
+
 
 function HomeTemplate({ header, footer, children }) {
   return (

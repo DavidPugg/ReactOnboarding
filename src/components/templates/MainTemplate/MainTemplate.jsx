@@ -1,6 +1,6 @@
 import React from "react";
+import styles from './MainTemplate.module.scss';
 
-import styles from './MainTemplate.module.scss'
 
 function MainTemplate({ header, sidebar, footer, children }) {
   return (

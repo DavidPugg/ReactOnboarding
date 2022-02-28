@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
-
-import { useLocation, useParams } from "react-router-dom";
-
 import axios from "axios";
-
-import MainTemplate from "../../templates/MainTemplate/MainTemplate";
-
-import MainMenu from "../../organisms/MainMenu/MainMenu";
-import SearchSidebar from "../../organisms/SearchSidebar/SearchSidebar";
-import SearchContent from "../../organisms/SearchContent/SearchContent";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import PageSelector from "../../molecules/PageSelector";
 import Footer from "../../organisms/Footer/Footer";
+import MainMenu from "../../organisms/MainMenu/MainMenu";
+import SearchContent from "../../organisms/SearchContent/SearchContent";
+import SearchSidebar from "../../organisms/SearchSidebar/SearchSidebar";
+import MainTemplate from "../../templates/MainTemplate/MainTemplate";
 
 export default function SearchPage() {
+  const navigate = useNavigate();
   let { search } = useLocation();
   let { type } = useParams();
   const types = ["movie", "tv", "person", "company", "keyword", "collection"];
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const query = new URLSearchParams(search).get('q');
+  const page = new URLSearchParams(search).get('page');
 
   const [movies, setMovies] = useState({
     results: [],
@@ -52,11 +50,12 @@ export default function SearchPage() {
 
   useEffect(() => {
     getMovies(1);
-  }, [search, type]);
+  }, [query, type]);
 
-  function handlePageChange(page) {
-    setCurrentPage(page);
-    getMovies(page);
+  function handlePageChange(p) {
+    window.scrollTo(0, 0)
+    navigate(`/search/${type}?q=${query}&page=${p}`)
+    getMovies(p);
   }
 
   function getPages() {
@@ -151,8 +150,8 @@ export default function SearchPage() {
       />
       <PageSelector
         totalPages={getPages()}
-        onPageChange={(page) => handlePageChange(page)}
-        currentPage={currentPage}
+        onPageChange={(p) => handlePageChange(p)}
+        currentPage={Number(page)}
       />
     </MainTemplate>
   );

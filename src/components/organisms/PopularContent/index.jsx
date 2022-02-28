@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-
+import React from "react";
+import { useSelector } from "react-redux";
+import MovieItem from "../../molecules/MovieItem/MovieItem.tsx";
 import styles from "./PopularContent.module.scss";
 
-import { useSelector } from "react-redux";
 
-import MovieItem from "../../molecules/MovieItem/MovieItem";
+
 
 export default function PopularContent() {
   const movies = useSelector((state) => state.movies.value)

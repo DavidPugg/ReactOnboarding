@@ -1,13 +1,13 @@
+import SearchMovieItem from "@components/molecules/SearchMovieItem"; //for movies, shows and companies
 import React from "react";
-
 import { useParams } from "react-router-dom";
-
+import SearchCompanyItem from "../../molecules/SearchCompanyItem/SearchCompanyItem";
+import SearchKeywordItem from "../../atoms/SearchKeywordItem/SearchKeywordItem";
+import SearchPersonItem from "../../molecules/SearchPersonItem/SearchPersonItem";
 import styles from "./SearchContent.module.scss";
 
-import SearchMovieItem from "@components/molecules/SearchMovieItem"; //for movies, shows and companies
-import SearchPersonItem from "../../molecules/SearchPersonItem/SearchPersonItem";
-import SearchCompanyItem from "../../molecules/SearchCompanyItem/SearchCompanyItem";
-import SearchKeywordItem from "../../molecules/SearchKeywordItem/SearchKeywordItem";
+
+
 
 export default function SearchContent({
   movies,

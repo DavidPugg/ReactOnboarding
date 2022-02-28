@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import HomeTemplate from "../../templates/HomeTemplate/HomeTemplate";
+import Footer from "../../organisms/Footer/Footer";
 import MainMenu from "../../organisms/MainMenu/MainMenu";
 import MovieDetails from "../../organisms/MovieDetails/MovieDetails";
-import Footer from "../../organisms/Footer/Footer";
+import HomeTemplate from "../../templates/HomeTemplate/HomeTemplate";
+
+
 
 export default function DetailsPage() {
   const [details, setDetails] = useState({});

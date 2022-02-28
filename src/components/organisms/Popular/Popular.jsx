@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-import MovieItem from "../../molecules/MovieItem/MovieItem";
-
+import React, { useEffect, useState } from "react";
+import MovieItem from "../../molecules/MovieItem/MovieItem.tsx";
 import styles from "./Popular.module.scss";
+
+
 
 export default function Popular() {
   const [items, setItems] = useState([]);

@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-
-import styles from "./MovieDetails.module.scss";
-
+import React from "react";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import "../../../css/progressbar.scss";
 import RoundButton from "../../atoms/RoundButton";
 import CrewList from "../../molecules/CrewList";
+import styles from "./MovieDetails.module.scss";
 
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "../../../css/progressbar.scss";
+
+
 
 export default function MovieDetails({ details, crew }) {
   const {
@@ -14,7 +14,6 @@ export default function MovieDetails({ details, crew }) {
     poster_path,
     title,
     release_date,
-    genres,
     runtime,
     vote_average,
     tagline,
@@ -29,6 +28,16 @@ export default function MovieDetails({ details, crew }) {
     backgroundSize: "cover",
     padding: "1rem 0",
   };
+
+  function returnColor() {
+    if (vote_average * 10 < 30) {
+      return "red";
+    } else if (vote_average * 10 < 70) {
+      return "yellow";
+    } else {
+      return "green";
+    }
+  }
 
   return (
     <div style={backgroundStyle}>
@@ -50,13 +59,13 @@ export default function MovieDetails({ details, crew }) {
             <CircularProgressbar
               className={styles.rating}
               value={vote_average * 10}
-              text={`${vote_average * 10}%`}
+              text={vote_average * 10 == 0 ? "NR" : `${vote_average * 10}%`}
               background
               backgroundPadding={6}
               styles={buildStyles({
                 backgroundColor: "black",
                 textColor: "#fff",
-                pathColor: "#fff",
+                pathColor: `${returnColor()}`,
                 trailColor: "transparent",
               })}
             />

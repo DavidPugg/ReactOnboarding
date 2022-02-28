@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-
-import { setSort } from "../../../app/sortSlice";
-import { useDispatch, useSelector } from "react-redux";
-
-import SidebarItem from "../../molecules/SidebarItem";
 import MainLanguageOption from "@components/atoms/MainLanguageOption/MainLanguageOption";
 import UniversalDropdown from "@components/atoms/UniversalDropdown";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSort } from "../../../app/sortSlice";
 import LanguageOption from "../../atoms/LanguageOption/LanguageOption";
-
+import SidebarItem from "../../molecules/SidebarItem";
 import sortItems from "./sort";
+
+
+
 
 export default function PopularSort() {
   const dispatch = useDispatch();

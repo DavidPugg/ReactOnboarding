@@ -1,13 +1,13 @@
-import React from "react";
-
-import PopularSort from "../PopularSort";
-import PopularFilter from "../PopularFilter";
 import MainButton from "@components/atoms/MainButton";
-
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../../app/moviesSlice";
-
+import PopularFilter from "../PopularFilter";
+import PopularSort from "../PopularSort";
 import styles from "./PopularSidebar.module.scss";
+
+
+
 
 export default function PopularSidebar() {
   const dispatch = useDispatch();

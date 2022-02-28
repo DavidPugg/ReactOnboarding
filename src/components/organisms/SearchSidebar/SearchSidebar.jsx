@@ -1,10 +1,10 @@
 import React from "react";
-
+import SearchSidebarItem from "../../atoms/SearchSidebarItem/SearchSidebarItem";
+import options from "./options";
 import styles from "./SearchSidebar.module.scss";
 
-import SearchSidebarItem from "../../atoms/SearchSidebarItem/SearchSidebarItem";
 
-import options from "./options";
+
 
 export default function SearchSidebar({
   movies,
