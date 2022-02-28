@@ -9,10 +9,6 @@ import MovieItem from "../../molecules/MovieItem/MovieItem";
 export default function PopularContent() {
   const movies = useSelector((state) => state.movies.value)
 
-  useEffect(() => {
-    console.log('refresh')
-  }, [movies])
-  
   return (
     <div className={styles.grid}>
       {movies.map(({ id, poster_path, title, release_date, vote_average }) => (

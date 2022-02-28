@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import { setSort } from "../../../app/sortSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +7,6 @@ import SidebarItem from "../../molecules/SidebarItem";
 import MainLanguageOption from "@components/atoms/MainLanguageOption/MainLanguageOption";
 import UniversalDropdown from "@components/atoms/UniversalDropdown";
 import LanguageOption from "../../atoms/LanguageOption/LanguageOption";
-
-import clickOutside from "../../hooks/clickOutside";
 
 import sortItems from "./sort";
 

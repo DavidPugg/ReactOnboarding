@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import MainMenuItem from "../../molecules/MainMenuItem/MainMenuItem";
@@ -10,10 +10,20 @@ import PlusMenuItem from "../../molecules/PlusMenuItem";
 
 import menus from "./mainMenuArray";
 
+import clickOutside from "../../hooks/clickOutside";
+
 import styles from "./MainMenu.module.scss";
 export default function MainMenu() {
   const [searchbar, setSearchbar] = useState(false);
   const { search } = useLocation();
+
+  const myRef = useRef("searchbar");
+
+  clickOutside(myRef, () => {
+    setTimeout(() => {
+      setSearchbar(false);
+    }, 200);
+  });
 
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
@@ -48,7 +58,7 @@ export default function MainMenu() {
               ))}
             </div>
             <div className={styles.right}>
-              <PlusMenuItem/>
+              <PlusMenuItem />
               <LanguageSwitcher />
               <MainMenuLink label="Login" />
               <SearchToggle
@@ -60,7 +70,11 @@ export default function MainMenu() {
           </div>
         </div>
       </div>
-      {searchbar && <SearchBar />}
+      {searchbar && (
+        <span ref={myRef}>
+          <SearchBar />
+        </span>
+      )}
     </>
   );
 }

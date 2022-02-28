@@ -14,7 +14,7 @@ export default function UniversalDropdown({
   clickOutside(myRef, () => {
     setTimeout(() => {
       onClickOutside();
-    }, 150);
+    }, 200);
   });
 
   return (

@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import styles from "./PageSelector.module.scss";
 
 import PageSelectorButton from "../../atoms/PageSelectorButton";
-import { useSelector } from "react-redux";
 
-function PageSelector({ totalPages, onPageChange }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const prevFilters = useSelector((state) => state.filters.prev)
-  const prevSort = useSelector((state) => state.sort.prev)
-
-  useEffect(() => {setCurrentPage(1)}, [prevFilters, prevSort])
+function PageSelector({ totalPages, onPageChange, currentPage }) {
 
   function HandleClick(page) {
-    setCurrentPage(page);
     onPageChange(page);
   }
 
