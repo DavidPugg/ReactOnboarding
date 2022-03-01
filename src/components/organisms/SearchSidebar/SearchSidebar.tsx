@@ -4,13 +4,13 @@ import options from "./options";
 import styles from "./SearchSidebar.module.scss";
 
 type Props = {
-  movies: number;
-  shows: number;
-  people: number;
-  companies: number;
-  keywords: number;
-  collections: number;
-}
+  movies: number | null;
+  shows: number | null;
+  people: number | null;
+  companies: number | null;
+  keywords: number | null;
+  collections: number | null;
+};
 
 export default function SearchSidebar({
   movies,
@@ -21,14 +21,21 @@ export default function SearchSidebar({
   collections,
 }: Props) {
   function getCount(to: string) {
-    switch(to) {
-      case 'movie': return movies; 
-      case 'tv': return shows; 
-      case 'person': return people;
-      case 'company': return companies;
-      case 'keyword': return keywords;
-      case 'collection': return collections;
-      default: return 0
+    switch (to) {
+      case "movie":
+        return movies;
+      case "tv":
+        return shows;
+      case "person":
+        return people;
+      case "company":
+        return companies;
+      case "keyword":
+        return keywords;
+      case "collection":
+        return collections;
+      default:
+        return 0;
     }
   }
 

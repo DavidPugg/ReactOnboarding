@@ -3,7 +3,7 @@ import PageSelectorButton from "../../atoms/PageSelectorButton";
 import styles from "./PageSelector.module.scss";
 
 type Props = {
-  totalPages: number,
+  totalPages: number|any,
   onPageChange: Function,
   currentPage: number
 }

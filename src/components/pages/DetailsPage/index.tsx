@@ -6,7 +6,16 @@ import MainMenu from "../../organisms/MainMenu/MainMenu";
 import MovieDetails from "../../organisms/MovieDetails/MovieDetails";
 import HomeTemplate from "../../templates/HomeTemplate/HomeTemplate";
 
-
+type Details = {
+    backdrop_path: string;
+    poster_path: string;
+    title: string;
+    release_date: string;
+    runtime: number;
+    vote_average: number;
+    tagline: string;
+    overview: string;
+}
 
 export default function DetailsPage() {
   const [details, setDetails] = useState({});
@@ -33,7 +42,7 @@ export default function DetailsPage() {
 
   return (
     <HomeTemplate header={<MainMenu />} footer={<Footer />}>
-      <MovieDetails details={details} crew={crew.slice(0, 6)} />
+      <MovieDetails details={details as Details} crew={crew.slice(0, 6)} />
     </HomeTemplate>
   );
 }

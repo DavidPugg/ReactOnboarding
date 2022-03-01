@@ -52,7 +52,7 @@ export default function SearchPage() {
     getMovies(1);
   }, [query, type]);
 
-  function handlePageChange(p) {
+  function handlePageChange(p: number) {
     window.scrollTo(0, 0)
     navigate(`/search/${type}?q=${query}&page=${p}`)
     getMovies(p);
@@ -72,10 +72,11 @@ export default function SearchPage() {
         return keywords.totalPages;
       case "collection":
         return collections.totalPages;
+        default: return 0;
     }
   }
 
-  function getMovies(page) {
+  function getMovies(page: number) {
     for (const t of types) {
       axios
         .get(
@@ -149,10 +150,11 @@ export default function SearchPage() {
         collections={collections.results}
       />
       <PageSelector
-        totalPages={getPages()}
-        onPageChange={(p) => handlePageChange(p)}
+        totalPages={() => getPages()}
+        onPageChange={(p: number) => handlePageChange(p)}
         currentPage={Number(page)}
       />
     </MainTemplate>
   );
 }
+ 
