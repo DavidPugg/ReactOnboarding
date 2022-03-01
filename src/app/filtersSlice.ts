@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface FiltersState {
+  value: Array<string>;
+  prev: Array<string>;
+}
+
+const initialState: FiltersState = {
+  value: [],
+  prev: [],
+};
 
 export const filtersSlice = createSlice({
   name: "filters",
-  initialState: {
-    value: [],
-    prev: [],
-  },
+  initialState,
   reducers: {
     setFilters: (state, { payload }) => {
       state.value = state.value.includes(payload)

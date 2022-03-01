@@ -3,10 +3,13 @@ import moviesReducer from "./moviesSlice";
 import filtersReducer from "./filtersSlice";
 import sortReducer from "./sortSlice";
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     movies: moviesReducer,
     filters: filtersReducer,
     sort: sortReducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

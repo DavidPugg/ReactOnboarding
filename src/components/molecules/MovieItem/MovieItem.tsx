@@ -1,4 +1,4 @@
-import notfound from "@assets/notfound.png";
+import notfound from "../../../assets/notfound.png";
 import "@css/progressbar.scss";
 import classNames from "classnames";
 import React from "react";
