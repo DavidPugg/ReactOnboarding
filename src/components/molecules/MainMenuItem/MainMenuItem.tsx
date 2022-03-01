@@ -4,7 +4,7 @@ import LinkMenu from "../LinkMenu/LinkMenu";
 import styles from "./MainMenuItem.module.scss";
 
 type Props = {
-  url: string;
+  url?: string;
   label: string;
   links: Array<{
     url: string;

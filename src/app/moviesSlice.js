@@ -4,6 +4,7 @@ import axios from "axios";
 import { setPrevFilters } from "./filtersSlice";
 import { setPrevSort } from "./sortSlice";
 
+
 export const getMovies = createAsyncThunk(
   "movies/getMovies",
   async ({ page }, { dispatch, getState }) => {

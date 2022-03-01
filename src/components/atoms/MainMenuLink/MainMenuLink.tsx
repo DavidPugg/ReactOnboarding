@@ -6,6 +6,7 @@ import styles from "./MainMenuLink.module.scss";
 type Props = {
   label: string;
   url: string;
+  className?: string
 };
 
 function MainMenuLink({ label, url, ...rest }: Props) {

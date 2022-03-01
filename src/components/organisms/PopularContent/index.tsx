@@ -1,13 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import MovieItem from "../../molecules/MovieItem/MovieItem.tsx";
+import { RootStateOrAny, useSelector } from "react-redux";
+import MovieItem from "../../molecules/MovieItem/MovieItem";
 import styles from "./PopularContent.module.scss";
 
-
-
+type Movies = Array<{
+  id: number;
+  poster_path: string;
+  title: string;
+  release_date: string;
+  vote_average: number;
+}>;
 
 export default function PopularContent() {
-  const movies = useSelector((state) => state.movies.value)
+  const movies: Movies = useSelector((state: RootStateOrAny) => state.movies.value);
 
   return (
     <div className={styles.grid}>

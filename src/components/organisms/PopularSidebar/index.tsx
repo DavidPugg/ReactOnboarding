@@ -1,24 +1,23 @@
-import MainButton from "@components/atoms/MainButton";
+import MainButton from "../../atoms/MainButton";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../../app/moviesSlice";
 import PopularFilter from "../PopularFilter";
 import PopularSort from "../PopularSort";
 import styles from "./PopularSidebar.module.scss";
 
-
-
-
 export default function PopularSidebar() {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters.value);
-  const sort = useSelector((state) => state.sort.value);
-  const prevFilters = useSelector((state) => state.filters.prev)
-  const prevSort = useSelector((state) => state.sort.prev)
+  const filters = useSelector((state: RootStateOrAny) => state.filters.value);
+  const sort = useSelector((state: RootStateOrAny) => state.sort.value);
+  const prevFilters = useSelector(
+    (state: RootStateOrAny) => state.filters.prev
+  );
+  const prevSort = useSelector((state: RootStateOrAny) => state.sort.prev);
 
   function hasUpdated() {
     const sameFilters =
-      filters.every((e) => {
+      filters.every((e: object) => {
         return prevFilters.includes(e);
       }) && filters.length == prevFilters.length;
     const sameSort = sort == prevSort;
@@ -34,7 +33,7 @@ export default function PopularSidebar() {
         label="Search"
         updated={hasUpdated()}
         onClick={() => {
-          hasUpdated() ? dispatch(getMovies({page: 1})) : "";
+          hasUpdated() ? dispatch(getMovies({ page: 1 })) : "";
         }}
       />
     </div>

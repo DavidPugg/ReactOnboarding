@@ -3,8 +3,14 @@ import SearchSidebarItem from "../../atoms/SearchSidebarItem/SearchSidebarItem";
 import options from "./options";
 import styles from "./SearchSidebar.module.scss";
 
-
-
+type Props = {
+  movies: number;
+  shows: number;
+  people: number;
+  companies: number;
+  keywords: number;
+  collections: number;
+}
 
 export default function SearchSidebar({
   movies,
@@ -13,15 +19,16 @@ export default function SearchSidebar({
   companies,
   keywords,
   collections,
-}) {
-  function getCount(to) {
+}: Props) {
+  function getCount(to: string) {
     switch(to) {
-      case 'movie': return movies;
-      case 'tv': return shows;
+      case 'movie': return movies; 
+      case 'tv': return shows; 
       case 'person': return people;
       case 'company': return companies;
       case 'keyword': return keywords;
       case 'collection': return collections;
+      default: return 0
     }
   }
 

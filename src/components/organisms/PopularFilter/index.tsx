@@ -1,16 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { setFilters } from "../../../app/filtersSlice";
 import GenreButton from "../../atoms/GenreButton";
 import SidebarItem from "../../molecules/SidebarItem";
 
-
-
 export default function PopularFilter() {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters.value);
-  const [genres, setGenres] = useState([]);
+  const filters = useSelector((state: RootStateOrAny) => state.filters.value);
+
+  type Genre = {
+    id: number;
+    name: string;
+  };
+
+  const [genres, setGenres] = useState<Array<Genre>>([]);
 
   useEffect(() => {
     axios
@@ -22,21 +26,23 @@ export default function PopularFilter() {
       });
   }, []);
 
-  function isActive(id) {
+  function isActive(id: number) {
     return filters.includes(id);
   }
 
   return (
     <SidebarItem label="Filter">
       <p>Genres</p>
-      {genres.map(({ id, name }) => (
-        <GenreButton
-          key={id}
-          label={name}
-          isActive={isActive(id)}
-          onClick={() => dispatch(setFilters(id))}
-        />
-      ))}
+      <>
+        {genres.map(({ id, name }) => (
+          <GenreButton
+            key={id}
+            label={name}
+            isActive={isActive(id)}
+            onClick={() => dispatch(setFilters(id))}
+          />
+        ))}
+      </>
     </SidebarItem>
   );
 }

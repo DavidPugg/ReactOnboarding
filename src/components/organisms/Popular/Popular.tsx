@@ -1,9 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import MovieItem from "../../molecules/MovieItem/MovieItem.tsx";
+import MovieItem from "../../molecules/MovieItem/MovieItem";
 import styles from "./Popular.module.scss";
-
-
 
 export default function Popular() {
   const [items, setItems] = useState([]);
@@ -17,7 +15,7 @@ export default function Popular() {
       .then((res) => setItems(res.data.results));
   }, []);
 
-  function handleItems(type) {
+  function handleItems(type: string) {
     axios
       .get(
         `https://api.themoviedb.org/3/${type}/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`

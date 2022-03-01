@@ -13,8 +13,8 @@ type Props = {
   title: string;
   release: string;
   rating: number;
-  style: object;
-  border: boolean;
+  style?: object;
+  border?: boolean;
 };
 
 export default function MovieItem({

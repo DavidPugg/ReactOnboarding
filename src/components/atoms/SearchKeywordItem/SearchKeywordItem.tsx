@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./SearchKeywordItem.module.scss";
 
 type Props = {
-  name: string
+  name: string,
+  id: number
 }
 
 export default function SearchPersonItem({ name }: Props) {

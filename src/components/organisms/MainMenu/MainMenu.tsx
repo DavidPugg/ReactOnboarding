@@ -1,3 +1,4 @@
+import { KeyType } from "crypto";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import MainMenuLink from "../../atoms/MainMenuLink/MainMenuLink";
@@ -14,8 +15,8 @@ export default function MainMenu() {
   const [searchbar, setSearchbar] = useState(false);
   const { search } = useLocation();
 
-  const myRef = useRef("searchbar");
-  const languageListener = useRef("language");
+  const myRef = useRef<HTMLSpanElement>(null);
+  const languageListener = useRef<HTMLSpanElement>(null);
 
   clickOutside(myRef, () => {
     setTimeout(() => {
@@ -24,8 +25,12 @@ export default function MainMenu() {
   });
 
   useEffect(() => {
-    window.addEventListener("keydown", (e) => {
-      if (languageListener.current.contains(e.target)) {
+    window.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (
+        (languageListener.current as HTMLSpanElement).contains(
+          e.target as HTMLDivElement
+        )
+      ) {
         return;
       }
       if (e.code != "KeyS") {
@@ -36,8 +41,12 @@ export default function MainMenu() {
       }, 10);
     });
     return () =>
-      window.removeEventListener("keydown", (e) => {
-        if (languageListener.current.contains(e.target)) {
+      window.removeEventListener("keydown", (e: KeyboardEvent) => {
+        if (
+          (languageListener.current as HTMLSpanElement).contains(
+            e.target as HTMLDivElement
+          )
+        ) {
           return;
         }
         if (e.code != "KeyS") {

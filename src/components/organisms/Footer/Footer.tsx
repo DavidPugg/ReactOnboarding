@@ -1,36 +1,7 @@
 import React from "react";
 import FooterColumn from "../../molecules/FooterColumn/FooterColumn";
 import styles from "./Footer.module.scss";
-
-
-
-const columns = [
-  {
-    label: "THE BASICS",
-    links: [
-      {
-        label: "About TMDB",
-        url: "#",
-      },
-      {
-        label: "Contact Us",
-        url: "#",
-      },
-      {
-        label: "Support Forums",
-        url: "#",
-      },
-      {
-        label: "API",
-        url: "#",
-      },
-      {
-        label: "System Status",
-        url: "#",
-      },
-    ],
-  },
-];
+import columns from './columns'
 
 export default function Footer() {
   return (

@@ -6,8 +6,54 @@ import SearchKeywordItem from "../../atoms/SearchKeywordItem/SearchKeywordItem";
 import SearchPersonItem from "../../molecules/SearchPersonItem/SearchPersonItem";
 import styles from "./SearchContent.module.scss";
 
+type Props = {
+  movies: Array<Movie>;
+  shows: Array<Show>;
+  people: Array<Person>;
+  companies: Array<Company>;
+  keywords: Array<Keyword>;
+  collections: Array<Collection>;
+};
 
+type Movie = {
+  id: number;
+  poster_path: string;
+  title: string;
+  release_date: string;
+};
 
+type Show = {
+  id: number;
+  poster_path: string;
+  name: string;
+  first_air_date: string;
+};
+
+type Person = {
+  id: number;
+  name: string;
+  known_for_department: string;
+  known_for: Array<{ name: string; title: string }>;
+  profile_path: string;
+};
+
+type Company = {
+  id: number,
+  name: string,
+  logo_path: string
+  origin_country: string,
+
+}
+
+type Keyword = {
+  id: number, name: string
+}
+
+type Collection = {
+  id: number,
+  poster_path: string,
+  name: string
+}
 
 export default function SearchContent({
   movies,
@@ -16,10 +62,10 @@ export default function SearchContent({
   companies,
   keywords,
   collections,
-}) {
+}: Props) {
   const { type } = useParams();
 
-  function getTitle(known_for) {
+  function getTitle(known_for: Array<{ name: string; title: string }>) {
     if (known_for.length != 0 && known_for[0].name != undefined) {
       return known_for[0].name;
     } else if (known_for.length != 0 && known_for[0].title != undefined) {

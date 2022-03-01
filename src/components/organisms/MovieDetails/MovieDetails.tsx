@@ -5,10 +5,25 @@ import RoundButton from "../../atoms/RoundButton";
 import CrewList from "../../molecules/CrewList";
 import styles from "./MovieDetails.module.scss";
 
+type Props = {
+  details: {
+    backdrop_path: string;
+    poster_path: string;
+    title: string;
+    release_date: string;
+    runtime: number;
+    vote_average: number;
+    tagline: string;
+    overview: string;
+  };
+  crew: Array<{
+    id: number;
+    name: string;
+    job: string;
+  }>;
+};
 
-
-
-export default function MovieDetails({ details, crew }) {
+export default function MovieDetails({ details, crew }: Props) {
   const {
     backdrop_path,
     poster_path,

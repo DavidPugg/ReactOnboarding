@@ -4,7 +4,7 @@ import styles from "./MainLanguageOption.module.scss";
 
 type Props = {
   label: string;
-  code: string;
+  code?: string;
   onClick: Function;
 };
 
