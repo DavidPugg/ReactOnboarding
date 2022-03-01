@@ -150,7 +150,7 @@ export default function SearchPage() {
         collections={collections.results}
       />
       <PageSelector
-        totalPages={() => getPages()}
+        totalPages={getPages()}
         onPageChange={(p: number) => handlePageChange(p)}
         currentPage={Number(page)}
       />

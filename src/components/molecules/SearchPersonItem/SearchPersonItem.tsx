@@ -1,5 +1,5 @@
 import React from "react";
-import notfound from "../../../assets/personnotfound.png";
+import notfound from "../../../assets/personnotfound.png"
 import styles from "./SearchPersonItem.module.scss";
 
 type Props = {

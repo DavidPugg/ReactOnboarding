@@ -6,17 +6,18 @@ import styles from "./SearchSidebarItem.module.scss";
 type Props = {
   label: string;
   to: string;
-  count: number;
+  count: number|null;
 };
 
 function SearchSidebarItem({ label, to, count }: Props) {
-  let location = useLocation();
+  let {search} = useLocation();
+  const query = new URLSearchParams(search).get('q');
 
   const { type } = useParams();
 
   return (
     <Link
-      to={`/search/${to}${location.search}`}
+      to={`/search/${to}?q=${query}&page=1`}
       className={`${styles.label} ${type == `${to}` ? styles.selected : ""}`}
     >
       {label}
