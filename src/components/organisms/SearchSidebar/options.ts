@@ -1,4 +1,4 @@
-export default [
+export const options = [
     {
       label: "Movies",
       results: 0,

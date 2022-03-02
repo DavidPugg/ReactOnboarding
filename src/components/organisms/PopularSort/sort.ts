@@ -1,4 +1,4 @@
-export default [
+export const sortItems = [
   {
     label: "Popularity Descending",
     sort: "popularity.desc",

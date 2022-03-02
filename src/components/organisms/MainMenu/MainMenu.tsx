@@ -1,4 +1,3 @@
-import { KeyType } from "crypto";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import MainMenuLink from "../../atoms/MainMenuLink/MainMenuLink";
@@ -9,7 +8,7 @@ import MainMenuItem from "../../molecules/MainMenuItem/MainMenuItem";
 import PlusMenuItem from "../../molecules/PlusMenuItem";
 import SearchBar from "../../molecules/SearchBar/Searchbar";
 import styles from "./MainMenu.module.scss";
-import menus from "./mainMenuArray";
+import {menus} from "./mainMenuArray";
 
 export default function MainMenu() {
   const [searchbar, setSearchbar] = useState(false);

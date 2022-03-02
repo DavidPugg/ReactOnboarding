@@ -1,6 +1,6 @@
 import React from "react";
 import SearchSidebarItem from "../../atoms/SearchSidebarItem/SearchSidebarItem";
-import options from "./options";
+import { options } from "./options";
 import styles from "./SearchSidebar.module.scss";
 
 type Props = {

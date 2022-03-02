@@ -1,4 +1,4 @@
-export default [
+export const columns = [
     {
       label: "THE BASICS",
       links: [

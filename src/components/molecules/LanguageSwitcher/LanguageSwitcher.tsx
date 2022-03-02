@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LanguageDropdown from "../LanguageDropdown/LanguageDropdown";
-import languages from "./languages";
+import {languages} from "./languages";
 import styles from "./LanguageSwitcher.module.scss";
 
 export default function LanguageSwitcher() {

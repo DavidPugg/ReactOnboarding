@@ -5,7 +5,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { setSort } from "../../../app/sortSlice";
 import LanguageOption from "../../atoms/LanguageOption/LanguageOption";
 import SidebarItem from "../../molecules/SidebarItem";
-import sortItems from "./sort";
+import {sortItems} from "./sort";
 
 type Sort = {
   sort: string;

@@ -1,4 +1,4 @@
-export default [
+export const menus = [
   {
     label: "Movies",
     links: [

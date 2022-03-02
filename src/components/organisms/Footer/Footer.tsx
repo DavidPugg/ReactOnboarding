@@ -1,7 +1,7 @@
 import React from "react";
 import FooterColumn from "../../molecules/FooterColumn/FooterColumn";
 import styles from "./Footer.module.scss";
-import columns from './columns'
+import {columns} from './columns'
 
 export default function Footer() {
   return (
