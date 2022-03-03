@@ -1,160 +1,143 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import PageSelector from "../../molecules/PageSelector";
-import Footer from "../../organisms/Footer/Footer";
-import MainMenu from "../../organisms/MainMenu/MainMenu";
-import SearchContent from "../../organisms/SearchContent/SearchContent";
-import SearchSidebar from "../../organisms/SearchSidebar/SearchSidebar";
-import MainTemplate from "../../templates/MainTemplate/MainTemplate";
+import SearchSidebarItem from '@components/atoms/SearchSidebarItem/SearchSidebarItem';
+import { Movie, Tv, Person, Company, Keyword, Collection } from 'interfaces/Movies';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { MoviesAPI } from '../../../utils/MoviesAPI';
+import PageSelector from '../../molecules/PageSelector';
+import Footer from '../../organisms/Footer/Footer';
+import MainMenu from '../../organisms/MainMenu/MainMenu';
+import SearchContent from '../../organisms/SearchContent/SearchContent';
+import SearchSidebar from '../../organisms/SearchSidebar/SearchSidebar';
+import MainTemplate from '../../templates/MainTemplate/MainTemplate';
+
+const moviesAPI = new MoviesAPI();
+
+interface MainObject<T> {
+    results: Array<T>;
+    count: number;
+    totalPages: number;
+}
 
 export default function SearchPage() {
-  const navigate = useNavigate();
-  let { search } = useLocation();
-  let { type } = useParams();
-  const types = ["movie", "tv", "person", "company", "keyword", "collection"];
+    const navigate = useNavigate();
+    let { search } = useLocation();
+    let { type } = useParams();
 
-  const query = new URLSearchParams(search).get('q');
-  const page = new URLSearchParams(search).get('page');
+    const query = new URLSearchParams(search).get('q');
+    const page = new URLSearchParams(search).get('page');
 
-  const [movies, setMovies] = useState({
-    results: [],
-    count: null,
-    totalPages: null,
-  });
-  const [shows, setShows] = useState({
-    results: [],
-    count: null,
-    totalPages: null,
-  });
-  const [people, setPeople] = useState({
-    results: [],
-    count: null,
-    totalPages: null,
-  });
-  const [companies, setCompanies] = useState({
-    results: [],
-    count: null,
-    totalPages: null,
-  });
-  const [keywords, setKeywords] = useState({
-    results: [],
-    count: null,
-    totalPages: null,
-  });
-  const [collections, setCollections] = useState({
-    results: [],
-    count: null,
-    totalPages: null,
-  });
+    const mainObject = {
+        results: [],
+        count: 0,
+        totalPages: 0,
+    } as MainObject<any>;
 
-  useEffect(() => {
-    getMovies(1);
-  }, [query, type]);
+    const [movies, setMovies] = useState(mainObject);
+    const [shows, setShows] = useState(mainObject);
+    const [people, setPeople] = useState(mainObject);
+    const [companies, setCompanies] = useState(mainObject);
+    const [keywords, setKeywords] = useState(mainObject);
+    const [collections, setCollections] = useState(mainObject);
 
-  function handlePageChange(p: number) {
-    window.scrollTo(0, 0)
-    navigate(`/search/${type}?q=${query}&page=${p}`)
-    getMovies(p);
-  }
+    useEffect(() => {
+        switch (type) {
+            case 'movie':
+                return getItems<Movie>(Number(page), type, setMovies);
+            case 'tv':
+                return getItems<Tv>(Number(page), type, setShows);
+            case 'person':
+                return getItems<Person>(Number(page), type, setPeople);
+            case 'company':
+                return getItems<Company>(Number(page), type, setCompanies);
+            case 'keyword':
+                return getItems<Keyword>(Number(page), type, setKeywords);
+            case 'collection':
+                return getItems<Collection>(Number(page), type, setCollections);
+        }
+    }, [type, page]);
 
-  function getPages() {
-    switch (type) {
-      case "movie":
-        return movies.totalPages;
-      case "tv":
-        return shows.totalPages;
-      case "person":
-        return people.totalPages;
-      case "company":
-        return companies.totalPages;
-      case "keyword":
-        return keywords.totalPages;
-      case "collection":
-        return collections.totalPages;
-        default: return 0;
+    useEffect(() => {
+        getItems<Movie>(Number(page), 'movie', setMovies);
+        getItems<Tv>(Number(page), 'tv', setShows);
+        getItems<Person>(Number(page), 'person', setPeople);
+        getItems<Company>(Number(page), 'company', setCompanies);
+        getItems<Keyword>(Number(page), 'keyword', setKeywords);
+        getItems<Collection>(Number(page), 'collection', setCollections);
+    }, []);
+
+    function handlePageChange(p: number) {
+        window.scrollTo(0, 0);
+        navigate(`/search/${type}?q=${query}&page=${p}`);
     }
-  }
 
-  function getMovies(page: number) {
-    for (const t of types) {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/search/${t}?api_key=${
-            process.env.API_KEY
-          }&query=${search.slice(3)}&page=${page}`
-        )
-        .then((res) => {
-          if (t == "movie") {
-            setMovies({
-              results: res.data.results,
-              count: res.data.total_results,
-              totalPages: res.data.total_pages,
-            });
-          } else if (t == "tv") {
-            setShows({
-              results: res.data.results,
-              count: res.data.total_results,
-              totalPages: res.data.total_pages,
-            });
-          } else if (t == "person") {
-            setPeople({
-              results: res.data.results,
-              count: res.data.total_results,
-              totalPages: res.data.total_pages,
-            });
-          } else if (t == "company") {
-            setCompanies({
-              results: res.data.results,
-              count: res.data.total_results,
-              totalPages: res.data.total_pages,
-            });
-          } else if (t == "keyword") {
-            setKeywords({
-              results: res.data.results,
-              count: res.data.total_results,
-              totalPages: res.data.total_pages,
-            });
-          } else if (t == "collection") {
-            setCollections({
-              results: res.data.results,
-              count: res.data.total_results,
-              totalPages: res.data.total_pages,
-            });
-          }
+    function getPages() {
+        switch (type) {
+            case 'movie':
+                return movies.totalPages;
+            case 'tv':
+                return shows.totalPages;
+            case 'person':
+                return people.totalPages;
+            case 'company':
+                return companies.totalPages;
+            case 'keyword':
+                return keywords.totalPages;
+            case 'collection':
+                return collections.totalPages;
+            default:
+                return 0;
+        }
+    }
+
+    const getItems = <T,>(page: number, type: string, func: (obj: MainObject<T>) => void) => {
+        let searchParams = {
+            page,
+            query,
+            type,
+        };
+        moviesAPI.fetchSearchMovies<T>(searchParams).then(({ results, total_pages, total_results }) => {
+            const resObject = {
+                results,
+                count: total_results,
+                totalPages: total_pages,
+            } as MainObject<T>;
+            func(resObject);
         });
-    }
-  }
+    };
 
-  return (
-    <MainTemplate
-      header={<MainMenu />}
-      sidebar={
-        <SearchSidebar
-          movies={movies.count}
-          shows={shows.count}
-          people={people.count}
-          companies={companies.count}
-          keywords={keywords.count}
-          collections={collections.count}
-        />
-      }
-      footer={<Footer />}
-    >
-      <SearchContent
-        movies={movies.results}
-        shows={shows.results}
-        people={people.results}
-        companies={companies.results}
-        keywords={keywords.results}
-        collections={collections.results}
-      />
-      <PageSelector
-        totalPages={getPages()}
-        onPageChange={(p: number) => handlePageChange(p)}
-        currentPage={Number(page)}
-      />
-    </MainTemplate>
-  );
+    return (
+        <MainTemplate
+            header={<MainMenu />}
+            sidebar={
+                <SearchSidebar>
+                    <SearchSidebarItem key={'Movies'} label={`Movies`} to={`movie`} count={movies.count} />
+                    <SearchSidebarItem key={'Shows'} label={`Shows`} to={`tv`} count={shows.count} />
+                    <SearchSidebarItem key={'People'} label={`People`} to={`person`} count={people.count} />
+                    <SearchSidebarItem key={'Companies'} label={`Companies`} to={`company`} count={companies.count} />
+                    <SearchSidebarItem key={'Keywords'} label={`Keywords`} to={`keyword`} count={keywords.count} />
+                    <SearchSidebarItem
+                        key={'Collections'}
+                        label={`Collections`}
+                        to={`collection`}
+                        count={collections.count}
+                    />
+                </SearchSidebar>
+            }
+            footer={<Footer />}
+        >
+            <SearchContent
+                movies={movies.results}
+                shows={shows.results}
+                people={people.results}
+                companies={companies.results}
+                keywords={keywords.results}
+                collections={collections.results}
+            />
+            <PageSelector
+                totalPages={getPages()}
+                onPageChange={(p: number) => handlePageChange(p)}
+                currentPage={Number(page)}
+            />
+        </MainTemplate>
+    );
 }
- 

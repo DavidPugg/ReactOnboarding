@@ -5,10 +5,8 @@
 }
 
 .content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  display: flex;
   padding: 1rem 0;
-  justify-items: center;
-
+  justify-content: center;
+  gap: 4rem;
 }
