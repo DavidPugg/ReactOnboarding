@@ -14,10 +14,10 @@ export default function MainMenu() {
     const [searchbar, setSearchbar] = useState(false);
     const { search } = useLocation();
 
-    const myRef = useRef<HTMLSpanElement>(null);
-    const languageListener = useRef<HTMLSpanElement>(null);
+    const searchBarRef = useRef<HTMLDivElement>(null);
+    const languageListenerRef = useRef<HTMLDivElement>(null);
 
-    clickOutside(myRef, () => {
+    clickOutside(searchBarRef, () => {
         setTimeout(() => {
             setSearchbar(false);
         }, 200);
@@ -25,27 +25,25 @@ export default function MainMenu() {
 
     useEffect(() => {
         window.addEventListener('keydown', (e: KeyboardEvent) => {
-            if ((languageListener.current as HTMLSpanElement).contains(e.target as HTMLDivElement)) {
+            if ((languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)) {
                 return;
             }
-            if (e.code != 'KeyS') {
-                return;
-            }
-            setTimeout(() => {
-                setSearchbar(true);
-            }, 10);
-        });
-        return () =>
-            window.removeEventListener('keydown', (e: KeyboardEvent) => {
-                if ((languageListener.current as HTMLSpanElement).contains(e.target as HTMLDivElement)) {
-                    return;
-                }
-                if (e.code != 'KeyS') {
-                    return;
-                }
+            if (e.code == 'KeyS') {
                 setTimeout(() => {
                     setSearchbar(true);
                 }, 10);
+            }
+        });
+        return () =>
+            window.removeEventListener('keydown', (e: KeyboardEvent) => {
+                if ((languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)) {
+                    return;
+                }
+                if (e.code == 'KeyS') {
+                    setTimeout(() => {
+                        setSearchbar(true);
+                    }, 10);
+                }
             });
     });
 
@@ -67,9 +65,7 @@ export default function MainMenu() {
                         </div>
                         <div className={styles.right}>
                             <PlusMenuItem />
-                            <span ref={languageListener}>
-                                <LanguageSwitcher />
-                            </span>
+                            <LanguageSwitcher ref={languageListenerRef} />
                             <MainMenuLink label='Login' />
                             <SearchToggle
                                 onToggle={() => {
@@ -80,11 +76,7 @@ export default function MainMenu() {
                     </div>
                 </div>
             </div>
-            {searchbar && (
-                <span ref={myRef}>
-                    <SearchBar />
-                </span>
-            )}
+            {searchbar && <SearchBar ref={searchBarRef} />}
         </>
     );
 }

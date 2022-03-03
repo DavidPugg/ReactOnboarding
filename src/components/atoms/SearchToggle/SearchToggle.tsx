@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./SearchToggle.module.scss";
 
 type Props = {
-  onToggle: Function
+  onToggle: () => void
 }
 
 export default function SearchToggle({ onToggle }: Props) {

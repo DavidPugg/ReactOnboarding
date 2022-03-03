@@ -1,12 +1,10 @@
+import { MenuLinkType } from "interfaces/Main";
 import React from "react";
 import MenuLink from "../../atoms/MenuLink/MenuLink";
 import c from "./LinkMenu.module.scss";
 
 type Props = {
-  links: Array<{
-    url: string;
-    label: string;
-  }>;
+  links: Array<MenuLinkType>;
 };
 
 export default function LinkMenu({ links }: Props) {

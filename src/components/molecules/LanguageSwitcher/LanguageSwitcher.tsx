@@ -4,7 +4,7 @@ import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
 import { languages } from './languages';
 import styles from './LanguageSwitcher.module.scss';
 
-export default function LanguageSwitcher() {
+const LanguageSwitcher = React.forwardRef<HTMLDivElement>((_, ref) => {
     const [currentLanguage, setCurrentLanguage] = useState({
         code: 'en',
         label: 'English',
@@ -25,7 +25,7 @@ export default function LanguageSwitcher() {
     const [dropdown, setDropdown] = useState(false);
 
     return (
-        <div className={styles.box}>
+        <div ref={ref} className={styles.box}>
             <p onClick={() => setDropdown(!dropdown)} className={styles.toggle}>
                 {currentLanguage.code}
             </p>
@@ -42,4 +42,6 @@ export default function LanguageSwitcher() {
             )}
         </div>
     );
-}
+});
+
+export default LanguageSwitcher;
