@@ -32,12 +32,12 @@ export default function SearchPage() {
         totalPages: 0,
     } as MainObject<any>;
 
-    const [movies, setMovies] = useState(mainObject);
-    const [shows, setShows] = useState(mainObject);
-    const [people, setPeople] = useState(mainObject);
-    const [companies, setCompanies] = useState(mainObject);
-    const [keywords, setKeywords] = useState(mainObject);
-    const [collections, setCollections] = useState(mainObject);
+    const [movies, setMovies] = useState<MainObject<Movie>>(mainObject);
+    const [shows, setShows] = useState<MainObject<Tv>>(mainObject);
+    const [people, setPeople] = useState<MainObject<Person>>(mainObject);
+    const [companies, setCompanies] = useState<MainObject<Company>>(mainObject);
+    const [keywords, setKeywords] = useState<MainObject<Keyword>>(mainObject);
+    const [collections, setCollections] = useState<MainObject<Collection>>(mainObject);
 
     useEffect(() => {
         switch (type) {
