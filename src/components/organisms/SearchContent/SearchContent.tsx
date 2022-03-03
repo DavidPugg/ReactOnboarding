@@ -1,4 +1,4 @@
-import SearchMovieItem from '@components/molecules/SearchMovieItem'; 
+import SearchMovieItem from '@components/molecules/SearchMovieItem';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import SearchCompanyItem from '../../molecules/SearchCompanyItem/SearchCompanyItem';
@@ -56,7 +56,6 @@ export default function SearchContent({ movies, shows, people, companies, keywor
                         people.map(({ id, name, known_for_department, known_for, profile_path }) => (
                             <SearchPersonItem
                                 key={id}
-                                id={id}
                                 img={profile_path}
                                 name={name}
                                 known_for={known_for_department}
@@ -70,7 +69,7 @@ export default function SearchContent({ movies, shows, people, companies, keywor
                     {companies.length <= 0 && <p>There are no companies that matched your query</p>}
                     {companies.length > 0 &&
                         companies.map(({ id, name, logo_path, origin_country }) => (
-                            <SearchCompanyItem key={id} id={id} name={name} img={logo_path} country={origin_country} />
+                            <SearchCompanyItem key={id} name={name} img={logo_path} country={origin_country} />
                         ))}
                 </div>
             )}
@@ -78,8 +77,7 @@ export default function SearchContent({ movies, shows, people, companies, keywor
             {type == 'keyword' && (
                 <div className={styles.list}>
                     {keywords.length <= 0 && <p>There are no keywords that matched your query</p>}
-                    {keywords.length > 0 &&
-                        keywords.map(({ id, name }) => <SearchKeywordItem id={id} key={id} name={name} />)}
+                    {keywords.length > 0 && keywords.map(({ id, name }) => <SearchKeywordItem key={id} name={name} />)}
                 </div>
             )}
 

@@ -7,7 +7,6 @@ type Props = {
   known_for: string,
   movie: string,
   img: string,
-  id: number
 }
 
 export default function SearchPersonItem({ name, known_for, movie, img }: Props) {

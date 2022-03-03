@@ -5,7 +5,6 @@ type Props = {
   name: string,
   img: string,
   country: string,
-  id: number
 }
 
 export default function SearchPersonItem({ name, img, country }: Props) {

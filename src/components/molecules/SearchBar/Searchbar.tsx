@@ -36,5 +36,4 @@ const Searchbar = React.forwardRef<HTMLDivElement>((_, ref) => {
         </div>
     );
 });
-
 export default Searchbar;

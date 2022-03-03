@@ -1,26 +1,22 @@
-import classNames from "classnames";
-import React from "react";
-import styles from "./PageSelectorButton.module.scss";
+import classNames from 'classnames';
+import React from 'react';
+import styles from './PageSelectorButton.module.scss';
 
 type Props = {
-  page: number;
-  onClick?: () => void;
-  isSelected?: boolean;
+    page: number;
+    onClick?: () => void;
+    isSelected?: boolean;
 };
 
-function PageSelectorButton({ page, onClick, isSelected }: Props) {
-  function handleClick() {
-    onClick != undefined ? onClick() : "";
-  }
-
-  return (
-    <div
-      onClick={() => handleClick()}
-      className={classNames(styles.button, isSelected ? styles.selected : "")}
-    >
-      {page}
-    </div>
-  );
-}
+const PageSelectorButton = ({ page, onClick, isSelected }: Props) => {
+    return (
+        <div
+            onClick={() => (onClick != undefined ? onClick() : '')}
+            className={classNames(styles.button, isSelected ? styles.selected : '')}
+        >
+            {page}
+        </div>
+    );
+};
 
 export default PageSelectorButton;

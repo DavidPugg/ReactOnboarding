@@ -6,7 +6,7 @@ import TripleDot from '../TripleDot';
 import styles from './MovieItem.module.scss';
 import ProgressBar from '@components/atoms/ProgressBar';
 
-type Props = {
+interface Props {
     id: number;
     img: string;
     title: string;
@@ -14,14 +14,13 @@ type Props = {
     rating: number;
     style?: object;
     border?: boolean;
-};
+}
 
-export default function MovieItem({ id, img, title, release, rating, style, border }: Props) {
+const MovieItem = ({ id, img, title, release, rating, style, border }: Props) => {
     function returnImage() {
         if (img) return `https://image.tmdb.org/t/p/w500/${img}`;
         return notfound;
     }
-
     return (
         <div className={classNames(styles.box, border ? styles.border : '')}>
             <TripleDot />
@@ -39,4 +38,5 @@ export default function MovieItem({ id, img, title, release, rating, style, bord
             </Link>
         </div>
     );
-}
+};
+export default MovieItem;
