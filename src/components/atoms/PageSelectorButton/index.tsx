@@ -4,7 +4,7 @@ import styles from "./PageSelectorButton.module.scss";
 
 type Props = {
   page: number;
-  onClick?: Function;
+  onClick?: () => void;
   isSelected?: boolean;
 };
 

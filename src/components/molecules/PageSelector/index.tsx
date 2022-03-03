@@ -4,7 +4,7 @@ import styles from "./PageSelector.module.scss";
 
 type Props = {
   totalPages: number|any,
-  onPageChange: Function,
+  onPageChange: (value: number) => void,
   currentPage: number
 }
 

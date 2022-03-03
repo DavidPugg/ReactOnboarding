@@ -3,7 +3,7 @@ import UniversalDropdown from "../../atoms/UniversalDropdown";
 import styles from "./PlusMenuItem.module.scss";
 
 export default function PlusMenuItem() {
-  const [dropdown, setDropdown] = useState(false);
+  const [dropdown, setDropdown] = useState<boolean>(false);
 
   return (
     <div className={styles.box}>

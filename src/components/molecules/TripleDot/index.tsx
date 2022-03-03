@@ -5,7 +5,7 @@ import styles from "./TripleDot.module.scss";
 
 
 export default function TripleDot() {
-  const [dropdown, setDropdown] = useState(false);
+  const [dropdown, setDropdown] = useState<boolean>(false);
 
   return (
     <div className={styles.box}>

@@ -6,80 +6,46 @@ import { MoviesAPI } from './../utils/MoviesAPI';
 import { setPrevFilters } from './filtersSlice';
 import { setPrevSort } from './sortSlice';
 
-type Payload = {
-    payload: {
-        total_results: number;
-        results: Array<object>;
-    };
-};
-
 interface MoviesState {
     value: Array<Movie>;
     status: string;
     totalResults: number;
 }
 
-const initialState: MoviesState = {
-    value: [],
-    status: '',
-    totalResults: 0,
-};
-
 const moviesAPI = new MoviesAPI();
 
 export const getMovies = createAsyncThunk(
     'movies/getMovies',
-    async ({ page }: { page: number }, { dispatch, getState }) => {
+    async ({ page, loadMore }: { page: number; loadMore: boolean }, { dispatch, getState }) => {
         dispatch(setPrevFilters());
         dispatch(setPrevSort());
         const { filters, sort }: RootStateOrAny = getState();
-        return moviesAPI.fetchMovies({ page, filters: filters.value, sort: sort.value });
-    },
-);
-
-export const loadMore = createAsyncThunk(
-    'movies/loadMore',
-    async ({ page }: { page: number }, { dispatch, getState }) => {
-        dispatch(setPrevFilters());
-        dispatch(setPrevSort());
-        const { filters, sort }: RootStateOrAny = getState();
-        return moviesAPI.fetchMovies({ page, filters: filters.value, sort: sort.value });
+        const data = await moviesAPI.fetchMovies({ page, filters: filters.value, sort: sort.value });
+        return { ...data, loadMore };
     },
 );
 
 export const moviesSlice = createSlice({
     name: 'movies',
-    initialState,
-    reducers: {
-        setTotalResults: (state, { payload }) => {
-            state.totalResults = payload;
-        },
-    },
+    initialState: {
+        value: [],
+        status: '',
+        totalResults: 0,
+    } as MoviesState,
+    reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getMovies.pending, (state: RootStateOrAny) => {
+        builder.addCase(getMovies.pending, (state) => {
             state.status = 'loading';
         }),
-            builder.addCase(getMovies.fulfilled, (state: RootStateOrAny, { payload }) => {
+            builder.addCase(getMovies.fulfilled, (state, { payload }) => {
+                payload.loadMore ? state.value.push(...payload.results) : (state.value = payload.results);
                 state.totalResults = payload.total_results;
-                state.value = payload.results;
                 state.status = 'success';
             }),
-            builder.addCase(getMovies.rejected, (state: RootStateOrAny) => {
-                state.status = 'failed';
-            }),
-            builder.addCase(loadMore.pending, (state: RootStateOrAny) => {
-                state.status = 'loading';
-            }),
-            builder.addCase(loadMore.fulfilled, (state: RootStateOrAny, { payload }: Payload) => {
-                state.totalResults = payload.total_results;
-                state.value.push(...payload.results);
-                state.status = 'success';
-            }),
-            builder.addCase(loadMore.rejected, (state: RootStateOrAny) => {
+            builder.addCase(getMovies.rejected, (state) => {
                 state.status = 'failed';
             });
     },
 });
-export const { setTotalResults } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

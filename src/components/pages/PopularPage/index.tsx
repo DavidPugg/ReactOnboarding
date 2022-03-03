@@ -2,7 +2,7 @@ import MainButton from '@components/atoms/MainButton';
 import Footer from '@components/organisms/Footer/Footer';
 import MainMenu from '@components/organisms/MainMenu/MainMenu';
 import MainTemplate from '@components/templates/MainTemplate/MainTemplate';
-import { getMovies, loadMore } from '../../../app/moviesSlice';
+import { getMovies } from '../../../app/moviesSlice';
 import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import PopularContent from '../../organisms/PopularContent';
@@ -14,11 +14,11 @@ export default function PopularPage() {
     const totalResults = useSelector((state: RootStateOrAny) => state.movies.totalResults);
 
     useEffect(() => {
-        dispatch(getMovies({ page: currentPage }));
+        dispatch(getMovies({ page: currentPage, loadMore: false }));
     }, []);
 
     function handleLoadMore(page: number) {
-        dispatch(loadMore({ page }));
+        dispatch(getMovies({ page, loadMore: true }));
         setCurrentPage(currentPage + 1);
     }
 
