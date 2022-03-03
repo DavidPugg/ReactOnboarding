@@ -1,49 +1,24 @@
+import ProgressBar from '@components/atoms/ProgressBar';
+import { CrewMember, Details } from 'interfaces/Details';
 import React from 'react';
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import '../../../css/progressbar.scss';
 import RoundButton from '../../atoms/RoundButton';
 import CrewList from '../../molecules/CrewList';
 import styles from './MovieDetails.module.scss';
 
-type Props = {
-    details: {
-        backdrop_path: string;
-        poster_path: string;
-        title: string;
-        release_date: string;
-        runtime: number;
-        vote_average: number;
-        tagline: string;
-        overview: string;
-    };
-    crew: Array<{
-        id: number;
-        name: string;
-        job: string;
-    }>;
-};
+interface Props {
+    details: Details;
+    crew: Array<CrewMember>;
+}
 
 export default function MovieDetails({ details, crew }: Props) {
     const { backdrop_path, poster_path, title, release_date, runtime, vote_average, tagline, overview } = details;
-
     const date = new Date(release_date);
-
     const backgroundStyle = {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://image.tmdb.org/t/p/w500/${backdrop_path})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         padding: '1rem 0',
     };
-
-    function returnColor() {
-        if (vote_average * 10 < 30) {
-            return 'red';
-        } else if (vote_average * 10 < 70) {
-            return 'yellow';
-        } else {
-            return 'green';
-        }
-    }
 
     return (
         <div style={backgroundStyle}>
@@ -62,19 +37,7 @@ export default function MovieDetails({ details, crew }: Props) {
                         {runtime % 60}m
                     </p>
                     <div className={styles.rating_box}>
-                        <CircularProgressbar
-                            className={styles.rating}
-                            value={vote_average * 10}
-                            text={vote_average * 10 == 0 ? 'NR' : `${vote_average * 10}%`}
-                            background
-                            backgroundPadding={6}
-                            styles={buildStyles({
-                                backgroundColor: 'black',
-                                textColor: '#fff',
-                                pathColor: `${returnColor()}`,
-                                trailColor: 'transparent',
-                            })}
-                        />
+                        <ProgressBar rating={vote_average} big/>
                         <p className={styles.score}>User Score</p>
                         <RoundButton icon='list' text='Login to create and edit custom lists' />
                         <RoundButton icon='heart' text='Login to add this movie to your favorite list' />
