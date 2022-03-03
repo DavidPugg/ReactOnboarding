@@ -4,7 +4,7 @@ import styles from "./GenreButton.module.scss";
 
 type Props = {
   label: string,
-  onClick: Function,
+  onClick: () => void,
   isActive: boolean,
 }
 

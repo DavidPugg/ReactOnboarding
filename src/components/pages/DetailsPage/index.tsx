@@ -1,48 +1,31 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Footer from "../../organisms/Footer/Footer";
-import MainMenu from "../../organisms/MainMenu/MainMenu";
-import MovieDetails from "../../organisms/MovieDetails/MovieDetails";
-import HomeTemplate from "../../templates/HomeTemplate/HomeTemplate";
+import { CrewMember, Details } from 'interfaces/Details';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { MoviesAPI } from '../../../utils/MoviesAPI';
+import Footer from '../../organisms/Footer/Footer';
+import MainMenu from '../../organisms/MainMenu/MainMenu';
+import MovieDetails from '../../organisms/MovieDetails/MovieDetails';
+import HomeTemplate from '../../templates/HomeTemplate/HomeTemplate';
 
-type Details = {
-    backdrop_path: string;
-    poster_path: string;
-    title: string;
-    release_date: string;
-    runtime: number;
-    vote_average: number;
-    tagline: string;
-    overview: string;
-}
+const moviesAPI = new MoviesAPI();
 
 export default function DetailsPage() {
-  const [details, setDetails] = useState({});
-  const [crew, setCrew] = useState([]);
-  const { movieId } = useParams();
+    const [details, setDetails] = useState<Details>({} as Details);
+    const [crew, setCrew] = useState<Array<CrewMember>>([]);
+    const { movieId } = useParams();
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.API_KEY}&language=en-US&page=1`
-      )
-      .then((res) => {
-        setDetails(res.data);
-      });
+    useEffect(() => {
+        const fetchDetails = async () => {
+            const { details, crew } = await moviesAPI.fetchMovieDetails<Details, CrewMember>(movieId as string);
+            setDetails(details);
+            setCrew(crew);
+        };
+        fetchDetails();
+    }, []);
 
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.API_KEY}&language=en-US`
-      )
-      .then((res) => {
-        setCrew(res.data.crew);
-      });
-  }, []);
-
-  return (
-    <HomeTemplate header={<MainMenu />} footer={<Footer />}>
-      <MovieDetails details={details as Details} crew={crew.slice(0, 6)} />
-    </HomeTemplate>
-  );
+    return (
+        <HomeTemplate header={<MainMenu />} footer={<Footer />}>
+            <MovieDetails details={details} crew={crew.slice(0, 6)} />
+        </HomeTemplate>
+    );
 }

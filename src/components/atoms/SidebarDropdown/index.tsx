@@ -1,10 +1,8 @@
-import React from "react";
-import styles from "./SidebarDropdown.module.scss";
+import React, { PropsWithChildren } from 'react';
+import styles from './SidebarDropdown.module.scss';
 
-type Props = {
-  children: JSX.Element|JSX.Element[];
-};
+type Props = PropsWithChildren<{}>;
 
 export default function SidebarDropdown({ children }: Props) {
-  return <div className={styles.dropdown}>{children}</div>;
+    return <div className={styles.dropdown}>{children}</div>;
 }

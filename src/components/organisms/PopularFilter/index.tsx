@@ -9,10 +9,10 @@ export default function PopularFilter() {
     const dispatch = useDispatch();
     const filters = useSelector((state: RootStateOrAny) => state.filters.value);
 
-    type Genre = {
+    interface Genre {
         id: number;
         name: string;
-    };
+    }
 
     const [genres, setGenres] = useState<Array<Genre>>([]);
 

@@ -19,7 +19,7 @@ interface SearchResponse<T> {
 }
 
 interface PopularSearchResponse<T> {
-    results: Array<T>
+    results: Array<T>;
 }
 
 export class MoviesAPI {
@@ -46,5 +46,16 @@ export class MoviesAPI {
             `https://api.themoviedb.org/3/${type}/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`,
         );
         return data;
+    };
+
+    fetchMovieDetails = async <T1, T2>(id: string) => {
+        const details = await axios.get<T1>(
+            `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US&page=1`,
+        );
+
+        const crew = await axios.get<{crew: Array<T2>}>(
+            `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.API_KEY}&language=en-US`,
+        );
+        return { details: details.data, crew: crew.data.crew };
     };
 }

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import styles from "./SidebarButton.module.scss";
 
 type Props = {
   label: string;
-  onClick: Function;
-  style: object;
+  onClick: () => void;
+  style: CSSProperties;
 };
 
 export default function SidebarButton({ label, onClick, style }: Props) {

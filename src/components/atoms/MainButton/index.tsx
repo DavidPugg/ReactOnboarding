@@ -6,7 +6,7 @@ import styles from "./MainButton.module.scss";
 type Props = {
   label: string;
   updated: boolean;
-  onClick: Function;
+  onClick: () => void;
 };
 
 export default function SearchButton({ label, updated, onClick }: Props) {
