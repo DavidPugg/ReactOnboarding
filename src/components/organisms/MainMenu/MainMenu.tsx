@@ -45,7 +45,7 @@ export default function MainMenu() {
                     }, 10);
                 }
             });
-    });
+    }, []);
 
     useEffect(() => {
         setSearchbar(false);

@@ -54,7 +54,7 @@ export default function SearchPage() {
             case 'collection':
                 return getItems<Collection>(Number(page), type, setCollections);
         }
-    }, [type, page]);
+    }, [type, page, query]);
 
     useEffect(() => {
         getItems<Movie>(Number(page), 'movie', setMovies);
