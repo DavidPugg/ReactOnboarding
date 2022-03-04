@@ -11,5 +11,6 @@ module.exports = {
     moduleNameMapper: {
         '\\.(css|less|scss)$': 'identity-obj-proxy',
         '\\.(jpg|jpeg|png|gif)$': '<rootDir>/src/assets',
+        "^.+\\.svg$": "jest-svg-transformer"
     },
 };

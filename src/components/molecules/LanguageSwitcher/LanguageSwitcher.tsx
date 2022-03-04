@@ -31,6 +31,7 @@ const LanguageSwitcher = React.forwardRef<HTMLDivElement>((_, ref) => {
             </p>
             {dropdown && (
                 <LanguageDropdown
+                    data-testid='dropdown'
                     onClickOutside={() => {
                         setDropdown(false);
                     }}
