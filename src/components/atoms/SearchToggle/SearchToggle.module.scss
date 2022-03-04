@@ -1,3 +1,8 @@
-.toggle {
-    color: white;
+@import '@css/variables';
+
+.svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: $color-primary-light;
+    cursor: pointer;
 }

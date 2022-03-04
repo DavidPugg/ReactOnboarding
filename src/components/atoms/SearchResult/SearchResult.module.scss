@@ -1,4 +1,7 @@
+@import '@css/variables';
+
 .item {
+  font-size: .8rem;
   border-bottom: 1px solid lightgrey;
   padding: 0.3rem 0;
   text-decoration: none;
@@ -6,6 +9,6 @@
   cursor: pointer;
 
   &:hover {
-    background-color: lighten(grey, 40%);
+    background-color: $color-grey-dark;
   }
 }

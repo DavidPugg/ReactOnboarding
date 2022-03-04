@@ -1,13 +1,15 @@
+@import '@css/variables';
+
 .main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.3rem 0;
+  padding: 0.5rem 0;
   flex-wrap: wrap;
 }
 
 .background {
-  background-color: darken(darkblue, $amount: 15%);
+  background-color: $color-primary;
 }
 
 .left,
@@ -17,12 +19,16 @@
   gap: 1rem;
 }
 
+.right {
+  gap: 1.5rem;
+}
+
 .title {
   font-size: 1.6rem;
   text-decoration: none;
   color: black;
   font-weight: 600;
-  background: linear-gradient(to right bottom, lightgreen, lightblue);
+  background-image: linear-gradient(to right bottom, $color-secondary-light, $color-primary-light);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

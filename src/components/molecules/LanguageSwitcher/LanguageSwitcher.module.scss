@@ -1,3 +1,9 @@
+@import '@css/variables';
+
+.box {
+  position: relative;
+}
+
 .toggle {
     font-size: 0.8rem;
     border: 1px solid white;
@@ -6,7 +12,6 @@
     justify-content: center;
     width: 1.8rem;
     height: 1.8rem;
-    transform: translateX(-50%);
     border-radius: 0.2rem;
     user-select: none;
     color: white;
@@ -14,6 +19,6 @@
   
     &:hover {
       background-color: white;
-      color: black;
+      color: $color-primary;
     }
   }

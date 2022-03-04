@@ -1,0 +1,59 @@
+@import '@css/variables';
+
+.box {
+    position: absolute;
+    top: 3%;
+    right: 7%;
+    z-index: 100;
+}
+
+.svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 1rem;
+    height: 1rem;
+    padding: 0.15rem;
+    fill: black;
+    background-color: rgba($color: $color-grey-light, $alpha: 0.8);
+    border-radius: 100px;
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+
+    &:hover {
+        background-color: $color-primary-light;
+    }
+}
+
+@mixin text {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.01rem;
+    padding: 0.3rem 0.7rem;
+}
+
+.text {
+    @include text;
+}
+
+.link {
+    @include text;
+    color: darken($color: $color-grey-dark, $amount: 15%);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    &:hover {
+        background-color: $color-primary;
+        color: white;
+    }
+
+    .arrow {
+        width: 1rem;
+        height: 1rem;
+        fill: $color-primary;
+    }
+}

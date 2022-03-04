@@ -1,0 +1,18 @@
+@import "@css/variables";
+
+.button {
+  border: 1px solid $color-grey-dark;
+  border-radius: .3rem;
+  width: 2rem;
+  height: 1.8rem;
+  font-size: .9rem;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected {
+    color: $color-primary-light;
+}
