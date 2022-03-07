@@ -15,7 +15,7 @@ const myFunc = jest.fn();
 
 it('Checks if onClickOutside is called on click outside element', () => {
     const { getByTestId } = render(
-        <UniversalDropdown style={{}} onClickOutside={myFunc}>
+        <UniversalDropdown style={{ backgroundColor: 'green' }} onClickOutside={myFunc}>
             <div>Test</div>
         </UniversalDropdown>,
     );
@@ -33,4 +33,14 @@ it('Test children render', () => {
     );
     const testDiv = getByTestId('test');
     expect(testDiv).toBeInTheDocument();
+});
+
+it('Test if styles are working', () => {
+    const { getByTestId } = render(
+        <UniversalDropdown style={{ color: 'green' }} onClickOutside={myFunc}>
+            <div>Test</div>
+        </UniversalDropdown>,
+    );
+    const el = getByTestId('universal-dropdown');
+    expect(el).toHaveStyle(`color: green`)
 });
