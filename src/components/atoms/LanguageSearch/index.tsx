@@ -9,6 +9,7 @@ export default function LanguageSearch({ onInput }: Props) {
     return (
         <div className={styles.box}>
             <input
+                data-testid='language-search'
                 className={styles.input}
                 onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
                     onInput(e.target.value);
