@@ -16,7 +16,7 @@ export default function UniversalDropdown({ children, style, onClickOutside }: P
     });
 
     return (
-        <div ref={myRef} style={style} className={styles.dropdown}>
+        <div data-testid='universal-dropdown' ref={myRef} style={style} className={styles.dropdown}>
             {children}
         </div>
     );
