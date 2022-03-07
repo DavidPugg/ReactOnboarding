@@ -26,12 +26,11 @@ const LanguageSwitcher = React.forwardRef<HTMLDivElement>((_, ref) => {
 
     return (
         <div ref={ref} className={styles.box}>
-            <p onClick={() => setDropdown(!dropdown)} className={styles.toggle}>
+            <p data-testid='language-switcher-toggle' onClick={() => setDropdown(!dropdown)} className={styles.toggle}>
                 {currentLanguage.code}
             </p>
             {dropdown && (
                 <LanguageDropdown
-                    data-testid='dropdown'
                     onClickOutside={() => {
                         setDropdown(false);
                     }}
