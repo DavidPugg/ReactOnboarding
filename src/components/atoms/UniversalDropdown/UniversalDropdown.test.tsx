@@ -1,15 +1,7 @@
 import React, { RefObject } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import UniversalDropdown from '.';
-
-const outside = jest.fn((ref: RefObject<HTMLElement>, func: () => void) => {
-    const handleClickOutside = (event: MouseEvent) => {
-        if (ref.current && !ref.current.contains(event.target as Node)) {
-            func();
-        }
-    };
-    document.addEventListener('click', handleClickOutside);
-});
+import clickOutside from '../../hooks/clickOutside';
 
 const myFunc = jest.fn();
 
@@ -20,8 +12,8 @@ it('Checks if onClickOutside is called on click outside element', () => {
         </UniversalDropdown>,
     );
     const el = getByTestId('universal-dropdown');
-    outside({ current: el } as RefObject<HTMLElement>, () => myFunc());
-    fireEvent.click(document.body);
+    clickOutside({ current: el } as RefObject<HTMLElement>, () => myFunc());
+    fireEvent.mouseDown(document.body);
     expect(myFunc).toBeCalledTimes(1);
 });
 
@@ -42,5 +34,5 @@ it('Test if styles are working', () => {
         </UniversalDropdown>,
     );
     const el = getByTestId('universal-dropdown');
-    expect(el).toHaveStyle(`color: green`)
+    expect(el).toHaveStyle(`color: green`);
 });
