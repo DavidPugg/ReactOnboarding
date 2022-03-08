@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     verbose: true,
     testEnvironment: 'jsdom',
     roots: ['<rootDir>/src'],
@@ -14,5 +14,3 @@ module.exports = {
         "^.+\\.svg$": "jest-svg-transformer"
     },
 };
-
-export {}

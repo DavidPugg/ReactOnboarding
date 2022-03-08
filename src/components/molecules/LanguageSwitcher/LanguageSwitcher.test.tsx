@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import LanguageSwitcher from './LanguageSwitcher';
+import { languages } from './languages';
 
 it('Check if dropdown toggle works', async () => {
     const { getByTestId, queryByTestId } = render(<LanguageSwitcher />);
@@ -14,8 +15,17 @@ it('Check if dropdown toggle works', async () => {
     expect(dropdown).toBeInTheDocument();
 });
 
-it('Check if toggle language code changes on update', () => {
-    const { getByText } = render(<LanguageSwitcher />);
-    let code = getByText('en');
-    expect(code).toBeInTheDocument();
+it('Tests onLanguageChange function', () => {
+    const { queryAllByTestId, getByTestId } = render(<LanguageSwitcher />);
+    const toggle = getByTestId('language-switcher-toggle');
+    let code = getByTestId('language-switcher-toggle');
+    expect(code).toHaveTextContent(languages[0].code);
+
+    fireEvent.click(toggle);
+    const mainToggle = queryAllByTestId('main-language-current');
+    fireEvent.click(mainToggle[0]);
+    const options = queryAllByTestId('language-option');
+    fireEvent.click(options[0]);
+
+    expect(code).toHaveTextContent(languages[1].code);
 });

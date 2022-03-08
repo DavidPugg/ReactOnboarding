@@ -6,12 +6,12 @@ import styles from './LanguageSwitcher.module.scss';
 
 const LanguageSwitcher = React.forwardRef<HTMLDivElement>((_, ref) => {
     const [currentLanguage, setCurrentLanguage] = useState({
-        code: 'en',
-        label: 'English',
+        code: languages[0].code,
+        label: languages[0].label,
     });
     const [fallbackLanguage, setFallbackLanguage] = useState({
-        code: 'de',
-        label: 'German',
+        code: languages[1].code,
+        label: languages[1].label,
     });
 
     function onLanguageChange({ code, label }: Language, type: Type) {
