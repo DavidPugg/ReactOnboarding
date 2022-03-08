@@ -1,6 +1,9 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import LanguageSwitcher from './LanguageSwitcher';
+import clickOutside from '../../hooks/clickOutside';
+
+const myFunc = jest.fn();
 
 it('Check if dropdown toggle works', async () => {
     const { getByTestId, queryByTestId } = render(<LanguageSwitcher />);
@@ -12,13 +15,10 @@ it('Check if dropdown toggle works', async () => {
     fireEvent.click(toggle);
     dropdown = queryByTestId('language-dropdown');
     expect(dropdown).toBeInTheDocument();
-
-   //need to test click outside 
 });
 
 it('Check if toggle language code changes on update', () => {
-    const {getByText} = render(<LanguageSwitcher/>);
+    const { getByText } = render(<LanguageSwitcher />);
     let code = getByText('en');
     expect(code).toBeInTheDocument();
-})
-
+});
