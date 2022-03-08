@@ -1,9 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import LanguageSwitcher from './LanguageSwitcher';
-import clickOutside from '../../hooks/clickOutside';
-
-const myFunc = jest.fn();
 
 it('Check if dropdown toggle works', async () => {
     const { getByTestId, queryByTestId } = render(<LanguageSwitcher />);
