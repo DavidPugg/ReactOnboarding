@@ -10,9 +10,7 @@ type Props = PropsWithChildren<{
 export default function UniversalDropdown({ children, style, onClickOutside }: Props) {
     const myRef = useRef<HTMLDivElement>(null);
     clickOutside(myRef, () => {
-        setTimeout(() => {
             onClickOutside();
-        }, 100);
     });
 
     return (
