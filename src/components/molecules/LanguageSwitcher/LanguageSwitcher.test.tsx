@@ -22,7 +22,7 @@ it('Tests onLanguageChange function', () => {
     expect(code).toHaveTextContent(languages[0].code);
 
     fireEvent.click(toggle);
-    const mainToggle = queryAllByTestId('main-language-current');
+    const mainToggle = queryAllByTestId('main-language-option');
     fireEvent.click(mainToggle[0]);
     const options = queryAllByTestId('language-option');
     fireEvent.click(options[0]);
