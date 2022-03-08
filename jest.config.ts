@@ -14,3 +14,5 @@ module.exports = {
         "^.+\\.svg$": "jest-svg-transformer"
     },
 };
+
+export {}
