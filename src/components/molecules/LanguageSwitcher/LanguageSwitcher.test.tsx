@@ -23,6 +23,15 @@ describe('Check if dropdown toggle works', () => {
         expect(dropdown).toBeInTheDocument();
     });
 
+
+    it('Dropdown should stay open on button press ', () => {
+        let {toggle, dropdown, queryByTestId} = setup();
+        fireEvent.click(toggle);
+        fireEvent.click(toggle);
+        dropdown = queryByTestId('language-dropdown');
+        expect(dropdown).toBeInTheDocument();
+    });
+
     it('Clickoutside should close the dropdown', () => {
         let {toggle,dropdown, queryByTestId} = setup();
         fireEvent.click(toggle);

@@ -11,7 +11,7 @@ interface Props {
     currentLanguage: Language;
     fallbackLanguage: Language;
     onLanguageChange: ({ code, label }: Language, type: Type) => void;
-    onClickOutside: () => void;
+    onClickOutside: (e: MouseEvent) => void;
     testId?: string;
 }
 
@@ -47,7 +47,7 @@ export default function LanguageDropdown({
 
     return (
         <div data-testid="language-dropdown">
-            <UniversalDropdown onClickOutside={() => onClickOutside()}>
+            <UniversalDropdown onClickOutside={onClickOutside}>
                 <p className={styles.title}>Language preferences</p>
                 <div className={styles.selection}>
                     <p className={styles.text}>Default language</p>
