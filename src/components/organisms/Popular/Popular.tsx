@@ -5,7 +5,7 @@ import MovieItem from '../../molecules/MovieItem/MovieItem';
 import styles from './Popular.module.scss';
 
 interface Props {
-    dataSrc: (type: string) => Promise<PopularSearchResponse<Movie|Tv>>;
+    dataSrc: (type: string) => Promise<PopularSearchResponse<Movie | Tv>>;
 }
 
 export default function Popular({ dataSrc }: Props) {
@@ -16,16 +16,16 @@ export default function Popular({ dataSrc }: Props) {
         handleItems('movie');
     }, []);
 
-    async function handleItems(type: string) {
+    const handleItems = async (type: string) => {
         const res = await dataSrc(type);
         setItems(res.results);
         setType(type);
-    }
+    };
 
-    function getPosition() {
+    const getPosition = () => {
         if (type == 'tv') return { left: '0%' };
         return { left: 'calc(50% + .5rem)' };
-    }
+    };
 
     return (
         <div className={`container`}>
