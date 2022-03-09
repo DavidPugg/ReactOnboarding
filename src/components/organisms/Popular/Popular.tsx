@@ -1,29 +1,25 @@
 import { Movie, Tv } from 'interfaces/Movies';
 import React, { useEffect, useState } from 'react';
-import { MoviesAPI } from '../../../utils/MoviesAPI';
+import { PopularSearchResponse } from '../../../utils/MoviesAPI';
 import MovieItem from '../../molecules/MovieItem/MovieItem';
 import styles from './Popular.module.scss';
 
-const moviesAPI = new MoviesAPI();
+interface Props {
+    dataSrc: (type: string) => Promise<PopularSearchResponse<Movie|Tv>>;
+}
 
-export default function Popular() {
+export default function Popular({ dataSrc }: Props) {
     const [items, setItems] = useState([] as Array<any>);
     const [type, setType] = useState('movie');
 
     useEffect(() => {
-        handleItems<Movie>('movie');
+        handleItems('movie');
     }, []);
 
-    async function handleItems<T>(type: string) {
-        if (type == 'tv') {
-            const res = await moviesAPI.fetchPopularMovies<T>({ type });
-            setItems(res.results as Array<T>);
-            setType(type);
-        } else {
-            const res = await moviesAPI.fetchPopularMovies<T>({ type });
-            setItems(res.results as Array<T>);
-            setType(type);
-        }
+    async function handleItems(type: string) {
+        const res = await dataSrc(type);
+        setItems(res.results);
+        setType(type);
     }
 
     function getPosition() {
@@ -38,13 +34,13 @@ export default function Popular() {
                 <div className={styles.select}>
                     <div className={styles.toggler} style={getPosition()}></div>
                     <div
-                        onClick={() => handleItems<Tv>('tv')}
+                        onClick={() => handleItems('tv')}
                         className={`${styles.option} ${type == 'tv' ? styles.selected : ''}`}
                     >
                         On TV
                     </div>
                     <div
-                        onClick={() => handleItems<Movie>('movie')}
+                        onClick={() => handleItems('movie')}
                         className={`${styles.option} ${type == 'movie' ? styles.selected : ''}`}
                     >
                         In Theaters
@@ -56,7 +52,6 @@ export default function Popular() {
                 {type == 'movie' &&
                     items.map(({ id, poster_path, title, release_date, vote_average }) => (
                         <MovieItem
-                            style={{ width: `8rem` }}
                             key={id}
                             id={id}
                             img={poster_path}
@@ -69,7 +64,6 @@ export default function Popular() {
                 {type == 'tv' &&
                     items.map(({ id, poster_path, name, first_air_date, vote_average }) => (
                         <MovieItem
-                            style={{ width: `8rem` }}
                             key={id}
                             id={id}
                             img={poster_path}
