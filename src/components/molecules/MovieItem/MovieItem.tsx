@@ -1,3 +1,4 @@
+import axios from 'axios';
 import notfound from '../../../assets/notfound.png';
 import classNames from 'classnames';
 import React from 'react';
@@ -16,14 +17,16 @@ interface Props {
 }
 
 const MovieItem = ({ id, img, title, release, rating, border }: Props) => {
-    function returnImage() {
-        if (img && img != '') return `https://image.tmdb.org/t/p/w500/${img}`;
+    const returnImage = () => {
+        if (img && img != '') {
+            return `https://image.tmdb.org/t/p/w500/${img}`;
+        }
         return notfound;
-    }
+    };
 
     const getTitle = () => {
         if (title && title.length > 40) {
-            return `${title.slice(0, 40)}...`
+            return `${title.slice(0, 40)}...`;
         }
         return title;
     };
