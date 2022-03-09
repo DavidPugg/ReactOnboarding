@@ -10,16 +10,10 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-<<<<<<< HEAD
-    "baseUrl": "./src",
-    "paths": {
-      "@components/*": ["./components/*"]
-=======
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
       "@css/*": ["css/*"]
->>>>>>> e898e50... Installed storybook
     }
   },
   "include": ["src"]
