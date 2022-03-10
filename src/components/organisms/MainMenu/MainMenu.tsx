@@ -1,3 +1,4 @@
+import { languages } from '@components/molecules/LanguageSwitcher/languages';
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import MainMenuLink from '../../atoms/MainMenuLink/MainMenuLink';
@@ -65,7 +66,7 @@ export default function MainMenu() {
                         </div>
                         <div className={styles.right}>
                             <PlusMenuItem />
-                            <LanguageSwitcher ref={languageListenerRef} />
+                            <LanguageSwitcher languages={languages} ref={languageListenerRef} />
                             <MainMenuLink label='Login' />
                             <SearchToggle
                                 onToggle={() => {

@@ -1,30 +1,22 @@
 import { Language, Type } from 'interfaces/Language';
-import React, { MutableRefObject, useRef, useState } from 'react';
+import React, { MutableRefObject, useRef, useState, useEffect } from 'react';
 import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
-import { languages } from './languages';
 import styles from './LanguageSwitcher.module.scss';
 
-const LanguageSwitcher = React.forwardRef<HTMLDivElement>((_, ref) => {
+export default React.forwardRef<HTMLDivElement, { languages: Array<Language> }>(({ languages }, ref) => {
     const toggleRef = useRef() as MutableRefObject<HTMLParagraphElement>;
+    const [dropdown, setDropdown] = useState(false);
+    const [currentLanguage, setCurrentLanguage] = useState<Language>({} as Language);
+    const [fallbackLanguage, setFallbackLanguage] = useState<Language>({} as Language);
 
-    const [currentLanguage, setCurrentLanguage] = useState({
-        code: languages[0].code,
-        label: languages[0].label,
-    });
-    const [fallbackLanguage, setFallbackLanguage] = useState({
-        code: languages[1].code,
-        label: languages[1].label,
-    });
+    useEffect(() => {
+        setCurrentLanguage(languages[0]);
+        setFallbackLanguage(languages[1]);
+    }, []);
 
     function onLanguageChange({ code, label }: Language, type: Type) {
-        if (type == 'fallback') {
-            setFallbackLanguage({ code, label });
-        } else {
-            setCurrentLanguage({ code, label });
-        }
+        type == 'fallback' ? setFallbackLanguage({ code, label }) : setCurrentLanguage({ code, label });
     }
-
-    const [dropdown, setDropdown] = useState(false);
 
     return (
         <div ref={ref} className={styles.box}>
@@ -50,5 +42,3 @@ const LanguageSwitcher = React.forwardRef<HTMLDivElement>((_, ref) => {
         </div>
     );
 });
-
-export default LanguageSwitcher;
