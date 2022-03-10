@@ -18,7 +18,7 @@ export default function MainMenu() {
     const searchBarRef = useRef<HTMLDivElement>(null);
     const languageListenerRef = useRef<HTMLDivElement>(null);
 
-    clickOutside(searchBarRef, () => {
+    clickOutside([searchBarRef], () => {
         setTimeout(() => {
             setSearchbar(false);
         }, 200);
