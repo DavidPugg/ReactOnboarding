@@ -2,13 +2,12 @@
 
 .select {
     position: relative;
-    display:flex;
+    display: inline-flex;
     box-shadow: 0 0 6px rgba($color: #000000, $alpha: 0.2);
     border-radius: 100px;
     gap: 1rem;
     cursor: pointer;
     white-space: nowrap;
-    width: fit-content;
     user-select: none;
 
     .toggler {
@@ -18,7 +17,7 @@
         height: 100%;
         background-color: $color-primary;
         border-radius: 100px;
-        transition: all .2s ease-in-out;
+        transition: all 0.2s ease-in-out;
     }
 
     .option {
