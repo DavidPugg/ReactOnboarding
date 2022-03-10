@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useRef } from 'react';
+import React, { PropsWithChildren, RefObject, useEffect, useRef } from 'react';
 import clickOutside from '../../hooks/clickOutside';
 import styles from './UniversalDropdown.module.scss';
 
@@ -7,13 +7,18 @@ type Props = PropsWithChildren<{
     onClickOutside: (e: MouseEvent) => void;
 }>;
 
-export default function UniversalDropdown({ children, style, onClickOutside }: Props) {
+export default React.forwardRef<HTMLElement, Props>(({ children, style, onClickOutside }, ref) => {
     const myRef = useRef<HTMLDivElement>(null);
-    clickOutside(myRef, onClickOutside);
+
+    useEffect(() => {
+        ref
+            ? clickOutside([myRef, ref as RefObject<HTMLElement>], onClickOutside)
+            : clickOutside([myRef], onClickOutside);
+    });
 
     return (
         <div data-testid='universal-dropdown' ref={myRef} style={style} className={styles.dropdown}>
             {children}
         </div>
     );
-}
+});

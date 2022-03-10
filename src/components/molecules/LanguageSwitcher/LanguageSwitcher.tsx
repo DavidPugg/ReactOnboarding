@@ -30,7 +30,7 @@ export default React.forwardRef<HTMLDivElement, { languages: Array<Language> }>(
                 {currentLanguage.code}
             </p>
             {dropdown && (
-                <UniversalDropdown onClickOutside={() => setDropdown(false)}>
+                <UniversalDropdown ref={toggleRef} onClickOutside={() => setDropdown(false)}>
                     <p className={styles.title}>Language preferences</p>
                     <LanguageDropdown
                         type='current'
