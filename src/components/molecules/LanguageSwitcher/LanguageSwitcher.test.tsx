@@ -1,13 +1,13 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent,screen } from '@testing-library/react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { languages } from './languages';
 
 describe('Check if dropdown toggle works', () => {
     const setup = () => {
-        const { getByTestId, queryByTestId } = render(<LanguageSwitcher />);
+        const { getByTestId, queryByTestId } = render(<LanguageSwitcher languages={languages} />);
         const toggle = getByTestId('language-switcher-toggle');
-        let dropdown = queryByTestId('language-dropdown');
+        let dropdown = queryByTestId('universal-dropdown');
         return { dropdown, toggle, getByTestId, queryByTestId };
     };
 
@@ -19,7 +19,8 @@ describe('Check if dropdown toggle works', () => {
     it('Dropdown should be open', () => {
         let {toggle, dropdown, queryByTestId} = setup();
         fireEvent.click(toggle);
-        dropdown = queryByTestId('language-dropdown');
+        screen.debug();
+        dropdown = queryByTestId('universal-dropdown');
         expect(dropdown).toBeInTheDocument();
     });
 
@@ -28,24 +29,24 @@ describe('Check if dropdown toggle works', () => {
         let {toggle, dropdown, queryByTestId} = setup();
         fireEvent.click(toggle);
         fireEvent.click(toggle);
-        dropdown = queryByTestId('language-dropdown');
+        dropdown = queryByTestId('universal-dropdown');
         expect(dropdown).toBeInTheDocument();
     });
 
     it('Clickoutside should close the dropdown', () => {
         let {toggle,dropdown, queryByTestId} = setup();
         fireEvent.click(toggle);
-        dropdown = queryByTestId('language-dropdown');
+        dropdown = queryByTestId('universal-dropdown');
         expect(dropdown).toBeInTheDocument();
 
         fireEvent.mouseDown(document.body);
-        dropdown = queryByTestId('language-dropdown');
+        dropdown = queryByTestId('universal-dropdown');
         expect(dropdown).not.toBeInTheDocument();
     })
 });
 
 it('Tests onLanguageChange function', () => {
-    const { queryAllByTestId, getByTestId } = render(<LanguageSwitcher />);
+    const { queryAllByTestId, getByTestId } = render(<LanguageSwitcher languages={languages} />);
     const toggle = getByTestId('language-switcher-toggle');
     let code = getByTestId('language-switcher-toggle');
     expect(code).toHaveTextContent(languages[0].code);
