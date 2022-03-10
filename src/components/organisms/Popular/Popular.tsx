@@ -1,5 +1,6 @@
+import Toggler from '@components/molecules/Toggler';
 import { Movie, Tv } from 'interfaces/Movies';
-import React, { useEffect, useState } from 'react';
+import React, { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react';
 import { PopularSearchResponse } from '../../../utils/MoviesAPI';
 import MovieItem from '../../molecules/MovieItem/MovieItem';
 import styles from './Popular.module.scss';
@@ -8,12 +9,15 @@ interface Props {
     dataSrc: (type: string) => Promise<PopularSearchResponse<Movie | Tv>>;
 }
 
-export default function Popular({ dataSrc }: Props) {
+export default ({ dataSrc }: Props) => {
     const [items, setItems] = useState([] as Array<any>);
     const [type, setType] = useState('movie');
 
+    const toggleRefOne = useRef<HTMLDivElement>(null);
+    const toggleRefTwo = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
-        handleItems('movie');
+        handleItems('tv');
     }, []);
 
     const handleItems = async (type: string) => {
@@ -23,29 +27,24 @@ export default function Popular({ dataSrc }: Props) {
     };
 
     const getPosition = () => {
-        if (type == 'tv') return { left: '0%' };
-        return { left: 'calc(50% + .5rem)' };
+        if (type == 'tv') return { left: '0%', width: `${toggleRefOne.current?.clientWidth}px` };
+        return { left: '50%', width: `${toggleRefTwo.current?.clientWidth}px` };
     };
 
     return (
         <div className={`container`}>
             <div className={styles.titlebox}>
                 <h2 className={styles.title}>What's Popular</h2>
-                <div className={styles.select}>
-                    <div className={styles.toggler} style={getPosition()}></div>
-                    <div
-                        onClick={() => handleItems('tv')}
-                        className={`${styles.option} ${type == 'tv' ? styles.selected : ''}`}
-                    >
-                        On TV
-                    </div>
-                    <div
-                        onClick={() => handleItems('movie')}
-                        className={`${styles.option} ${type == 'movie' ? styles.selected : ''}`}
-                    >
-                        In Theaters
-                    </div>
-                </div>
+
+                <Toggler
+                    options={[
+                        { label: 'On TV', type: 'tv' },
+                        { label: 'In Theaters', type: 'movie' },
+                    ]}
+                    func={(type) => {
+                        handleItems(type);
+                    }}
+                />
             </div>
 
             <div className={styles.main}>
@@ -75,4 +74,4 @@ export default function Popular({ dataSrc }: Props) {
             </div>
         </div>
     );
-}
+};
