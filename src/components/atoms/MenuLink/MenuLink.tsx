@@ -10,9 +10,9 @@ type Props = {
 
 function MenuLink({ label, url }: Props) {
     return (
-        <span className={styles.link}>
-            <Link href={url}>{label}</Link>
-        </span>
+        <Link href={url}>
+            <a className={styles.link}>{label}</a>
+        </Link>
     );
 }
 

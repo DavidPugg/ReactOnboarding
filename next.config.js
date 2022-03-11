@@ -4,8 +4,8 @@ module.exports = {
     },
     webpack(config, options) {
       config.module.rules.push({
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        type: "asset/resource",
       });
 
       return config;
