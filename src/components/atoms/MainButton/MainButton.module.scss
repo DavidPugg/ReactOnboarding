@@ -12,6 +12,17 @@
 }
 
 .updated {
-    background-color: $color-primary-light;
     color: white;
+}
+
+.primary {
+    background-color: $color-primary-light;
+}
+
+.secondary {
+    background-color: green;
+}
+
+.danger {
+    background-color: red;
 }

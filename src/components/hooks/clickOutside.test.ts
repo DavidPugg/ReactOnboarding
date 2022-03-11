@@ -10,14 +10,14 @@ describe('Test clickOutside', () => {
 
     it('On same element click', () => {
         const { el, myFunc } = setup();
-        clickOutside({ current: el }, myFunc);
+        clickOutside([{ current: el }], myFunc);
         fireEvent.mouseDown(el);
         expect(myFunc).toBeCalledTimes(0);
     });
 
     it('On body click', () => {
         const { el, myFunc } = setup();
-        clickOutside({ current: el }, myFunc);
+        clickOutside([{ current: el }], myFunc);
         fireEvent.mouseDown(document.body);
         expect(myFunc).toBeCalledTimes(1);
     });
