@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen, getByTestId, queryByTestId } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import LanguageDropdown from './LanguageDropdown';
 import { languages } from '../LanguageSwitcher/languages';
 

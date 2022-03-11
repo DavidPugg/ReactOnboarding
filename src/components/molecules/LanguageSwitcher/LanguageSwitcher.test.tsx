@@ -19,7 +19,6 @@ describe('Check if dropdown toggle works', () => {
     it('Dropdown should be open', () => {
         let {toggle, dropdown, queryByTestId} = setup();
         fireEvent.click(toggle);
-        screen.debug();
         dropdown = queryByTestId('universal-dropdown');
         expect(dropdown).toBeInTheDocument();
     });
