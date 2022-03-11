@@ -1,62 +1,48 @@
+import Toggler from '@components/molecules/Toggler';
 import { Movie, Tv } from 'interfaces/Movies';
 import React, { useEffect, useState } from 'react';
-import { MoviesAPI } from '../../../utils/MoviesAPI';
+import { PopularSearchResponse } from '../../../utils/MoviesAPI';
 import MovieItem from '../../molecules/MovieItem/MovieItem';
 import styles from './Popular.module.scss';
 
-const moviesAPI = new MoviesAPI();
+interface Props {
+    dataSrc: (type: string) => Promise<PopularSearchResponse<Movie | Tv>>;
+}
 
-export default function Popular() {
+export default ({ dataSrc }: Props) => {
     const [items, setItems] = useState([] as Array<any>);
     const [type, setType] = useState('movie');
 
     useEffect(() => {
-        handleItems<Movie>('movie');
+        handleItems('tv');
     }, []);
 
-    async function handleItems<T>(type: string) {
-        if (type == 'tv') {
-            const res = await moviesAPI.fetchPopularMovies<T>({ type });
-            setItems(res.results as Array<T>);
-            setType(type);
-        } else {
-            const res = await moviesAPI.fetchPopularMovies<T>({ type });
-            setItems(res.results as Array<T>);
-            setType(type);
-        }
-    }
-
-    function getPosition() {
-        if (type == 'tv') return { left: '0%' };
-        return { left: 'calc(50% + .5rem)' };
-    }
+    const handleItems = async (type: string) => {
+        const res = await dataSrc(type);
+        setItems(res.results);
+        setType(type);
+    };
 
     return (
         <div className={`container`}>
             <div className={styles.titlebox}>
                 <h2 className={styles.title}>What's Popular</h2>
-                <div className={styles.select}>
-                    <div className={styles.toggler} style={getPosition()}></div>
-                    <div
-                        onClick={() => handleItems<Tv>('tv')}
-                        className={`${styles.option} ${type == 'tv' ? styles.selected : ''}`}
-                    >
-                        On TV
-                    </div>
-                    <div
-                        onClick={() => handleItems<Movie>('movie')}
-                        className={`${styles.option} ${type == 'movie' ? styles.selected : ''}`}
-                    >
-                        In Theaters
-                    </div>
-                </div>
+
+                <Toggler
+                    options={[
+                        { label: 'On TV', type: 'tv' },
+                        { label: 'In Theaters', type: 'movie' },
+                    ]}
+                    func={(type) => {
+                        handleItems(type);
+                    }}
+                />
             </div>
 
             <div className={styles.main}>
                 {type == 'movie' &&
                     items.map(({ id, poster_path, title, release_date, vote_average }) => (
                         <MovieItem
-                            style={{ width: `8rem` }}
                             key={id}
                             id={id}
                             img={poster_path}
@@ -69,7 +55,6 @@ export default function Popular() {
                 {type == 'tv' &&
                     items.map(({ id, poster_path, name, first_air_date, vote_average }) => (
                         <MovieItem
-                            style={{ width: `8rem` }}
                             key={id}
                             id={id}
                             img={poster_path}
@@ -81,4 +66,4 @@ export default function Popular() {
             </div>
         </div>
     );
-}
+};

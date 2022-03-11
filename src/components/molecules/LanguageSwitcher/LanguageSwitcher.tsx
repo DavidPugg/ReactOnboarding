@@ -1,47 +1,53 @@
 import { Language, Type } from 'interfaces/Language';
-import React, { useState } from 'react';
-import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
-import { languages } from './languages';
+import React, { MutableRefObject, useRef, useState, useEffect } from 'react';
 import styles from './LanguageSwitcher.module.scss';
+import UniversalDropdown from '../../atoms/UniversalDropdown';
+import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
 
-const LanguageSwitcher = React.forwardRef<HTMLDivElement>((_, ref) => {
-    const [currentLanguage, setCurrentLanguage] = useState({
-        code: 'en',
-        label: 'English',
-    });
-    const [fallbackLanguage, setFallbackLanguage] = useState({
-        code: 'de',
-        label: 'German',
-    });
+export default React.forwardRef<HTMLDivElement, { languages: Array<Language> }>(({ languages }, ref) => {
+    const toggleRef = useRef() as MutableRefObject<HTMLParagraphElement>;
+    const [dropdown, setDropdown] = useState(false);
+    const [currentLanguage, setCurrentLanguage] = useState<Language>({} as Language);
+    const [fallbackLanguage, setFallbackLanguage] = useState<Language>({} as Language);
+
+    useEffect(() => {
+        setCurrentLanguage(languages[0]);
+        setFallbackLanguage(languages[1]);
+    }, []);
 
     function onLanguageChange({ code, label }: Language, type: Type) {
-        if (type == 'fallback') {
-            setFallbackLanguage({ code, label });
-        } else {
-            setCurrentLanguage({ code, label });
-        }
+        type == 'fallback' ? setFallbackLanguage({ code, label }) : setCurrentLanguage({ code, label });
     }
-
-    const [dropdown, setDropdown] = useState(false);
 
     return (
         <div ref={ref} className={styles.box}>
-            <p onClick={() => setDropdown(!dropdown)} className={styles.toggle}>
+            <p
+                ref={toggleRef}
+                data-testid='language-switcher-toggle'
+                onClick={() => setDropdown(true)}
+                className={styles.toggle}
+            >
                 {currentLanguage.code}
             </p>
             {dropdown && (
-                <LanguageDropdown
-                    onClickOutside={() => {
-                        setDropdown(false);
-                    }}
-                    onLanguageChange={onLanguageChange}
-                    languages={languages}
-                    currentLanguage={currentLanguage}
-                    fallbackLanguage={fallbackLanguage}
-                />
+                <UniversalDropdown ref={toggleRef} onClickOutside={() => setDropdown(false)}>
+                    <p className={styles.title}>Language preferences</p>
+                    <LanguageDropdown
+                        type='current'
+                        title='Default language'
+                        languages={languages}
+                        currentLanguage={currentLanguage}
+                        onLanguageChange={onLanguageChange}
+                    />
+                    <LanguageDropdown
+                        type='fallback'
+                        title='Fallback language'
+                        languages={languages}
+                        currentLanguage={fallbackLanguage}
+                        onLanguageChange={onLanguageChange}
+                    />
+                </UniversalDropdown>
             )}
         </div>
     );
 });
-
-export default LanguageSwitcher;

@@ -10,9 +10,10 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
-      "@components/*": ["./components/*"]
+      "@components/*": ["components/*"],
+      "@css/*": ["css/*"]
     }
   },
   "include": ["src"]

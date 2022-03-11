@@ -1,28 +1,14 @@
 @import '@css/variables';
 
-.titlebox {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.title {
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
 .select {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: inline-flex;
     box-shadow: 0 0 6px rgba($color: #000000, $alpha: 0.2);
     border-radius: 100px;
     gap: 1rem;
     cursor: pointer;
     white-space: nowrap;
+    user-select: none;
 
     .toggler {
         position: absolute;
@@ -35,7 +21,6 @@
     }
 
     .option {
-        width: 50%;
         padding: 0.3rem 0.6rem;
         border-radius: 100px;
         z-index: 1;
@@ -48,23 +33,5 @@
 
     .selected {
         color: white;
-    }
-}
-
-.main {
-    position: relative;
-    display: flex;
-    gap: 1.5rem;
-    overflow-x: hidden;
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 8%;
-        height: 100%;
-        background-image: linear-gradient(to right, transparent, transparent 50%, white 100%);
-        z-index: 100;
     }
 }

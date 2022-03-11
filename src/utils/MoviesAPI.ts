@@ -12,13 +12,13 @@ interface FetchSearchMovies {
     type: string;
 }
 
-interface SearchResponse<T> {
+export interface SearchResponse<T> {
     total_pages: number;
     total_results: number;
     results: Array<T>;
 }
 
-interface PopularSearchResponse<T> {
+export interface PopularSearchResponse<T> {
     results: Array<T>;
 }
 

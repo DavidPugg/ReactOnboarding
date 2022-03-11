@@ -12,7 +12,7 @@ type Props = {
 
 function LanguageOption({ label, code, onClick }: Props) {
   return (
-    <p className={styles.option} onClick={() => onClick()}>
+    <p data-testid="language-option" className={styles.option} onClick={() => onClick()}>
       {label} {code && `${code}-${code.toUpperCase()}`}
     </p>
   );
