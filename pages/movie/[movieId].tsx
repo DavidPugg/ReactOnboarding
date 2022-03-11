@@ -3,29 +3,22 @@ import MainMenu from '../../src/components/organisms/MainMenu/MainMenu';
 import MovieDetails from '../../src/components/organisms/MovieDetails/MovieDetails';
 import HomeTemplate from '../../src/components/templates/HomeTemplate/HomeTemplate';
 import { CrewMember, Details } from '../../src/interfaces/Details';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import { MoviesAPI } from '../../src/utils/MoviesAPI';
 
 const moviesAPI = new MoviesAPI();
 
-export default function DetailsPage() {
-    const [details, setDetails] = useState<Details>({} as Details);
-    const [crew, setCrew] = useState<Array<CrewMember>>([]);
-    const { movieId } = useParams();
-
-    useEffect(() => {
-        const fetchDetails = async () => {
-            const { details, crew } = await moviesAPI.fetchMovieDetails<Details, CrewMember>(movieId as string);
-            setDetails(details);
-            setCrew(crew);
-        };
-        fetchDetails();
-    }, []);
-
+const DetailsPage = ({ details, crew }) => {
     return (
         <HomeTemplate header={<MainMenu />} footer={<Footer />}>
             <MovieDetails details={details} crew={crew.slice(0, 6)} />
         </HomeTemplate>
     );
+};
+
+export async function getServerSideProps({ query }) {
+    const { details, crew } = await moviesAPI.fetchMovieDetails<Details, CrewMember>(query.movieId as string);
+    return { props: { details, crew } };
 }
+
+export default DetailsPage;

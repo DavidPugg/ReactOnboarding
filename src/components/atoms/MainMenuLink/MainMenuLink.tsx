@@ -11,8 +11,8 @@ type Props = {
 
 function MainMenuLink({ label, url, ...rest }: Props) {
   return (
-    <Link href={url} {...rest}>
-      <a className={styles.link}>{label}</a>
+    <Link href={url}>
+      <a className={styles.link} {...rest}>{label}</a>
     </Link>
   );
 }
