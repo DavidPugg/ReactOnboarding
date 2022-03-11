@@ -4,8 +4,12 @@ export default function clickOutside(ref: Array<RefObject<HTMLElement>>, onClick
     const handleClickOutside = (event: MouseEvent) => {
         ref.every((e) => e.current && !e.current.contains(event.target as Node)) ? onClickOutside(event) : '';
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    if (typeof window != 'undefined') {
+        document.addEventListener('mousedown', handleClickOutside);
+    }
     return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        if (typeof window != 'undefined') {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
     };
 }

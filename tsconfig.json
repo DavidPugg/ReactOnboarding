@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
@@ -12,9 +12,33 @@
     "esModuleInterop": true,
     "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@css/*": ["css/*"]
-    }
+      "@components/*": [
+        "components/*"
+      ],
+      "@css/*": [
+        "css/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "resolveJsonModule": true
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "pages",
+    "Pages/pages/index.tsx",
+    "Pages/PopularPage.tsx",
+    "Pages/SearchPage.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -41,28 +41,32 @@ export default ({ dataSrc }: Props) => {
 
             <div className={styles.main}>
                 {type == 'movie' &&
-                    items.map(({ id, poster_path, title, release_date, vote_average }) => (
-                        <MovieItem
-                            key={id}
-                            id={id}
-                            img={poster_path}
-                            title={title}
-                            release={release_date}
-                            rating={vote_average}
-                        />
-                    ))}
+                    items
+                        .slice(0, 10)
+                        .map(({ id, poster_path, title, release_date, vote_average }) => (
+                            <MovieItem
+                                key={id}
+                                id={id}
+                                img={poster_path}
+                                title={title}
+                                release={release_date}
+                                rating={vote_average}
+                            />
+                        ))}
 
                 {type == 'tv' &&
-                    items.map(({ id, poster_path, name, first_air_date, vote_average }) => (
-                        <MovieItem
-                            key={id}
-                            id={id}
-                            img={poster_path}
-                            title={name}
-                            release={first_air_date}
-                            rating={vote_average}
-                        />
-                    ))}
+                    items
+                        .slice(0, 10)
+                        .map(({ id, poster_path, name, first_air_date, vote_average }) => (
+                            <MovieItem
+                                key={id}
+                                id={id}
+                                img={poster_path}
+                                title={name}
+                                release={first_air_date}
+                                rating={vote_average}
+                            />
+                        ))}
             </div>
         </div>
     );

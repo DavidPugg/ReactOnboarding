@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 import styles from "./MainMenuLink.module.scss";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 function MainMenuLink({ label, url, ...rest }: Props) {
   return (
-    <Link className={styles.link} to={url} {...rest}>
+    <Link className={styles.link} href={url} {...rest}>
       {label}
     </Link>
   );

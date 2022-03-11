@@ -1,6 +1,6 @@
 import { languages } from '@components/molecules/LanguageSwitcher/languages';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import MainMenuLink from '../../atoms/MainMenuLink/MainMenuLink';
 import SearchToggle from '../../atoms/SearchToggle/SearchToggle';
 import clickOutside from '../../hooks/clickOutside';
@@ -13,7 +13,8 @@ import { menus } from './mainMenuArray';
 
 export default function MainMenu() {
     const [searchbar, setSearchbar] = useState(false);
-    const { search } = useLocation();
+    const router = useRouter();
+    const query = router.query;
 
     const searchBarRef = useRef<HTMLDivElement>(null);
     const languageListenerRef = useRef<HTMLDivElement>(null);
@@ -51,7 +52,7 @@ export default function MainMenu() {
     useEffect(() => {
         setSearchbar(false);
         return () => setSearchbar(true);
-    }, [search]);
+    }, [query]);
 
     return (
         <>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import '../../../css/progressbar.scss';
 import styles from './ProgressBar.module.scss';
 
 export default function ProgressBar({ rating, big }: { rating: number; big?: boolean }) {

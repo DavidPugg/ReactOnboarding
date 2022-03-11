@@ -6,7 +6,7 @@ import styles from './MainButton.module.scss';
 type Props = {
     label: string;
     updated: boolean;
-    type: string;
+    type?: string;
     onClick: () => void;
 };
 

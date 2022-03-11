@@ -1,24 +1,24 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./MenuLink.module.scss";
+import PropTypes from 'prop-types';
+import React from 'react';
+import Link from 'next/link';
+import styles from './MenuLink.module.scss';
 
 type Props = {
-  label: string;
-  url: string;
+    label: string;
+    url: string;
 };
 
 function MenuLink({ label, url }: Props) {
-  return (
-    <Link className={styles.link} to={url}>
-      {label}
-    </Link>
-  );
+    return (
+        <span className={styles.link}>
+            <Link href={url}>{label}</Link>
+        </span>
+    );
 }
 
 MenuLink.propTypes = {
-  label: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
 };
 
 export default MenuLink;

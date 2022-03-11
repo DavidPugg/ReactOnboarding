@@ -1,8 +1,7 @@
-import axios from 'axios';
 import notfound from '../../../assets/notfound.png';
 import classNames from 'classnames';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import TripleDot from '../TripleDot';
 import styles from './MovieItem.module.scss';
 import ProgressBar from '@components/atoms/ProgressBar';
@@ -33,17 +32,19 @@ const MovieItem = ({ id, img, title, release, rating, border }: Props) => {
     return (
         <div className={classNames(styles.box, border ? styles.border : '')}>
             <TripleDot />
-            <Link className={styles.link} to={`/movie/${id}`}>
-                <div className={styles.imgbox}>
-                    <img className={styles.img} src={returnImage()} alt='Movie poster' />
-                    <div className={styles.rating}>
-                        <ProgressBar rating={rating} />
+            <Link href={`/movie/${id}`}>
+                <a className={styles.link}>
+                    <div className={styles.imgbox}>
+                        <img className={styles.img} src={returnImage()} alt='Movie poster' />
+                        <div className={styles.rating}>
+                            <ProgressBar rating={rating} />
+                        </div>
                     </div>
-                </div>
-                <div className={styles.textbox}>
-                    <h3 className={styles.title}>{getTitle()}</h3>
-                    <p className={styles.release}>{release}</p>
-                </div>
+                    <div className={styles.textbox}>
+                        <h3 className={styles.title}>{getTitle()}</h3>
+                        <p className={styles.release}>{release}</p>
+                    </div>
+                </a>
             </Link>
         </div>
     );
