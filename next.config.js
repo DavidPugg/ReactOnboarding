@@ -2,7 +2,10 @@ module.exports = {
     env: {
         API_KEY: process.env.API_KEY,
     },
-    webpack(config, options) {
+    images: {
+      domains: ['image.tmdb.org']
+    },
+    webpack(config) {
       config.module.rules.push({
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         type: "asset/resource",

@@ -54,7 +54,7 @@ export default function SearchPage() {
     }, [type, page, q]);
 
     useEffect(() => {
-        if(!router.isReady) return;
+        if(!router.isReady) return; 
         getItems<Movie>(Number(page), 'movie', setMovies);
         getItems<Tv>(Number(page), 'tv', setShows);
         getItems<Person>(Number(page), 'person', setPeople);

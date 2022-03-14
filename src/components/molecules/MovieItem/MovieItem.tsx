@@ -1,10 +1,11 @@
-import notfound from '../../../assets/notfound.png';
+
 import classNames from 'classnames';
 import React from 'react';
 import Link from 'next/link';
 import TripleDot from '../TripleDot';
 import styles from './MovieItem.module.scss';
 import ProgressBar from '@components/atoms/ProgressBar';
+import Image from 'next/image'
 
 interface Props {
     id: number;
@@ -20,7 +21,7 @@ const MovieItem = ({ id, img, title, release, rating, border }: Props) => {
         if (img && img != '') {
             return `https://image.tmdb.org/t/p/w500/${img}`;
         }
-        return notfound.src;
+        return `/notfound.png`;
     };
 
     const getTitle = () => {
@@ -35,7 +36,7 @@ const MovieItem = ({ id, img, title, release, rating, border }: Props) => {
             <Link href={`/movie/${id}`}>
                 <a className={styles.link}>
                     <div className={styles.imgbox}>
-                        <img className={styles.img} src={returnImage()} alt='Movie poster' />
+                        <Image className={styles.img} src={returnImage()} alt='Movie poster' width='280' height='420' />
                         <div className={styles.rating}>
                             <ProgressBar rating={rating} />
                         </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import notfound from "../../../assets/personnotfound.png"
 import styles from "./SearchPersonItem.module.scss";
+import Image from 'next/image'
 
 type Props = {
   name: string,
@@ -12,12 +12,12 @@ type Props = {
 export default function SearchPersonItem({ name, known_for, movie, img }: Props) {
   function returnImage() {
     if (img) return `https://image.tmdb.org/t/p/w500/${img}`;
-    return notfound.src;
+    return '/personnotfound.png';
   }
 
   return (
     <div className={styles.item}>
-      <img className={styles.img} src={returnImage()} alt="Profile pic" />
+                <Image className={styles.img} src={returnImage()} alt='Movie poster' width='80' height='120' />
       <div className={styles.content}>
         <h3 className={styles.name}>{name}</h3>
         <p>
