@@ -20,7 +20,7 @@ const MovieItem = ({ id, img, title, release, rating, border }: Props) => {
         if (img && img != '') {
             return `https://image.tmdb.org/t/p/w500/${img}`;
         }
-        return notfound;
+        return notfound.src;
     };
 
     const getTitle = () => {

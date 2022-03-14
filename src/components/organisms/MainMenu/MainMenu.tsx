@@ -28,9 +28,8 @@ export default function MainMenu() {
     useEffect(() => {
         document.addEventListener('keydown', (e: KeyboardEvent) => {
             if (
-                languageListenerRef.current != null && (languageListenerRef.current as HTMLDivElement).contains(
-                    e.target as HTMLDivElement,
-                )
+                languageListenerRef.current != null &&
+                (languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)
             ) {
                 return;
             }
@@ -43,9 +42,8 @@ export default function MainMenu() {
         return () =>
             document.removeEventListener('keydown', (e: KeyboardEvent) => {
                 if (
-                    languageListenerRef.current != null && (languageListenerRef.current as HTMLDivElement).contains(
-                        e.target as HTMLDivElement,
-                    )
+                    languageListenerRef.current != null &&
+                    (languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)
                 ) {
                     return;
                 }
@@ -59,7 +57,6 @@ export default function MainMenu() {
 
     useEffect(() => {
         setSearchbar(false);
-        return () => setSearchbar(true);
     }, [query]);
 
     return (
