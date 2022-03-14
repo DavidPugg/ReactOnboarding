@@ -13,7 +13,7 @@ type Props = {
 export default ({ id, img, title, release }: Props) => {
     const returnImage = () => {
         if (img) return `https://image.tmdb.org/t/p/w500/${img}`;
-        return notfound;
+        return notfound.src;
     };
 
     return (

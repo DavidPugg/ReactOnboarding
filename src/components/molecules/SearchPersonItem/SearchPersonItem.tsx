@@ -12,12 +12,12 @@ type Props = {
 export default function SearchPersonItem({ name, known_for, movie, img }: Props) {
   function returnImage() {
     if (img) return `https://image.tmdb.org/t/p/w500/${img}`;
-    return notfound;
+    return notfound.src;
   }
 
   return (
     <div className={styles.item}>
-      <img className={styles.img} src={returnImage()} alt="Movie poster" />
+      <img className={styles.img} src={returnImage()} alt="Profile pic" />
       <div className={styles.content}>
         <h3 className={styles.name}>{name}</h3>
         <p>
