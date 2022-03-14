@@ -26,8 +26,12 @@ export default function MainMenu() {
     });
 
     useEffect(() => {
-        window.addEventListener('keydown', (e: KeyboardEvent) => {
-            if ((languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)) {
+        document.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (
+                languageListenerRef.current != null && (languageListenerRef.current as HTMLDivElement).contains(
+                    e.target as HTMLDivElement,
+                )
+            ) {
                 return;
             }
             if (e.code == 'KeyS') {
@@ -37,8 +41,12 @@ export default function MainMenu() {
             }
         });
         return () =>
-            window.removeEventListener('keydown', (e: KeyboardEvent) => {
-                if ((languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)) {
+            document.removeEventListener('keydown', (e: KeyboardEvent) => {
+                if (
+                    languageListenerRef.current != null && (languageListenerRef.current as HTMLDivElement).contains(
+                        e.target as HTMLDivElement,
+                    )
+                ) {
                     return;
                 }
                 if (e.code == 'KeyS') {
