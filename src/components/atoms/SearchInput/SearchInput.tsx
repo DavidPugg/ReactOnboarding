@@ -24,7 +24,7 @@ export default function SearchInput({ onSubmit, onInput }: Props) {
                     }}
                 >
                     <svg className={styles.svg}>
-                        <use href={require(`@assets/svgs.svg`) + `#icon-magnifying-glass`}></use>
+                        <use href={`/svgs.svg#icon-magnifying-glass`}></use>
                     </svg>
                     <input
                         ref={inputEl}

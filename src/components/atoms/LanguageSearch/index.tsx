@@ -18,7 +18,7 @@ export default function LanguageSearch({ onInput }: Props) {
                 autoFocus
             />
             <svg className={styles.svg}>
-                <use href={require(`@assets/svgs.svg`) + `#icon-magnifying-glass`}></use>
+                <use href={`/svgs.svg#icon-magnifying-glass`}></use>
             </svg>
         </div>
     );

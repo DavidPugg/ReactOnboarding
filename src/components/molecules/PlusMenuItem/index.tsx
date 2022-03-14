@@ -8,7 +8,7 @@ export default function PlusMenuItem() {
     return (
         <div className={styles.box}>
             <svg className={styles.svg} onClick={() => setDropdown(!dropdown)}>
-                <use href={require(`@assets/svgs.svg`) + `#icon-plus`}></use>
+                <use href={`/svgs.svg#icon-plus`}></use>
             </svg>
             {dropdown && (
                 <UniversalDropdown onClickOutside={() => setDropdown(false)}>

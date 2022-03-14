@@ -13,7 +13,7 @@ function LanguageOption({ label, code, onClick }: Props) {
         <p data-testid="main-language-option" className={styles.label} onClick={() => onClick()}>
             {label} {code && `${code}-${code.toUpperCase()}`}
             <svg className={styles.svg}>
-                <use href={require(`@assets/svgs.svg`) + `#icon-arrow`}></use>
+                <use href={`/svgs.svg#icon-arrow`}></use>
             </svg>
         </p>
     );

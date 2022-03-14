@@ -9,7 +9,7 @@ export default function TripleDot() {
     return (
         <div className={styles.box}>
             <svg className={styles.svg} onClick={() => setDropdown(!dropdown)}>
-                <use href={require(`@assets/svgs.svg`) + `#icon-dots`}></use>
+                <use href={`/svgs.svg#icon-dots`}></use>
             </svg>
             {dropdown && (
                 <UniversalDropdown
@@ -21,7 +21,7 @@ export default function TripleDot() {
                         <a className={styles.link}>
                             Login
                             <svg className={styles.arrow}>
-                                <use href={require(`@assets/svgs.svg`) + `#icon-arrow`}></use>
+                                <use href={`/svgs.svg#icon-arrow`}></use>
                             </svg>
                         </a>
                     </Link>
@@ -30,7 +30,7 @@ export default function TripleDot() {
                         <a className={styles.link}>
                             Login
                             <svg className={styles.arrow}>
-                                <use href={require(`@assets/svgs.svg`) + `#icon-arrow`}></use>
+                                <use href={`/svgs.svg#icon-arrow`}></use>
                             </svg>
                         </a>
                     </Link>

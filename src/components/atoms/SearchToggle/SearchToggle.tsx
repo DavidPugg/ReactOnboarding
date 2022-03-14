@@ -8,7 +8,7 @@ type Props = {
 export default function SearchToggle({ onToggle }: Props) {
   return (
     <svg className={styles.svg} onClick={() => onToggle()}>
-      <use href={require(`@assets/svgs.svg`) + `#icon-magnifying-glass`}></use>
+      <use href={`/svgs.svg#icon-magnifying-glass`}></use>
     </svg>
   );
 }
