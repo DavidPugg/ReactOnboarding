@@ -1,10 +1,10 @@
-import Footer from '../../src/components/organisms/Footer/Footer';
-import MainMenu from '../../src/components/organisms/MainMenu/MainMenu';
-import MovieDetails from '../../src/components/organisms/MovieDetails/MovieDetails';
-import HomeTemplate from '../../src/components/templates/HomeTemplate/HomeTemplate';
-import { CrewMember, Details } from '../../src/interfaces/Details';
+import Footer from '../../components/organisms/Footer/Footer';
+import MainMenu from '../../components/organisms/MainMenu/MainMenu';
+import MovieDetails from '../../components/organisms/MovieDetails/MovieDetails';
+import HomeTemplate from '../../components/templates/HomeTemplate/HomeTemplate';
+import { CrewMember, Details } from '../../interfaces/Details';
 import React from 'react';
-import { MoviesAPI } from '../../src/utils/MoviesAPI';
+import { MoviesAPI } from '../../utils/MoviesAPI';
 
 const moviesAPI = new MoviesAPI();
 

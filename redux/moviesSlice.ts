@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Movie } from 'interfaces/Movies';
+import { Movie } from '../interfaces/Movies';
 import { RootStateOrAny } from 'react-redux';
 import { MoviesAPI } from './../utils/MoviesAPI';
 import { setPrevFilters } from './filtersSlice';

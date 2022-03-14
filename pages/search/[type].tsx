@@ -1,13 +1,13 @@
-import SearchSidebarItem from '../../src/components/atoms/SearchSidebarItem/SearchSidebarItem';
-import PageSelector from '../../src/components/molecules/PageSelector';
-import Footer from '../../src/components/organisms/Footer/Footer';
-import MainMenu from '../../src/components/organisms/MainMenu/MainMenu';
-import SearchContent from '../../src/components/organisms/SearchContent/SearchContent';
-import SearchSidebar from '../../src/components/organisms/SearchSidebar/SearchSidebar';
-import MainTemplate from '../../src/components/templates/MainTemplate/MainTemplate';
-import { Movie, Tv, Person, Company, Keyword, Collection } from '../../src/interfaces/Movies';
+import SearchSidebarItem from '../../components/atoms/SearchSidebarItem/SearchSidebarItem';
+import PageSelector from '../../components/molecules/PageSelector';
+import Footer from '../../components/organisms/Footer/Footer';
+import MainMenu from '../../components/organisms/MainMenu/MainMenu';
+import SearchContent from '../../components/organisms/SearchContent/SearchContent';
+import SearchSidebar from '../../components/organisms/SearchSidebar/SearchSidebar';
+import MainTemplate from '../../components/templates/MainTemplate/MainTemplate';
+import { Movie, Tv, Person, Company, Keyword, Collection } from '../../interfaces/Movies';
 import React, { useEffect, useState } from 'react';
-import { FetchSearchMovies, MoviesAPI } from '../../src/utils/MoviesAPI';
+import { FetchSearchMovies, MoviesAPI } from '../../utils/MoviesAPI';
 import { useRouter } from 'next/router';
 
 const moviesAPI = new MoviesAPI();

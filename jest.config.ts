@@ -1,7 +1,7 @@
 export default {
     verbose: true,
     testEnvironment: 'jsdom',
-    roots: ['<rootDir>/src'],
+    roots: ['<rootDir>'],
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
     },

@@ -1,12 +1,12 @@
-import Footer from '../../src/components/organisms/Footer/Footer';
-import MainMenu from '../../src/components/organisms/MainMenu/MainMenu';
-import PopularContent from '../../src/components/organisms/PopularContent';
-import MainTemplate from '../../src/components/templates/MainTemplate/MainTemplate';
-import MainButton from '../../src/components/atoms/MainButton';
-import { getMovies } from '../../src/app/moviesSlice';
+import Footer from '../../components/organisms/Footer/Footer';
+import MainMenu from '../../components/organisms/MainMenu/MainMenu';
+import PopularContent from '../../components/organisms/PopularContent';
+import MainTemplate from '../../components/templates/MainTemplate/MainTemplate';
+import MainButton from '../../components/atoms/MainButton';
+import { getMovies } from '../../redux/moviesSlice';
 import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import PopularSidebar from '../../src/components/organisms/PopularSidebar';
+import PopularSidebar from '../../components/organisms/PopularSidebar';
 
 export default function PopularPage() {
     const dispatch = useDispatch();

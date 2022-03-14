@@ -1,7 +1,7 @@
 import MainButton from '../../atoms/MainButton';
 import React from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { getMovies } from '../../../app/moviesSlice';
+import { getMovies } from '../../../redux/moviesSlice';
 import PopularFilter from '../PopularFilter';
 import PopularSort from '../PopularSort';
 import styles from './PopularSidebar.module.scss';

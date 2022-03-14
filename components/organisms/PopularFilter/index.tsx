@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { setFilters } from '../../../app/filtersSlice';
+import { setFilters } from '../../../redux/filtersSlice';
 import GenreButton from '../../atoms/GenreButton';
 import SidebarItem from '../../molecules/SidebarItem';
 

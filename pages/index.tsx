@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Movie, Tv } from '../src/interfaces/Movies';
-import Footer from '../src/components/organisms/Footer/Footer';
-import MainMenu from '../src/components/organisms/MainMenu/MainMenu';
-import HomeTemplate from '../src/components/templates/HomeTemplate/HomeTemplate';
-import Popular from '../src/components/organisms/Popular/Popular';
-import { MoviesAPI, PopularSearchResponse } from '../src/utils/MoviesAPI';
+import { Movie, Tv } from '../interfaces/Movies';
+import Footer from '../components/organisms/Footer/Footer';
+import MainMenu from '../components/organisms/MainMenu/MainMenu';
+import HomeTemplate from '../components/templates/HomeTemplate/HomeTemplate';
+import Popular from '../components/organisms/Popular/Popular';
+import { MoviesAPI, PopularSearchResponse } from '../utils/MoviesAPI';
 
 const moviesAPI = new MoviesAPI();
 

@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
       "@components/*": [
         "components/*"
@@ -18,9 +18,6 @@
       "@css/*": [
         "css/*"
       ],
-      "@assets/*": [
-        "assets/*"
-      ]
     },
     "lib": [
       "dom",
@@ -33,11 +30,7 @@
   },
   "include": [
     "src",
-    "pages",
-    "Pages/pages/index.tsx",
-    "Pages/PopularPage.tsx",
-    "Pages/SearchPage.tsx"
-  ],
+    "pages", "global.d.ts", "globals.d.ts", "utils", "interfaces", "components", "redux/store.ts", "redux/hooks.ts", "redux/filtersSlice.ts",],
   "exclude": [
     "node_modules"
   ]
