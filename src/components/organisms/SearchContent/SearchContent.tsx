@@ -1,11 +1,11 @@
 import SearchMovieItem from '@components/molecules/SearchMovieItem';
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import SearchCompanyItem from '../../molecules/SearchCompanyItem/SearchCompanyItem';
 import SearchKeywordItem from '../../atoms/SearchKeywordItem/SearchKeywordItem';
 import SearchPersonItem from '../../molecules/SearchPersonItem/SearchPersonItem';
 import styles from './SearchContent.module.scss';
 import { Collection, Company, Keyword, Movie, Person, Tv } from 'interfaces/Movies';
+import { useRouter } from 'next/router';
 
 type Props = {
     movies: Array<Movie>;
@@ -17,7 +17,8 @@ type Props = {
 };
 
 export default function SearchContent({ movies, shows, people, companies, keywords, collections }: Props) {
-    const { type } = useParams();
+    const router = useRouter();
+    const { type } = router.query;
 
     function getTitle(known_for: Array<{ name: string; title: string }>) {
         if (known_for.length != 0 && known_for[0].name != undefined) {

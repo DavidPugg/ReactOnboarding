@@ -6,7 +6,7 @@ interface FetchMovies {
     sort: string;
 }
 
-interface FetchSearchMovies {
+export interface FetchSearchMovies {
     page: number;
     query: string | null;
     type: string;

@@ -1,6 +1,7 @@
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import Link from 'next/link';
 import styles from './SearchSidebarItem.module.scss';
 
 type Props = {
@@ -10,16 +11,14 @@ type Props = {
 };
 
 const SearchSidebarItem = ({ label, to, count }: Props) => {
-    let { search } = useLocation();
-    const query = new URLSearchParams(search).get('q');
-    const { type } = useParams();
+    const router = useRouter();
+    const { q, type } = router.query;
     return (
-        <Link
-            to={`/search/${to}?q=${query}&page=1`}
-            className={`${styles.label} ${type == `${to}` ? styles.selected : ''}`}
-        >
-            {label}
-            <span className={styles.count}>{count || 0}</span>
+        <Link href={`/search/${to}?q=${q}&page=1`}>
+            <a className={`${styles.label} ${type == `${to}` ? styles.selected : ''}`}>
+                {label}
+                <span className={styles.count}>{count || 0}</span>
+            </a>
         </Link>
     );
 };

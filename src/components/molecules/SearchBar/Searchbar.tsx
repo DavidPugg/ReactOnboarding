@@ -1,17 +1,18 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import SearchInput from '../../atoms/SearchInput/SearchInput';
 import SearchResult from '../../atoms/SearchResult/SearchResult';
 import styles from './Searchbar.module.scss';
 
 const Searchbar = React.forwardRef<HTMLDivElement>((_, ref) => {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const [items, setItems] = useState([]);
 
     function handleSubmit(query: string) {
-        navigate(`/search/movie?q=${query}&page=1`);
+        router.push(`/search/movie?q=${query}&page=1`);
     }
     function handleItems(input: string) {
         if (input == '') {

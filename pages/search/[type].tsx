@@ -7,8 +7,8 @@ import SearchSidebar from '../../src/components/organisms/SearchSidebar/SearchSi
 import MainTemplate from '../../src/components/templates/MainTemplate/MainTemplate';
 import { Movie, Tv, Person, Company, Keyword, Collection } from '../../src/interfaces/Movies';
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { MoviesAPI } from '../../src/utils/MoviesAPI';
+import { FetchSearchMovies, MoviesAPI } from '../../src/utils/MoviesAPI';
+import { useRouter } from 'next/router';
 
 const moviesAPI = new MoviesAPI();
 
@@ -19,12 +19,8 @@ interface MainObject<T> {
 }
 
 export default function SearchPage() {
-    const navigate = useNavigate();
-    let { search } = useLocation();
-    let { type } = useParams();
-
-    const query = new URLSearchParams(search).get('q');
-    const page = new URLSearchParams(search).get('page');
+    const router = useRouter();
+    const { page, q, type } = router.query;
 
     const mainObject = {
         results: [],
@@ -54,20 +50,21 @@ export default function SearchPage() {
             case 'collection':
                 return getItems<Collection>(Number(page), type, setCollections);
         }
-    }, [type, page, query]);
+        window.scrollTo(0, 0);
+    }, [type, page, q]);
 
     useEffect(() => {
+        if(!router.isReady) return;
         getItems<Movie>(Number(page), 'movie', setMovies);
         getItems<Tv>(Number(page), 'tv', setShows);
         getItems<Person>(Number(page), 'person', setPeople);
         getItems<Company>(Number(page), 'company', setCompanies);
         getItems<Keyword>(Number(page), 'keyword', setKeywords);
         getItems<Collection>(Number(page), 'collection', setCollections);
-    }, []);
+    }, [router.isReady]);
 
     function handlePageChange(p: number) {
-        window.scrollTo(0, 0);
-        navigate(`/search/${type}?q=${query}&page=${p}`);
+        router.push(`/search/${type}?q=${q}&page=${p}`);
     }
 
     function getPages() {
@@ -90,15 +87,15 @@ export default function SearchPage() {
     }
 
     const getItems = <T,>(page: number, type: string, func: (obj: MainObject<T>) => void) => {
-        let searchParams = {
+        let searchParams: FetchSearchMovies = {
             page,
-            query,
+            query: q as string,
             type,
         };
         moviesAPI.fetchSearchMovies<T>(searchParams).then(({ results, total_pages, total_results }) => {
             const resObject = {
                 results,
-                count: total_results,
+                count: total_results,   
                 totalPages: total_pages,
             } as MainObject<T>;
             func(resObject);

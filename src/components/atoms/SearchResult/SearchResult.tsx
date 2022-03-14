@@ -1,5 +1,5 @@
+import { useRouter } from "next/router";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./SearchResult.module.scss";
 
 type Props = {
@@ -7,10 +7,10 @@ type Props = {
 }
 
 export default function SearchResult({ label }: Props) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   function handleClick() {
-    navigate(`/search/movie?q=${label}`);
+    router.push(`/search/movie?q=${label}`);
   }
 
   return (
