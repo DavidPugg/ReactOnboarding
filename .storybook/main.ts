@@ -1,11 +1,11 @@
-const path = require('path');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+import path from 'path';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 module.exports = {
     stories: ['../**/**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
     addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
     framework: '@storybook/react',
-    webpackFinal: async (config) => {
+    webpackFinal: async (config: { resolve: { alias: any; plugins: TsconfigPathsPlugin[]; }; module: { rules: { test: RegExp; use: string[]; include: string; }[]; }; }) => {
       config.resolve.alias = {
         ...config.resolve.alias,
         "@css": path.resolve(__dirname, "../css"),
