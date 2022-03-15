@@ -1,6 +1,6 @@
 import { RefObject } from 'react';
 
-export default function clickOutside(ref: Array<RefObject<HTMLElement>>, onClickOutside: (e: MouseEvent) => void) {
+const clickOutside = (ref: Array<RefObject<HTMLElement>>, onClickOutside: (e: MouseEvent) => void) => {
     const handleClickOutside = (event: MouseEvent) => {
         ref.every((e) => e.current && !e.current.contains(event.target as Node)) ? onClickOutside(event) : '';
     };
@@ -13,3 +13,4 @@ export default function clickOutside(ref: Array<RefObject<HTMLElement>>, onClick
         }
     };
 }
+export default clickOutside;

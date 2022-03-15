@@ -1,13 +1,13 @@
 import React, { CSSProperties } from 'react';
 import styles from './SidebarButton.module.scss';
 
-type Props = {
+interface Props {
     label: string;
     onClick: () => void;
     style: CSSProperties;
-};
+}
 
-export default function SidebarButton({ label, onClick, style }: Props) {
+const SidebarButton = ({ label, onClick, style }: Props) => {
     return (
         <p className={styles.label} onClick={() => onClick()}>
             {label}
@@ -16,4 +16,5 @@ export default function SidebarButton({ label, onClick, style }: Props) {
             </svg>
         </p>
     );
-}
+};
+export default SidebarButton;

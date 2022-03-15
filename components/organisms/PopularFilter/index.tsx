@@ -5,7 +5,7 @@ import { setFilters } from '../../../redux/filtersSlice';
 import GenreButton from '../../atoms/GenreButton';
 import SidebarItem from '../../molecules/SidebarItem';
 
-export default function PopularFilter() {
+const PopularFilter = () => {
     const dispatch = useDispatch();
     const filters = useSelector((state: RootStateOrAny) => state.filters.value);
 
@@ -24,9 +24,9 @@ export default function PopularFilter() {
             });
     }, []);
 
-    function isActive(id: number) {
+    const isActive = (id: number) => {
         return filters.includes(id);
-    }
+    };
 
     return (
         <SidebarItem label='Filter'>
@@ -43,4 +43,5 @@ export default function PopularFilter() {
             </>
         </SidebarItem>
     );
-}
+};
+export default PopularFilter;

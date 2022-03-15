@@ -13,7 +13,7 @@ interface Props {
     links: Array<Link>;
 }
 
-export default function FooterColumn({ label, links }: Props) {
+const FooterColumn = ({ label, links }: Props) => {
     return (
         <div className={styles.column}>
             <FooterTitle label={label} />
@@ -22,4 +22,5 @@ export default function FooterColumn({ label, links }: Props) {
             ))}
         </div>
     );
-}
+};
+export default FooterColumn;

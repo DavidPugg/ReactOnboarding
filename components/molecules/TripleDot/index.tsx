@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from './TripleDot.module.scss';
 
-export default function TripleDot() {
+const TripleDot = () => {
     const [dropdown, setDropdown] = useState<boolean>(false);
 
     return (
@@ -38,4 +38,5 @@ export default function TripleDot() {
             )}
         </div>
     );
-}
+};
+export default TripleDot;

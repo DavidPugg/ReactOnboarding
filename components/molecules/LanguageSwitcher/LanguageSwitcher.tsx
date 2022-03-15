@@ -4,7 +4,7 @@ import styles from './LanguageSwitcher.module.scss';
 import UniversalDropdown from '../../atoms/UniversalDropdown';
 import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
 
-export default React.forwardRef<HTMLDivElement, { languages: Array<Language> }>(({ languages }, ref) => {
+const LanguageSwitcher = React.forwardRef<HTMLDivElement, { languages: Array<Language> }>(({ languages }, ref) => {
     const toggleRef = useRef() as MutableRefObject<HTMLParagraphElement>;
     const [dropdown, setDropdown] = useState(false);
     const [currentLanguage, setCurrentLanguage] = useState<Language>({} as Language);
@@ -15,9 +15,9 @@ export default React.forwardRef<HTMLDivElement, { languages: Array<Language> }>(
         setFallbackLanguage(languages[1]);
     }, []);
 
-    function onLanguageChange({ code, label }: Language, type: Type) {
+    const onLanguageChange = ({ code, label }: Language, type: Type) => {
         type == 'fallback' ? setFallbackLanguage({ code, label }) : setCurrentLanguage({ code, label });
-    }
+    };
 
     return (
         <div ref={ref} className={styles.box}>
@@ -51,3 +51,4 @@ export default React.forwardRef<HTMLDivElement, { languages: Array<Language> }>(
         </div>
     );
 });
+export default LanguageSwitcher;

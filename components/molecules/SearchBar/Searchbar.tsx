@@ -10,10 +10,10 @@ const Searchbar = React.forwardRef<HTMLDivElement>((_, ref) => {
 
     const [items, setItems] = useState([]);
 
-    function handleSubmit(query: string) {
+    const handleSubmit = (query: string) => {
         router.push(`/search/movie?q=${query}&page=1`);
-    }
-    function handleItems(input: string) {
+    };
+    const handleItems = (input: string) => {
         if (input == '') {
             setItems([]);
             return;
@@ -23,7 +23,7 @@ const Searchbar = React.forwardRef<HTMLDivElement>((_, ref) => {
             .then((res) => {
                 setItems(res.data.results);
             });
-    }
+    };
     return (
         <div ref={ref} className={styles.bar}>
             <SearchInput onInput={handleItems} onSubmit={handleSubmit} />

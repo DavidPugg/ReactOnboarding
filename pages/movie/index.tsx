@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import PopularSidebar from '../../components/organisms/PopularSidebar';
 
-export default function PopularPage() {
+const PopularPage = () => {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState<number>(1);
     const totalResults = useSelector((state: RootStateOrAny) => state.movies.totalResults);
@@ -46,4 +46,6 @@ export default function PopularPage() {
             </>
         </MainTemplate>
     );
-}
+};
+
+export default PopularPage;

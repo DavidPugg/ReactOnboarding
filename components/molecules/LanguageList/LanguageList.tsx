@@ -9,7 +9,7 @@ interface Props {
     type: Type;
 }
 
-export default function LanguageList({ languages, onLanguageChange, type }: Props) {
+const LanguageList = ({ languages, onLanguageChange, type }: Props) => {
     return (
         <ul className={styles.list}>
             {languages.map(({ label, code }) => (
@@ -26,3 +26,4 @@ export default function LanguageList({ languages, onLanguageChange, type }: Prop
         </ul>
     );
 }
+export default LanguageList;

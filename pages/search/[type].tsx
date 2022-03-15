@@ -18,7 +18,7 @@ interface MainObject<T> {
     totalPages: number;
 }
 
-export default function SearchPage() {
+const SearchPage = () => {
     const router = useRouter();
     const { page, q, type } = router.query;
 
@@ -54,7 +54,7 @@ export default function SearchPage() {
     }, [type, page, q]);
 
     useEffect(() => {
-        if(!router.isReady) return; 
+        if (!router.isReady) return;
         getItems<Movie>(Number(page), 'movie', setMovies);
         getItems<Tv>(Number(page), 'tv', setShows);
         getItems<Person>(Number(page), 'person', setPeople);
@@ -63,11 +63,11 @@ export default function SearchPage() {
         getItems<Collection>(Number(page), 'collection', setCollections);
     }, [router.isReady]);
 
-    function handlePageChange(p: number) {
+    const handlePageChange = (p: number) => {
         router.push(`/search/${type}?q=${q}&page=${p}`);
-    }
+    };
 
-    function getPages() {
+    const getPages = () => {
         switch (type) {
             case 'movie':
                 return movies.totalPages;
@@ -84,7 +84,7 @@ export default function SearchPage() {
             default:
                 return 0;
         }
-    }
+    };
 
     const getItems = <T,>(page: number, type: string, func: (obj: MainObject<T>) => void) => {
         let searchParams: FetchSearchMovies = {
@@ -95,7 +95,7 @@ export default function SearchPage() {
         moviesAPI.fetchSearchMovies<T>(searchParams).then(({ results, total_pages, total_results }) => {
             const resObject = {
                 results,
-                count: total_results,   
+                count: total_results,
                 totalPages: total_pages,
             } as MainObject<T>;
             func(resObject);
@@ -137,4 +137,6 @@ export default function SearchPage() {
             />
         </MainTemplate>
     );
-}
+};
+
+export default SearchPage;

@@ -7,12 +7,12 @@ type Props = PropsWithChildren<{
     label: string;
 }>;
 
-export default function SidebarSort({ label, children }: Props) {
+const SidebarSort = ({ label, children }: Props) => {
     const [dropdown, setDropdown] = useState(false);
 
-    function getStyle() {
+    const getStyle = () => {
         return dropdown ? { transform: `rotate(${90}deg)` } : { transform: `rotate(${0}deg)` };
-    }
+    };
 
     return (
         <div className={styles.box}>
@@ -20,4 +20,5 @@ export default function SidebarSort({ label, children }: Props) {
             {dropdown && <SidebarDropdown>{children}</SidebarDropdown>}
         </div>
     );
-}
+};
+export default SidebarSort;

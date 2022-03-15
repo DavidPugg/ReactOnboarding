@@ -7,7 +7,7 @@ interface Props {
     crew: Array<CrewMember>;
 }
 
-export default function CrewList({ crew }: Props) {
+const CrewList = ({ crew }: Props) => {
     return (
         <div className={styles.crew}>
             {crew.map(({ id, name, job }) => (
@@ -15,4 +15,5 @@ export default function CrewList({ crew }: Props) {
             ))}
         </div>
     );
-}
+};
+export default CrewList;

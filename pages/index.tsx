@@ -9,7 +9,7 @@ import { MoviesAPI, PopularSearchResponse } from '../utils/MoviesAPI';
 
 const moviesAPI = new MoviesAPI();
 
-export default function HomePage() {
+const HomePage = () => {
     const fetchItems = async (type: string): Promise<PopularSearchResponse<Movie | Tv>> => {
         return type == 'tv'
             ? ((await moviesAPI.fetchPopularMovies<Tv>({ type })) as PopularSearchResponse<Tv>)
@@ -21,4 +21,6 @@ export default function HomePage() {
             <Popular dataSrc={(type: string) => fetchItems(type)} />
         </HomeTemplate>
     );
-}
+};
+
+export default HomePage;

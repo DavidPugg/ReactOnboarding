@@ -14,11 +14,11 @@ interface Props {
     onLanguageChange: ({ code, label }: Language, type: Type) => void;
 }
 
-export default function LanguageDropdown({ type, title, languages, currentLanguage, onLanguageChange }: Props) {
+const LanguageDropdown = ({ type, title, languages, currentLanguage, onLanguageChange }: Props) => {
     const [currentDropdown, setCurrentDropdown] = useState(false);
     const [filteredLanguages, setFilteredLanguages] = useState(languages);
 
-    function handleInput(value: string) {
+    const handleInput = (value: string) => {
         if (value == '' || value == undefined) {
             setFilteredLanguages(languages);
         } else {
@@ -30,7 +30,7 @@ export default function LanguageDropdown({ type, title, languages, currentLangua
 
             setFilteredLanguages(lang);
         }
-    }
+    };
     return (
         <>
             <div className={styles.selection}>
@@ -62,4 +62,5 @@ export default function LanguageDropdown({ type, title, languages, currentLangua
             </div>
         </>
     );
-}
+};
+export default LanguageDropdown;

@@ -11,7 +11,7 @@ import SearchBar from '../../molecules/SearchBar/Searchbar';
 import styles from './MainMenu.module.scss';
 import { menus } from './mainMenuArray';
 
-export default function MainMenu() {
+const MainMenu = () => {
     const [searchbar, setSearchbar] = useState(false);
     const router = useRouter();
     const query = router.query;
@@ -25,34 +25,23 @@ export default function MainMenu() {
         }, 200);
     });
 
+    const handler = (e: KeyboardEvent) => {
+        if (
+            languageListenerRef.current != null &&
+            (languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)
+        ) {
+            return;
+        }
+        if (e.code == 'KeyS') {
+            setTimeout(() => {
+                setSearchbar(true);
+            }, 10);
+        }
+    };
+
     useEffect(() => {
-        document.addEventListener('keydown', (e: KeyboardEvent) => {
-            if (
-                languageListenerRef.current != null &&
-                (languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)
-            ) {
-                return;
-            }
-            if (e.code == 'KeyS') {
-                setTimeout(() => {
-                    setSearchbar(true);
-                }, 10);
-            }
-        });
-        return () =>
-            document.removeEventListener('keydown', (e: KeyboardEvent) => {
-                if (
-                    languageListenerRef.current != null &&
-                    (languageListenerRef.current as HTMLDivElement).contains(e.target as HTMLDivElement)
-                ) {
-                    return;
-                }
-                if (e.code == 'KeyS') {
-                    setTimeout(() => {
-                        setSearchbar(true);
-                    }, 10);
-                }
-            });
+        document.addEventListener('keydown', (e: KeyboardEvent) => handler(e));
+        return () => document.removeEventListener('keydown', (e: KeyboardEvent) => handler(e));
     }, []);
 
     useEffect(() => {
@@ -86,4 +75,5 @@ export default function MainMenu() {
             {searchbar && <SearchBar ref={searchBarRef} />}
         </>
     );
-}
+};
+export default MainMenu;

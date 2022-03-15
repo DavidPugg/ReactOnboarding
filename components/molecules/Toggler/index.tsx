@@ -9,7 +9,7 @@ interface Props {
     func: (type: string) => void;
 }
 
-export default ({ options, func }: Props) => {
+const Toggler = ({ options, func }: Props) => {
     const [currentType, setCurrentType] = useState<string>('');
     const [togglerStyles, setTogglerStyles] = useState<TogglerStyles>({} as TogglerStyles);
 
@@ -51,3 +51,4 @@ export default ({ options, func }: Props) => {
         </div>
     );
 };
+export default Toggler;

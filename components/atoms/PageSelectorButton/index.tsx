@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import styles from './PageSelectorButton.module.scss';
 
-type Props = {
+interface Props {
     page: number;
     onClick?: () => void;
     isSelected?: boolean;

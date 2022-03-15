@@ -6,21 +6,21 @@ import PopularFilter from '../PopularFilter';
 import PopularSort from '../PopularSort';
 import styles from './PopularSidebar.module.scss';
 
-export default function PopularSidebar() {
+const PopularSidebar = () => {
     const dispatch = useDispatch();
     const filters = useSelector((state: RootStateOrAny) => state.filters.value);
     const sort = useSelector((state: RootStateOrAny) => state.sort.value);
     const prevFilters = useSelector((state: RootStateOrAny) => state.filters.prev);
     const prevSort = useSelector((state: RootStateOrAny) => state.sort.prev);
 
-    function hasUpdated() {
+    const hasUpdated = () => {
         const sameFilters =
             filters.every((e: object) => {
                 return prevFilters.includes(e);
             }) && filters.length == prevFilters.length;
         const sameSort = sort == prevSort;
         return !sameSort || !sameFilters;
-    }
+    };
 
     return (
         <div className={styles.sidebar}>
@@ -36,4 +36,5 @@ export default function PopularSidebar() {
             />
         </div>
     );
-}
+};
+export default PopularSidebar;

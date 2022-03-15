@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import UniversalDropdown from '../../atoms/UniversalDropdown';
 import styles from './PlusMenuItem.module.scss';
 
-export default function PlusMenuItem() {
+const PlusMenuItem = () => {
     const [dropdown, setDropdown] = useState<boolean>(false);
 
     return (
@@ -18,4 +18,5 @@ export default function PlusMenuItem() {
             )}
         </div>
     );
-}
+};
+export default PlusMenuItem;

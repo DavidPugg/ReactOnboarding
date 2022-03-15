@@ -1,11 +1,10 @@
-
 import classNames from 'classnames';
 import React from 'react';
 import Link from 'next/link';
 import TripleDot from '../TripleDot';
 import styles from './MovieItem.module.scss';
 import ProgressBar from '@components/atoms/ProgressBar';
-import Image from 'next/image'
+import Image from 'next/image';
 
 interface Props {
     id: number;

@@ -2,7 +2,7 @@ import React from 'react';
 import PageSelectorButton from '../../atoms/PageSelectorButton';
 import styles from './PageSelector.module.scss';
 
-type Props = {
+interface Props {
     totalPages: number;
     onPageChange: (value: number) => void;
     currentPage: number;

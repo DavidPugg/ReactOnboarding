@@ -1,23 +1,23 @@
-import { useRouter } from "next/router";
-import React from "react";
-import styles from "./SearchResult.module.scss";
+import { useRouter } from 'next/router';
+import React from 'react';
+import styles from './SearchResult.module.scss';
 
-type Props = {
-  label: string
+interface Props {
+    label: string;
 }
 
-export default function SearchResult({ label }: Props) {
-  const router = useRouter();
+const SearchResult = ({ label }: Props) => {
+    const router = useRouter();
+    const handleClick = () => {
+        router.push(`/search/movie?q=${label}`);
+    };
 
-  function handleClick() {
-    router.push(`/search/movie?q=${label}`);
-  }
-
-  return (
-    <div className={styles.item} onClick={handleClick}>
-      <div className="container">
-        <span className={styles.link}>{label}</span>
-      </div>
-    </div>
-  );
-}
+    return (
+        <div className={styles.item} onClick={handleClick}>
+            <div className='container'>
+                <span className={styles.link}>{label}</span>
+            </div>
+        </div>
+    );
+};
+export default SearchResult;

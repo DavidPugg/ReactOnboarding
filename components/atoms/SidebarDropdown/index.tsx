@@ -3,6 +3,7 @@ import styles from './SidebarDropdown.module.scss';
 
 type Props = PropsWithChildren<{}>;
 
-export default function SidebarDropdown({ children }: Props) {
+const SidebarDropdown = ({ children }: Props) => {
     return <div className={styles.dropdown}>{children}</div>;
-}
+};
+export default SidebarDropdown;

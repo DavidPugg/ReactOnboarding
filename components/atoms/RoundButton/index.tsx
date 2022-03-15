@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './RoundButton.module.scss';
 
-type Props = {
+interface Props {
     icon: string;
     text: string;
 };
 
-export default function RoundButton({ icon, text }: Props) {
+const RoundButton =({ icon, text }: Props) => {
     return (
         <div className={styles.item}>
             <svg className={styles.svg}>
@@ -16,3 +16,5 @@ export default function RoundButton({ icon, text }: Props) {
         </div>
     );
 }
+
+export default RoundButton;

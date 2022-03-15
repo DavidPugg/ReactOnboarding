@@ -7,7 +7,7 @@ import styles from './SearchContent.module.scss';
 import { Collection, Company, Keyword, Movie, Person, Tv } from 'interfaces/Movies';
 import { useRouter } from 'next/router';
 
-type Props = {
+interface Props {
     movies: Array<Movie>;
     shows: Array<Tv>;
     people: Array<Person>;
@@ -16,11 +16,11 @@ type Props = {
     collections: Array<Collection>;
 };
 
-export default function SearchContent({ movies, shows, people, companies, keywords, collections }: Props) {
+const SearchContent = ({ movies, shows, people, companies, keywords, collections }: Props) => {
     const router = useRouter();
     const { type } = router.query;
 
-    function getTitle(known_for: Array<{ name: string; title: string }>) {
+    const getTitle = (known_for: Array<{ name: string; title: string }>) => {
         if (known_for.length != 0 && known_for[0].name != undefined) {
             return known_for[0].name;
         } else if (known_for.length != 0 && known_for[0].title != undefined) {
@@ -94,3 +94,4 @@ export default function SearchContent({ movies, shows, people, companies, keywor
         </>
     );
 }
+export default SearchContent;

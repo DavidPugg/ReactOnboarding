@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async (url: string, img: string) => {
+const checkImage = async (url: string, img: string) => {
     try {
         await axios.head(url);
         return url;
@@ -8,3 +8,4 @@ export default async (url: string, img: string) => {
         return img;
     }
 }
+export default checkImage;

@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./SearchCompanyItem.module.scss";
 
-type Props = {
+interface Props {
   name: string,
   img: string,
   country: string,
 }
 
-export default function SearchPersonItem({ name, img, country }: Props) {
+const SearchPersonItem = ({ name, img, country }: Props) => {
   return (
     <div className={styles.item}>
       <h4 className={styles.name}>{name}</h4>
@@ -22,3 +22,4 @@ export default function SearchPersonItem({ name, img, country }: Props) {
     </div>
   );
 }
+export default SearchPersonItem;

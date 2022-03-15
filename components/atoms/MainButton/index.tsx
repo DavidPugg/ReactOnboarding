@@ -1,16 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
-
 import styles from './MainButton.module.scss';
 
-type Props = {
+interface Props {
     label: string;
     updated: boolean;
     type?: string;
     onClick: () => void;
-};
+}
 
-export default function SearchButton({ label, updated, onClick, type }: Props) {
+const SearchButton = ({ label, updated, onClick, type }: Props) => {
     return (
         <button
             onClick={() => onClick()}
@@ -19,4 +18,5 @@ export default function SearchButton({ label, updated, onClick, type }: Props) {
             {label}
         </button>
     );
-}
+};
+export default SearchButton;

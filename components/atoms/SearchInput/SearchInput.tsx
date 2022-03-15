@@ -1,19 +1,17 @@
 import React, { useRef } from 'react';
 import styles from './SearchInput.module.scss';
 
-type Props = {
+interface Props {
     onSubmit: (value: string) => void;
     onInput: (value: string) => void;
-};
+}
 
-export default function SearchInput({ onSubmit, onInput }: Props) {
+const SearchInput = ({ onSubmit, onInput }: Props) => {
     const inputEl = useRef<HTMLInputElement>(null);
-
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onSubmit((inputEl.current as HTMLInputElement).value);
-    }
-
+    };
     return (
         <div className={styles.border}>
             <div className='container'>
@@ -39,4 +37,5 @@ export default function SearchInput({ onSubmit, onInput }: Props) {
             </div>
         </div>
     );
-}
+};
+export default SearchInput;

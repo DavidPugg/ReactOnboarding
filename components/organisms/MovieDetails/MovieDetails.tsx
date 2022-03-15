@@ -10,7 +10,7 @@ interface Props {
     crew: Array<CrewMember>;
 }
 
-export default function MovieDetails({ details, crew }: Props) {
+const MovieDetails = ({ details, crew }: Props) => {
     const { backdrop_path, poster_path, title, release_date, runtime, vote_average, tagline, overview } = details;
     const date = new Date(release_date);
     const backgroundStyle = {
@@ -37,7 +37,7 @@ export default function MovieDetails({ details, crew }: Props) {
                         {runtime % 60}m
                     </p>
                     <div className={styles.rating_box}>
-                        <ProgressBar rating={vote_average} big/>
+                        <ProgressBar rating={vote_average} big />
                         <p className={styles.score}>User Score</p>
                         <RoundButton icon='list' text='Login to create and edit custom lists' />
                         <RoundButton icon='heart' text='Login to add this movie to your favorite list' />
@@ -52,4 +52,5 @@ export default function MovieDetails({ details, crew }: Props) {
             </div>
         </div>
     );
-}
+};
+export default MovieDetails;

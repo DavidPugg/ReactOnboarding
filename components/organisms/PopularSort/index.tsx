@@ -7,19 +7,19 @@ import LanguageOption from '../../atoms/LanguageOption/LanguageOption';
 import SidebarItem from '../../molecules/SidebarItem';
 import { sortItems } from './sort';
 
-type Sort = {
+interface Sort {
     sort: string;
     label: string;
-};
+}
 
-export default function PopularSort() {
+const PopularSort = () => {
     const dispatch = useDispatch();
     const sort = useSelector((state: RootStateOrAny) => state.sort.value);
     const [dropdown, setDropdown] = useState(false);
 
-    function findLabel() {
+    const findLabel = () => {
         return (sortItems.find((e) => e.sort == sort) as Sort).label;
-    }
+    };
 
     return (
         <SidebarItem label='Sort'>
@@ -55,4 +55,5 @@ export default function PopularSort() {
             </>
         </SidebarItem>
     );
-}
+};
+export default PopularSort;

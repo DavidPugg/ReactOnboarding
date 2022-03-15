@@ -7,7 +7,7 @@ type Props = PropsWithChildren<{
     onClickOutside: (e: MouseEvent) => void;
 }>;
 
-export default React.forwardRef<HTMLElement, Props>(({ children, style, onClickOutside }, ref) => {
+const UniversalDropdown = React.forwardRef<HTMLElement, Props>(({ children, style, onClickOutside }, ref) => {
     const myRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -22,3 +22,4 @@ export default React.forwardRef<HTMLElement, Props>(({ children, style, onClickO
         </div>
     );
 });
+export default UniversalDropdown;

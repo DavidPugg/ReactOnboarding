@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import '../css/all.scss';
 import '../css/progressbar.scss';
 
-import Head from 'next/head'
+import Head from 'next/head';
 
-export default function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
     return (
         <Provider store={store}>
             <Head>
@@ -16,4 +16,5 @@ export default function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
         </Provider>
     );
-}
+};
+export default MyApp;

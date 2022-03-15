@@ -4,7 +4,7 @@ import { DefaultRootState, RootStateOrAny, useSelector } from 'react-redux';
 import MovieItem from '../../molecules/MovieItem/MovieItem';
 import styles from './PopularContent.module.scss';
 
-export default function PopularContent() {
+const PopularContent = () => {
     const movies = useSelector<DefaultRootState, Array<Movie>>((state: RootStateOrAny) => state.movies.value);
     return (
         <div className={styles.grid}>
@@ -21,4 +21,5 @@ export default function PopularContent() {
             ))}
         </div>
     );
-}
+};
+export default PopularContent;

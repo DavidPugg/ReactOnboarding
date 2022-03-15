@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
+import styles from './FooterTitle.module.scss';
 
-import styles from "./FooterTitle.module.scss";
-
-type Props = {
-  label: string;
-};
-
-export default function FooterTitle({ label }: Props) {
-  return <h4 className={styles.title}>{label}</h4>;
+interface Props {
+    label: string;
 }
+
+const FooterTitle = ({ label }: Props) => {
+    return <h4 className={styles.title}>{label}</h4>;
+};
+export default FooterTitle;

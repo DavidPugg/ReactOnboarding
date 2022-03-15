@@ -2,14 +2,14 @@ import React from "react";
 import styles from "./SearchPersonItem.module.scss";
 import Image from 'next/image'
 
-type Props = {
+interface Props {
   name: string,
   known_for: string,
   movie: string,
   img: string,
 }
 
-export default function SearchPersonItem({ name, known_for, movie, img }: Props) {
+const SearchPersonItem = ({ name, known_for, movie, img }: Props) => {
   function returnImage() {
     if (img) return `https://image.tmdb.org/t/p/w500/${img}`;
     return '/personnotfound.png';
@@ -27,3 +27,4 @@ export default function SearchPersonItem({ name, known_for, movie, img }: Props)
     </div>
   );
 }
+export default SearchPersonItem;

@@ -4,11 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import styles from './SearchSidebarItem.module.scss';
 
-type Props = {
+interface Props {
     label: string;
     to: string;
     count: number;
-};
+}
 
 const SearchSidebarItem = ({ label, to, count }: Props) => {
     const router = useRouter();

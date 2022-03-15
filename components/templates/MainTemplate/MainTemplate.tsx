@@ -3,7 +3,7 @@ import styles from './MainTemplate.module.scss';
 
 type Props = PropsWithChildren<{ header: JSX.Element; footer: JSX.Element; sidebar: JSX.Element }>;
 
-function MainTemplate({ header, sidebar, footer, children }: Props) {
+const MainTemplate = ({ header, sidebar, footer, children }: Props) => {
     return (
         <div className={styles.wrapper}>
             <header>{header}</header>
@@ -16,6 +16,5 @@ function MainTemplate({ header, sidebar, footer, children }: Props) {
             <footer className={styles.footer}>{footer}</footer>
         </div>
     );
-}
-
+};
 export default MainTemplate;

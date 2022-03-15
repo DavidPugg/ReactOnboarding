@@ -5,7 +5,7 @@ interface Props {
     onInput: (value: string) => void;
 }
 
-export default function LanguageSearch({ onInput }: Props) {
+const LanguageSearch = ({ onInput }: Props) => {
     return (
         <div className={styles.box}>
             <input
@@ -23,3 +23,4 @@ export default function LanguageSearch({ onInput }: Props) {
         </div>
     );
 }
+export default LanguageSearch;

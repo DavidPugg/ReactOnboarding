@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import styles from './SearchSidebar.module.scss';
 
-export default function SearchSidebar({ children }: PropsWithChildren<{}>) {
+const SearchSidebar = ({ children }: PropsWithChildren<{}>) => {
     return (
         <div className={styles.main}>
             <p className={styles.title}>Search Results</p>
@@ -9,3 +9,4 @@ export default function SearchSidebar({ children }: PropsWithChildren<{}>) {
         </div>
     );
 }
+export default SearchSidebar;

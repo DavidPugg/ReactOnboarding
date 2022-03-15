@@ -5,6 +5,7 @@ import HomeTemplate from '../../components/templates/HomeTemplate/HomeTemplate';
 import { CrewMember, Details } from '../../interfaces/Details';
 import React from 'react';
 import { MoviesAPI } from '../../utils/MoviesAPI';
+import { GetServerSideProps } from 'next';
 
 interface Props {
     details: Details;
@@ -21,9 +22,9 @@ const DetailsPage = ({ details, crew }: Props) => {
     );
 };
 
-export async function getServerSideProps({ query }: { query: { movieId: string } }) {
+export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) => {
     const { details, crew } = await moviesAPI.fetchMovieDetails<Details, CrewMember>(query.movieId as string);
     return { props: { details, crew } };
-}
+};
 
 export default DetailsPage;

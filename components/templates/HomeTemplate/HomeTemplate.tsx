@@ -6,7 +6,7 @@ type Props = PropsWithChildren<{
     footer: JSX.Element;
 }>;
 
-function HomeTemplate({ header, footer, children }: Props) {
+const HomeTemplate = ({ header, footer, children }: Props) => {
     return (
         <div className={styles.wrapper}>
             <header>{header}</header>

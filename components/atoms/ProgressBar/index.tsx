@@ -2,8 +2,8 @@ import React from 'react';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import styles from './ProgressBar.module.scss';
 
-export default function ProgressBar({ rating, big }: { rating: number; big?: boolean }) {
-    function returnColor() {
+const ProgressBar = ({ rating, big }: { rating: number; big?: boolean }) => {
+    const returnColor = () => {
         if (rating * 10 < 30) {
             return 'red';
         } else if (rating * 10 < 70) {
@@ -11,8 +11,7 @@ export default function ProgressBar({ rating, big }: { rating: number; big?: boo
         } else {
             return 'green';
         }
-    }
-
+    };
     return (
         <CircularProgressbar
             className={big ? styles.big : styles.small}
@@ -28,4 +27,5 @@ export default function ProgressBar({ rating, big }: { rating: number; big?: boo
             })}
         />
     );
-}
+};
+export default ProgressBar;

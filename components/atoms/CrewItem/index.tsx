@@ -1,14 +1,13 @@
 import React from "react";
-
 import styles from "./CrewItem.module.scss";
 
-type Props = {
+interface Props {
   id: number;
   name: string;
   job: string;
 };
 
-export default function CrewItem({ id, name, job }: Props) {
+const CrewItem = ({ id, name, job }: Props) => {
   return (
     <div key={`${id}-${Math.random()}`}>
       <p className={styles.name}>{name}</p>
@@ -16,3 +15,4 @@ export default function CrewItem({ id, name, job }: Props) {
     </div>
   );
 }
+export default CrewItem;
