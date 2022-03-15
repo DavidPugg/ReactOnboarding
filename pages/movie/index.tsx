@@ -7,6 +7,7 @@ import { getMovies } from '../../redux/moviesSlice';
 import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import PopularSidebar from '../../components/organisms/PopularSidebar';
+import Head from 'next/head'
 
 const PopularPage = () => {
     const dispatch = useDispatch();
@@ -37,14 +38,19 @@ const PopularPage = () => {
     };
 
     return (
-        <MainTemplate header={<MainMenu />} sidebar={<PopularSidebar />} footer={<Footer />}>
-            <>
-                <PopularContent />
-                {totalResults > 20 * currentPage && (
-                    <MainButton label='Load More' updated onClick={() => handleLoadMore()} />
-                )}
-            </>
-        </MainTemplate>
+        <>
+            <Head>
+                <title>Movie App - Search</title>
+            </Head>
+            <MainTemplate header={<MainMenu />} sidebar={<PopularSidebar />} footer={<Footer />}>
+                <>
+                    <PopularContent />
+                    {totalResults > 20 * currentPage && (
+                        <MainButton label='Load More' updated onClick={() => handleLoadMore()} />
+                    )}
+                </>
+            </MainTemplate>
+        </>
     );
 };
 

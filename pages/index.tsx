@@ -7,6 +7,7 @@ import HomeTemplate from '../components/templates/HomeTemplate/HomeTemplate';
 import Popular from '../components/organisms/Popular/Popular';
 import { MoviesAPI } from '../utils/MoviesAPI';
 import { PopularSearchResponse } from 'interfaces/API';
+import Head from 'next/head';
 
 const moviesAPI = new MoviesAPI();
 
@@ -19,6 +20,9 @@ const HomePage = () => {
 
     return (
         <HomeTemplate header={<MainMenu />} footer={<Footer />}>
+            <Head>
+                <title>Movie App</title>
+            </Head>
             <Popular dataSrc={(type: string) => fetchItems(type)} />
         </HomeTemplate>
     );

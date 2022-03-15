@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { MoviesAPI } from '../../utils/MoviesAPI';
 import { useRouter } from 'next/router';
 import { FetchSearchMovies } from 'interfaces/API';
+import Head from 'next/head'
 
 const moviesAPI = new MoviesAPI();
 
@@ -104,39 +105,49 @@ const SearchPage = () => {
     };
 
     return (
-        <MainTemplate
-            header={<MainMenu />}
-            sidebar={
-                <SearchSidebar>
-                    <SearchSidebarItem key={'Movies'} label={`Movies`} to={`movie`} count={movies.count} />
-                    <SearchSidebarItem key={'Shows'} label={`Shows`} to={`tv`} count={shows.count} />
-                    <SearchSidebarItem key={'People'} label={`People`} to={`person`} count={people.count} />
-                    <SearchSidebarItem key={'Companies'} label={`Companies`} to={`company`} count={companies.count} />
-                    <SearchSidebarItem key={'Keywords'} label={`Keywords`} to={`keyword`} count={keywords.count} />
-                    <SearchSidebarItem
-                        key={'Collections'}
-                        label={`Collections`}
-                        to={`collection`}
-                        count={collections.count}
-                    />
-                </SearchSidebar>
-            }
-            footer={<Footer />}
-        >
-            <SearchContent
-                movies={movies.results}
-                shows={shows.results}
-                people={people.results}
-                companies={companies.results}
-                keywords={keywords.results}
-                collections={collections.results}
-            />
-            <PageSelector
-                totalPages={getPages()}
-                onPageChange={(p: number) => handlePageChange(p)}
-                currentPage={Number(page)}
-            />
-        </MainTemplate>
+        <>
+            <Head>
+                <title>Movie App - Search</title>
+            </Head>
+            <MainTemplate
+                header={<MainMenu />}
+                sidebar={
+                    <SearchSidebar>
+                        <SearchSidebarItem key={'Movies'} label={`Movies`} to={`movie`} count={movies.count} />
+                        <SearchSidebarItem key={'Shows'} label={`Shows`} to={`tv`} count={shows.count} />
+                        <SearchSidebarItem key={'People'} label={`People`} to={`person`} count={people.count} />
+                        <SearchSidebarItem
+                            key={'Companies'}
+                            label={`Companies`}
+                            to={`company`}
+                            count={companies.count}
+                        />
+                        <SearchSidebarItem key={'Keywords'} label={`Keywords`} to={`keyword`} count={keywords.count} />
+                        <SearchSidebarItem
+                            key={'Collections'}
+                            label={`Collections`}
+                            to={`collection`}
+                            count={collections.count}
+                        />
+                    </SearchSidebar>
+                }
+                footer={<Footer />}
+            >
+                <SearchContent
+                    movies={movies.results}
+                    shows={shows.results}
+                    people={people.results}
+                    companies={companies.results}
+                    keywords={keywords.results}
+                    collections={collections.results}
+                />
+                <PageSelector
+                    totalPages={getPages()}
+                    onPageChange={(p: number) => handlePageChange(p)}
+                    currentPage={Number(page)}
+                />
+            </MainTemplate>
+        </>
     );
 };
 
