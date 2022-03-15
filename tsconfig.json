@@ -32,6 +32,6 @@
     "src",
     "pages", "global.d.ts", "globals.d.ts", "utils", "interfaces", "components", "redux/store.ts", "redux/hooks.ts", "redux/filtersSlice.ts",],
   "exclude": [
-    "node_modules"
+    "pages/node_modules"
   ]
 }
