@@ -7,8 +7,9 @@ import SearchSidebar from '../../components/organisms/SearchSidebar/SearchSideba
 import MainTemplate from '../../components/templates/MainTemplate/MainTemplate';
 import { Movie, Tv, Person, Company, Keyword, Collection } from '../../interfaces/Movies';
 import React, { useEffect, useState } from 'react';
-import { FetchSearchMovies, MoviesAPI } from '../../utils/MoviesAPI';
+import { MoviesAPI } from '../../utils/MoviesAPI';
 import { useRouter } from 'next/router';
+import { FetchSearchMovies } from 'interfaces/API';
 
 const moviesAPI = new MoviesAPI();
 

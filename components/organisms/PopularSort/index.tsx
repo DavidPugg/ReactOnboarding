@@ -6,11 +6,7 @@ import { setSort } from '../../../redux/sortSlice';
 import LanguageOption from '../../atoms/LanguageOption/LanguageOption';
 import SidebarItem from '../../molecules/SidebarItem';
 import { sortItems } from './sort';
-
-interface Sort {
-    sort: string;
-    label: string;
-}
+import { Sort } from 'interfaces/Popular';
 
 const PopularSort = () => {
     const dispatch = useDispatch();

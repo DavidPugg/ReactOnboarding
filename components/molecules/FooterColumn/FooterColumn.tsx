@@ -1,16 +1,12 @@
+import { MenuLinkType } from 'interfaces/Main';
 import React from 'react';
 import FooterLink from '../../atoms/FooterLink/FooterLink';
 import FooterTitle from '../../atoms/FooterTitle/FooterTitle';
 import styles from './FooterColumn.module.scss';
 
-interface Link {
-    label: string;
-    url: string;
-}
-
 interface Props {
     label: string;
-    links: Array<Link>;
+    links: Array<MenuLinkType>;
 }
 
 const FooterColumn = ({ label, links }: Props) => {

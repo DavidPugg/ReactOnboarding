@@ -5,7 +5,8 @@ import Footer from '../components/organisms/Footer/Footer';
 import MainMenu from '../components/organisms/MainMenu/MainMenu';
 import HomeTemplate from '../components/templates/HomeTemplate/HomeTemplate';
 import Popular from '../components/organisms/Popular/Popular';
-import { MoviesAPI, PopularSearchResponse } from '../utils/MoviesAPI';
+import { MoviesAPI } from '../utils/MoviesAPI';
+import { PopularSearchResponse } from 'interfaces/API';
 
 const moviesAPI = new MoviesAPI();
 

@@ -1,7 +1,7 @@
 import Toggler from '@components/molecules/Toggler';
+import { PopularSearchResponse } from 'interfaces/API';
 import { Movie, Tv } from 'interfaces/Movies';
 import React, { useEffect, useState } from 'react';
-import { PopularSearchResponse } from '../../../utils/MoviesAPI';
 import MovieItem from '../../molecules/MovieItem/MovieItem';
 import styles from './Popular.module.scss';
 
