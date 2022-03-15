@@ -11,7 +11,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "analyze": "ANALYZE=true next build"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +36,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "core-js": "^3.21.1",
     "css-loader": "^5.2.6",
+    "eslint": "^8.11.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
@@ -54,6 +56,7 @@
   },
   "browserslist": "> 2%, not dead",
   "dependencies": {
+    "@next/bundle-analyzer": "^12.1.0",
     "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",

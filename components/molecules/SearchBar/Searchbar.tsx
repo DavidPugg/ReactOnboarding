@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
 import SearchInput from '../../atoms/SearchInput/SearchInput';
 import SearchResult from '../../atoms/SearchResult/SearchResult';
 import styles from './Searchbar.module.scss';
