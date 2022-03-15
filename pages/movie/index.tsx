@@ -17,17 +17,31 @@ export default function PopularPage() {
         dispatch(getMovies({ page: currentPage, loadMore: false }));
     }, []);
 
-    function handleLoadMore(page: number) {
+    useEffect(() => {
+        window.addEventListener('scroll', handler);
+        return () => {
+            window.removeEventListener('scroll', handler);
+        };
+    }, [currentPage]);
+
+    const handler = () => {
+        if (document.body.getClientRects()[0].bottom - window.innerHeight <= 0) {
+            handleLoadMore();
+        }
+    };
+
+    const handleLoadMore = () => {
+        const page = currentPage + 1;
+        setCurrentPage(page);
         dispatch(getMovies({ page, loadMore: true }));
-        setCurrentPage(currentPage + 1);
-    }
+    };
 
     return (
         <MainTemplate header={<MainMenu />} sidebar={<PopularSidebar />} footer={<Footer />}>
             <>
                 <PopularContent />
                 {totalResults > 20 * currentPage && (
-                    <MainButton label='Load More' updated onClick={() => handleLoadMore(currentPage + 1)} />
+                    <MainButton label='Load More' updated onClick={() => handleLoadMore()} />
                 )}
             </>
         </MainTemplate>

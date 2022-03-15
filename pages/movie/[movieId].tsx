@@ -6,9 +6,14 @@ import { CrewMember, Details } from '../../interfaces/Details';
 import React from 'react';
 import { MoviesAPI } from '../../utils/MoviesAPI';
 
+interface Props {
+    details: Details;
+    crew: CrewMember[];
+}
+
 const moviesAPI = new MoviesAPI();
 
-const DetailsPage = ({ details, crew }) => {
+const DetailsPage = ({ details, crew }: Props) => {
     return (
         <HomeTemplate header={<MainMenu />} footer={<Footer />}>
             <MovieDetails details={details} crew={crew.slice(0, 6)} />
@@ -16,7 +21,7 @@ const DetailsPage = ({ details, crew }) => {
     );
 };
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query }: { query: { movieId: string } }) {
     const { details, crew } = await moviesAPI.fetchMovieDetails<Details, CrewMember>(query.movieId as string);
     return { props: { details, crew } };
 }
