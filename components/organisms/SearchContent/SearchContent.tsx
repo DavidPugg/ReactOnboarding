@@ -1,5 +1,5 @@
 import SearchMovieItem from '@components/molecules/SearchMovieItem';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchCompanyItem from '../../molecules/SearchCompanyItem/SearchCompanyItem';
 import SearchKeywordItem from '../../atoms/SearchKeywordItem/SearchKeywordItem';
 import SearchPersonItem from '../../molecules/SearchPersonItem/SearchPersonItem';
@@ -14,7 +14,7 @@ interface Props {
     companies: Array<Company>;
     keywords: Array<Keyword>;
     collections: Array<Collection>;
-};
+}
 
 const SearchContent = ({ movies, shows, people, companies, keywords, collections }: Props) => {
     const router = useRouter();
@@ -27,7 +27,7 @@ const SearchContent = ({ movies, shows, people, companies, keywords, collections
             return known_for[0].title;
         }
         return '';
-    }
+    };
 
     return (
         <>
@@ -93,5 +93,5 @@ const SearchContent = ({ movies, shows, people, companies, keywords, collections
             )}
         </>
     );
-}
+};
 export default SearchContent;
