@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Movie, Tv } from '../interfaces/Movies';
 import Footer from '../components/organisms/Footer/Footer';
 import MainMenu from '../components/organisms/MainMenu/MainMenu';
@@ -12,10 +11,24 @@ import Head from 'next/head';
 const moviesAPI = new MoviesAPI();
 
 const HomePage = () => {
-    const fetchItems = async (type: string): Promise<PopularSearchResponse<Movie | Tv>> => {
-        return type == 'tv'
-            ? ((await moviesAPI.fetchPopularMovies<Tv>({ type })) as PopularSearchResponse<Tv>)
-            : ((await moviesAPI.fetchPopularMovies<Movie>({ type })) as PopularSearchResponse<Movie>);
+    const [items, setItems] = useState([] as Array<Movie | Tv>);
+    const [type, setType] = useState('movie');
+
+    const handleItems = async (type: string) => {
+        setItems(await fetchItems(type));
+        setType(type);
+    };
+
+    useEffect(() => {
+        handleItems('movie')
+    }, [])
+
+    const fetchItems = async (type: string): Promise<Array<Movie | Tv>> => {
+        const res: PopularSearchResponse<Movie | Tv> =
+            type == 'tv'
+                ? await moviesAPI.fetchPopularMovies<Tv>({ type })
+                : await moviesAPI.fetchPopularMovies<Movie>({ type });
+        return res.results;
     };
 
     return (
@@ -23,7 +36,13 @@ const HomePage = () => {
             <Head>
                 <title>Movie App</title>
             </Head>
-            <Popular dataSrc={(type: string) => fetchItems(type)} />
+            <Popular
+                items={items}
+                type={type}
+                onToggle={(type) => {
+                    handleItems(type);
+                }}
+            />
         </HomeTemplate>
     );
 };

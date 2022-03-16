@@ -11,6 +11,7 @@ export interface Tv {
     poster_path: string;
     name: string;
     first_air_date: string;
+    vote_average: number;
 }
 
 export interface Person {

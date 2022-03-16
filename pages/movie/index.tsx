@@ -65,7 +65,6 @@ const PopularPage = ({ data }: Props) => {
 export const getServerSideProps: GetServerSideProps = async () => {
     const moviesAPI = new MoviesAPI();
     const data: SearchResponse<Movie> = await moviesAPI.fetchMovies({ page: 1, filters: [], sort: 'popularity.desc' });
-    console.log('serverside')
     return { props: { data } };
 };
 
