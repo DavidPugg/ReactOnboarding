@@ -3,19 +3,27 @@ import MainMenu from '../../components/organisms/MainMenu/MainMenu';
 import PopularContent from '../../components/organisms/PopularContent';
 import MainTemplate from '../../components/templates/MainTemplate/MainTemplate';
 import MainButton from '../../components/atoms/MainButton';
-import { getMovies } from '../../redux/moviesSlice';
+import { getMovies, setMovies } from '../../redux/moviesSlice';
 import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import PopularSidebar from '../../components/organisms/PopularSidebar';
-import Head from 'next/head'
+import Head from 'next/head';
+import { GetServerSideProps } from 'next';
+import { MoviesAPI } from 'utils/MoviesAPI';
+import { SearchResponse } from 'interfaces/API';
+import { Movie } from 'interfaces/Movies';
 
-const PopularPage = () => {
+interface Props {
+    data: SearchResponse<Movie>;
+}
+
+const PopularPage = ({ data }: Props) => {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState<number>(1);
     const totalResults = useSelector((state: RootStateOrAny) => state.movies.totalResults);
 
     useEffect(() => {
-        dispatch(getMovies({ page: currentPage, loadMore: false }));
+        dispatch(setMovies(data));
     }, []);
 
     useEffect(() => {
@@ -52,6 +60,13 @@ const PopularPage = () => {
             </MainTemplate>
         </>
     );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    const moviesAPI = new MoviesAPI();
+    const data: SearchResponse<Movie> = await moviesAPI.fetchMovies({ page: 1, filters: [], sort: 'popularity.desc' });
+    console.log('serverside')
+    return { props: { data } };
 };
 
 export default PopularPage;

@@ -31,7 +31,12 @@ export const moviesSlice = createSlice({
         status: '',
         totalResults: 0,
     } as MoviesState,
-    reducers: {},
+    reducers: {
+        setMovies: (state, { payload }) => {
+            state.value = payload.results;
+            state.totalResults = payload.total_results;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(getMovies.pending, (state) => {
             state.status = 'loading';
@@ -46,5 +51,7 @@ export const moviesSlice = createSlice({
             });
     },
 });
+
+export const { setMovies } = moviesSlice.actions;
 
 export default moviesSlice.reducer;
