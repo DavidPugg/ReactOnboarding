@@ -7,10 +7,15 @@ import Popular from '../components/organisms/Popular/Popular';
 import { MoviesAPI } from '../utils/MoviesAPI';
 import { PopularSearchResponse } from 'interfaces/API';
 import Head from 'next/head';
+import { GetServerSideProps } from 'next';
 
 const moviesAPI = new MoviesAPI();
 
-const HomePage = () => {
+interface Props {
+    data: Array<Movie>;
+}
+
+const HomePage = ({ data }: Props) => {
     const [items, setItems] = useState([] as Array<Movie | Tv>);
     const [type, setType] = useState('movie');
 
@@ -20,8 +25,8 @@ const HomePage = () => {
     };
 
     useEffect(() => {
-        handleItems('movie')
-    }, [])
+        setItems(data);
+    }, []);
 
     const fetchItems = async (type: string): Promise<Array<Movie | Tv>> => {
         const res: PopularSearchResponse<Movie | Tv> =
@@ -45,6 +50,11 @@ const HomePage = () => {
             />
         </HomeTemplate>
     );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    const res: PopularSearchResponse<Movie> = await moviesAPI.fetchPopularMovies<Movie>({ type: 'movie' });
+    return { props: { data: res.results } };
 };
 
 export default HomePage;

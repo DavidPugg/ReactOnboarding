@@ -32,7 +32,7 @@ export class MoviesAPI {
             `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US&page=1`,
         );
 
-        const crew = await axios.get<{crew: Array<T2>}>(
+        const crew = await axios.get<{ crew: Array<T2> }>(
             `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.API_KEY}&language=en-US`,
         );
         return { details: details.data, crew: crew.data.crew };
