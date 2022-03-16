@@ -14,7 +14,7 @@ const SearchSidebarItem = ({ label, to, count }: Props) => {
     const router = useRouter();
     const { q, type } = router.query;
     return (
-        <Link href={`/search/${to}?q=${q}&page=1`}>
+        <Link href={`/search/${to}?q=${q}&page=1`} shallow={true}>
             <a className={`${styles.label} ${type == `${to}` ? styles.selected : ''}`}>
                 {label}
                 <span className={styles.count}>{count || 0}</span>

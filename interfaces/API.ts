@@ -6,7 +6,7 @@ export interface FetchMovies {
 
 export interface FetchSearchMovies {
     page: number;
-    query: string | null;
+    query: string;
     type: string;
 }
 

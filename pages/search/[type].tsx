@@ -9,10 +9,20 @@ import { Movie, Tv, Person, Company, Keyword, Collection } from '../../interface
 import React, { useEffect, useState } from 'react';
 import { MoviesAPI } from '../../utils/MoviesAPI';
 import { useRouter } from 'next/router';
-import { FetchSearchMovies } from 'interfaces/API';
-import Head from 'next/head'
+import { SearchResponse } from 'interfaces/API';
+import Head from 'next/head';
+import { GetServerSideProps } from 'next';
 
 const moviesAPI = new MoviesAPI();
+
+interface Props {
+    movieProps: MainObject<Movie>;
+    tvProps: MainObject<Tv>;
+    personProps: MainObject<Person>;
+    companyProps: MainObject<Company>;
+    keywordProps: MainObject<Keyword>;
+    collectionProps: MainObject<Collection>;
+}
 
 interface MainObject<T> {
     results: Array<T>;
@@ -20,7 +30,7 @@ interface MainObject<T> {
     totalPages: number;
 }
 
-const SearchPage = () => {
+const SearchPage = ({ movieProps, tvProps, personProps, companyProps, keywordProps, collectionProps }: Props) => {
     const router = useRouter();
     const { page, q, type } = router.query;
 
@@ -38,35 +48,40 @@ const SearchPage = () => {
     const [collections, setCollections] = useState<MainObject<Collection>>(mainObject);
 
     useEffect(() => {
-        switch (type) {
-            case 'movie':
-                return getItems<Movie>(Number(page), type, setMovies);
-            case 'tv':
-                return getItems<Tv>(Number(page), type, setShows);
-            case 'person':
-                return getItems<Person>(Number(page), type, setPeople);
-            case 'company':
-                return getItems<Company>(Number(page), type, setCompanies);
-            case 'keyword':
-                return getItems<Keyword>(Number(page), type, setKeywords);
-            case 'collection':
-                return getItems<Collection>(Number(page), type, setCollections);
-        }
-        window.scrollTo(0, 0);
-    }, [type, page, q]);
+        setMovies(movieProps);
+        setShows(tvProps);
+        setPeople(personProps);
+        setCompanies(companyProps);
+        setKeywords(keywordProps);
+        setCollections(collectionProps);
+    }, []);
 
     useEffect(() => {
-        if (!router.isReady) return;
-        getItems<Movie>(Number(page), 'movie', setMovies);
-        getItems<Tv>(Number(page), 'tv', setShows);
-        getItems<Person>(Number(page), 'person', setPeople);
-        getItems<Company>(Number(page), 'company', setCompanies);
-        getItems<Keyword>(Number(page), 'keyword', setKeywords);
-        getItems<Collection>(Number(page), 'collection', setCollections);
-    }, [router.isReady]);
+        switch (type) {
+            case 'movie':
+                getItems<Movie>(Number(page), 'movie', setMovies);
+                break;
+            case 'tv':
+                getItems<Tv>(Number(page), 'tv', setShows);
+                break;
+            case 'person':
+                getItems<Person>(Number(page), 'person', setPeople);
+                break;
+            case 'keyword':
+                getItems<Keyword>(Number(page), 'keyword', setKeywords);
+                break;
+            case 'company':
+                getItems<Company>(Number(page), 'company', setCompanies);
+                break;
+            case 'collection':
+                getItems<Collection>(Number(page), 'collection', setCollections);
+                break;
+        }
+        window.scrollTo(0, 0);
+    }, [page, q, type]);
 
     const handlePageChange = (p: number) => {
-        router.push(`/search/${type}?q=${q}&page=${p}`);
+        router.push(`/search/${type}?q=${q}&page=${p}`, undefined, { shallow: true });
     };
 
     const getPages = () => {
@@ -88,20 +103,13 @@ const SearchPage = () => {
         }
     };
 
-    const getItems = <T,>(page: number, type: string, func: (obj: MainObject<T>) => void) => {
-        let searchParams: FetchSearchMovies = {
+    const getItems = async <T,>(page: number, type: string, func: (obj: MainObject<T>) => void) => {
+        const { results, total_pages, total_results } = await moviesAPI.fetchSearchMovies<T>({
             page,
             query: q as string,
             type,
-        };
-        moviesAPI.fetchSearchMovies<T>(searchParams).then(({ results, total_pages, total_results }) => {
-            const resObject = {
-                results,
-                count: total_results,
-                totalPages: total_pages,
-            } as MainObject<T>;
-            func(resObject);
         });
+        func({ results, count: total_results, totalPages: total_pages });
     };
 
     return (
@@ -149,6 +157,31 @@ const SearchPage = () => {
             </MainTemplate>
         </>
     );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+    const { page, q } = query;
+
+    const getItems = async <T,>(type: string) => {
+        const { results, total_pages, total_results }: SearchResponse<T> = await moviesAPI.fetchSearchMovies<T>({
+            type,
+            page: Number(page),
+            query: q as string,
+        });
+        return {
+            results,
+            count: total_results,
+            totalPages: total_pages,
+        } as MainObject<T>;
+    };
+    const movieProps = await getItems<Movie>('movie');
+    const tvProps = await getItems<Tv>('tv');
+    const personProps = await getItems<Person>('person');
+    const companyProps = await getItems<Company>('company');
+    const keywordProps = await getItems<Keyword>('keyword');
+    const collectionProps = await getItems<Collection>('collection');
+
+    return { props: { movieProps, tvProps, personProps, companyProps, keywordProps, collectionProps } };
 };
 
 export default SearchPage;
