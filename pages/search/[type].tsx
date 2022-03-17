@@ -14,6 +14,8 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import useMap, { MapOrEntries } from '@components/hooks/useMap';
 
+const types = ['movie', 'tv', 'person', 'company', 'keyword', 'collection'];
+
 const moviesAPI = new MoviesAPI();
 
 interface Props {
@@ -36,7 +38,6 @@ const SearchPage = ({ initialItems }: Props) => {
     }, []);
 
     useEffect(() => {
-        const types = ['movie', 'tv', 'person', 'company', 'keyword', 'collection'];
         types.map((type) => getItems<any>(1, type));
     }, [q]);
 
@@ -67,42 +68,17 @@ const SearchPage = ({ initialItems }: Props) => {
                 header={<MainMenu />}
                 sidebar={
                     <SearchSidebar>
-                        <SearchSidebarItem
-                            key={'Movies'}
-                            label={`Movies`}
-                            to={`movie`}
-                            count={(items.get('movie') as MainObject<Movie>).count}
-                        />
-                        <SearchSidebarItem
-                            key={'Shows'}
-                            label={`Shows`}
-                            to={`tv`}
-                            count={(items.get('tv') as MainObject<Tv>).count}
-                        />
-                        <SearchSidebarItem
-                            key={'People'}
-                            label={`People`}
-                            to={`person`}
-                            count={(items.get('person') as MainObject<Person>).count}
-                        />
-                        <SearchSidebarItem
-                            key={'Companies'}
-                            label={`Companies`}
-                            to={`company`}
-                            count={(items.get('company') as MainObject<Company>).count}
-                        />
-                        <SearchSidebarItem
-                            key={'Keywords'}
-                            label={`Keywords`}
-                            to={`keyword`}
-                            count={(items.get('keyword') as MainObject<Keyword>).count}
-                        />
-                        <SearchSidebarItem
-                            key={'Collections'}
-                            label={`Collections`}
-                            to={`collection`}
-                            count={(items.get('collection') as MainObject<Collection>).count}
-                        />
+                        {types.map((type) => (
+                            <SearchSidebarItem
+                                key={type}
+                                label={type
+                                    .split('')
+                                    .map((e, i) => (i == 0 ? e.toUpperCase() : e))
+                                    .join('')}
+                                to={type}
+                                count={(items.get(type) as MainObject<Movie>).count}
+                            />
+                        ))}
                     </SearchSidebar>
                 }
                 footer={<Footer />}
