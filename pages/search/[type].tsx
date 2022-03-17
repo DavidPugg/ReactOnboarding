@@ -37,26 +37,7 @@ const SearchPage = ({ initialItems }: Props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        switch (type) {
-            case 'movie':
-                getItems<Movie>(Number(page), 'movie');
-                break;
-            case 'tv':
-                getItems<Tv>(Number(page), 'tv');
-                break;
-            case 'person':
-                getItems<Person>(Number(page), 'person');
-                break;
-            case 'keyword':
-                getItems<Keyword>(Number(page), 'keyword');
-                break;
-            case 'company':
-                getItems<Company>(Number(page), 'company');
-                break;
-            case 'collection':
-                getItems<Collection>(Number(page), 'collection');
-                break;
-        }
+        getItems<any>(Number(page), type as string);
     }, [page, q, type]);
 
     const handlePageChange = (p: number) => {
@@ -70,10 +51,6 @@ const SearchPage = ({ initialItems }: Props) => {
             type,
         });
         itemActions.set(type, { results, count: total_results, totalPages: total_pages });
-    };
-
-    const getResults = (type: string) => {
-        return (items.get(type) as MainObject<any>).results;
     };
 
     return (
@@ -125,14 +102,7 @@ const SearchPage = ({ initialItems }: Props) => {
                 }
                 footer={<Footer />}
             >
-                <SearchContent
-                    movies={getResults('movie')}
-                    shows={getResults('tv')}
-                    people={getResults('person')}
-                    companies={getResults('company')}
-                    keywords={getResults('keyword')}
-                    collections={getResults('collection')}
-                />
+                <SearchContent items={items} />
                 <PageSelector
                     totalPages={(items.get(type as string) as MainObject<any>).totalPages}
                     onPageChange={(p: number) => handlePageChange(p)}
