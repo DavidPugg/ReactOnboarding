@@ -54,9 +54,6 @@ const SearchContent = ({ items }: Props) => {
                 return results.map(({ id, poster_path, name }) => (
                     <SearchMovieItem key={id} id={id} img={poster_path} title={name} release={''} />
                 ));
-            default:
-                '';
-                break;
         }
     };
 

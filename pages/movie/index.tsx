@@ -21,7 +21,7 @@ const PopularPage = ({ data }: Props) => {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState<number>(1);
     const totalResults = useSelector((state: RootStateOrAny) => state.movies.totalResults);
-    const myRef = useRef(currentPage);
+    const currentPageRef = useRef(currentPage);
 
     useEffect(() => {
         dispatch(setMovies(data));
@@ -32,7 +32,7 @@ const PopularPage = ({ data }: Props) => {
     }, []);
 
     useEffect(() => {
-        myRef.current = currentPage;
+        currentPageRef.current = currentPage;
     }, [currentPage]);
 
     const handler = () => {
@@ -42,7 +42,7 @@ const PopularPage = ({ data }: Props) => {
     };
 
     const handleLoadMore = () => {
-        const page = myRef.current + 1;
+        const page = currentPageRef.current + 1;
         setCurrentPage(page);
         dispatch(getMovies({ page, loadMore: true }));
     };

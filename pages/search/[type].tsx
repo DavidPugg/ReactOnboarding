@@ -36,9 +36,14 @@ const SearchPage = ({ initialItems }: Props) => {
     }, []);
 
     useEffect(() => {
+        const types = ['movie', 'tv', 'person', 'company', 'keyword', 'collection'];
+        types.map((type) => getItems<any>(1, type));
+    }, [q]);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
         getItems<any>(Number(page), type as string);
-    }, [page, q, type]);
+    }, [page, type]);
 
     const handlePageChange = (p: number) => {
         router.push(`/search/${type}?q=${q}&page=${p}`, undefined, { shallow: true });
