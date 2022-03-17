@@ -32,6 +32,7 @@ const PopularPage = ({ data }: Props) => {
             },
             {
                 threshold: 1,
+                rootMargin: `150px`
             },
         );
         setTimeout(() => {
