@@ -4,7 +4,7 @@ import PopularContent from '../../components/organisms/PopularContent';
 import MainTemplate from '../../components/templates/MainTemplate/MainTemplate';
 import MainButton from '../../components/atoms/MainButton';
 import { getMovies, setMovies } from '../../redux/moviesSlice';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import PopularSidebar from '../../components/organisms/PopularSidebar';
 import Head from 'next/head';
@@ -22,24 +22,28 @@ const PopularPage = ({ data }: Props) => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const totalResults = useSelector((state: RootStateOrAny) => state.movies.totalResults);
     const currentPageRef = useRef(currentPage);
+    const end: MutableRefObject<HTMLDivElement> = useRef({} as HTMLDivElement);
+    let observer: IntersectionObserver = {} as IntersectionObserver;
 
     useEffect(() => {
+        observer = new IntersectionObserver(
+            (entries) => {
+                entries[0].isIntersecting ? handleLoadMore() : '';
+            },
+            {
+                threshold: 1,
+            },
+        );
+        setTimeout(() => {
+            observer.observe(end.current as Element);
+        }, 100);
+
         dispatch(setMovies(data));
-        window.addEventListener('scroll', handler);
-        return () => {
-            window.removeEventListener('scroll', handler);
-        };
     }, []);
 
     useEffect(() => {
         currentPageRef.current = currentPage;
     }, [currentPage]);
-
-    const handler = () => {
-        if (document.body.getClientRects()[0].bottom - window.innerHeight <= 0) {
-            handleLoadMore();
-        }
-    };
 
     const handleLoadMore = () => {
         const page = currentPageRef.current + 1;
@@ -56,7 +60,10 @@ const PopularPage = ({ data }: Props) => {
                 <>
                     <PopularContent />
                     {totalResults > 20 * currentPage && (
-                        <MainButton label='Load More' updated onClick={() => handleLoadMore()} />
+                        <>
+                            <MainButton label='Load More' updated onClick={() => handleLoadMore()} />
+                            <div ref={end}></div>
+                        </>
                     )}
                 </>
             </MainTemplate>

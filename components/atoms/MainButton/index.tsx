@@ -12,6 +12,7 @@ interface Props {
 const SearchButton = ({ label, updated, onClick, type }: Props) => {
     return (
         <button
+        id='button'
             onClick={() => onClick()}
             className={classNames(styles.button, updated ? [styles.updated, styles[`${type}`]] : '')}
         >
