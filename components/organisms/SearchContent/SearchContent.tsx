@@ -1,5 +1,5 @@
 import SearchMovieItem from '@components/molecules/SearchMovieItem';
-import React, { useEffect } from 'react';
+import React from 'react';
 import SearchCompanyItem from '../../molecules/SearchCompanyItem/SearchCompanyItem';
 import SearchKeywordItem from '../../atoms/SearchKeywordItem/SearchKeywordItem';
 import SearchPersonItem from '../../molecules/SearchPersonItem/SearchPersonItem';

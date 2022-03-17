@@ -6,7 +6,7 @@ import SearchContent from '../../components/organisms/SearchContent/SearchConten
 import SearchSidebar from '../../components/organisms/SearchSidebar/SearchSidebar';
 import MainTemplate from '../../components/templates/MainTemplate/MainTemplate';
 import { Movie, Tv, Person, Company, Keyword, Collection } from '../../interfaces/Movies';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { MoviesAPI } from '../../utils/MoviesAPI';
 import { useRouter } from 'next/router';
 import { SearchResponse } from 'interfaces/API';
