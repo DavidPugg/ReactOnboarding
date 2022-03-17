@@ -35,7 +35,7 @@ const MovieItem = ({ id, img, title, release, rating, border }: Props) => {
             <Link href={`/movie/${id}`}>
                 <a className={styles.link}>
                     <div className={styles.imgbox}>
-                        <Image className={styles.img} src={returnImage()} alt='Movie poster' width='280' height='420' />
+                        <Image priority className={styles.img} src={returnImage()} alt='Movie poster' width='280' height='420' />
                         <div className={styles.rating}>
                             <ProgressBar rating={rating} />
                         </div>
