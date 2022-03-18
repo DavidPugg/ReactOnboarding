@@ -5,12 +5,17 @@ import SearchInput from '../../atoms/SearchInput/SearchInput';
 import SearchResult from '../../atoms/SearchResult/SearchResult';
 import styles from './Searchbar.module.scss';
 
-const Searchbar = React.forwardRef<HTMLDivElement>((_, ref) => {
+interface Props {
+    onSubmit: () => void;
+}
+
+const Searchbar = React.forwardRef<HTMLDivElement,Props>(({onSubmit}, ref) => {
     const router = useRouter();
 
     const [items, setItems] = useState([]);
 
     const handleSubmit = (query: string) => {
+        onSubmit();
         router.push(`/search/movie?q=${query}&page=1`);
     };
     const handleItems = (input: string) => {

@@ -1,10 +1,14 @@
 import { Language, Type } from 'interfaces/Language';
-import React, { MutableRefObject, useRef, useState, useEffect } from 'react';
+import React, { MutableRefObject, useRef, useState, useEffect, memo, useCallback } from 'react';
 import styles from './LanguageSwitcher.module.scss';
 import UniversalDropdown from '../../atoms/UniversalDropdown';
 import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
 
-const LanguageSwitcher = React.forwardRef<HTMLDivElement, { languages: Array<Language> }>(({ languages }, ref) => {
+interface Props {
+    languages: Array<Language>;
+}
+
+const LanguageSwitcher = React.forwardRef<HTMLDivElement, Props>(({ languages }, ref) => {
     const toggleRef = useRef() as MutableRefObject<HTMLParagraphElement>;
     const [dropdown, setDropdown] = useState(false);
     const [currentLanguage, setCurrentLanguage] = useState<Language>({} as Language);
@@ -14,6 +18,8 @@ const LanguageSwitcher = React.forwardRef<HTMLDivElement, { languages: Array<Lan
         setCurrentLanguage(languages[0]);
         setFallbackLanguage(languages[1]);
     }, []);
+
+    const onLanguageChangeCallback = useCallback((args, type) => onLanguageChange(args, type), [])
 
     const onLanguageChange = ({ code, label }: Language, type: Type) => {
         type == 'fallback' ? setFallbackLanguage({ code, label }) : setCurrentLanguage({ code, label });
@@ -37,18 +43,18 @@ const LanguageSwitcher = React.forwardRef<HTMLDivElement, { languages: Array<Lan
                         title='Default language'
                         languages={languages}
                         currentLanguage={currentLanguage}
-                        onLanguageChange={onLanguageChange}
+                        onLanguageChange={onLanguageChangeCallback}
                     />
                     <LanguageDropdown
                         type='fallback'
                         title='Fallback language'
                         languages={languages}
                         currentLanguage={fallbackLanguage}
-                        onLanguageChange={onLanguageChange}
+                        onLanguageChange={onLanguageChangeCallback}
                     />
                 </UniversalDropdown>
             )}
         </div>
     );
 });
-export default LanguageSwitcher;
+export default memo(LanguageSwitcher);

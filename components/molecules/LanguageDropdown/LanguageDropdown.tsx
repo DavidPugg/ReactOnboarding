@@ -1,5 +1,5 @@
 import { Language, Type } from 'interfaces/Language';
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import LanguageSearch from '../../atoms/LanguageSearch';
 import MainLanguageOption from '../../atoms/MainLanguageOption/MainLanguageOption';
 import UniversalDropdown from '../../atoms/UniversalDropdown';
@@ -63,4 +63,4 @@ const LanguageDropdown = ({ type, title, languages, currentLanguage, onLanguageC
         </>
     );
 };
-export default LanguageDropdown;
+export default memo(LanguageDropdown);
