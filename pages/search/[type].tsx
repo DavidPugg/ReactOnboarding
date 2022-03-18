@@ -48,7 +48,7 @@ const SearchPage = ({ initialItems }: Props) => {
 
     const handlePageChange = useCallback((p: number) => {
         router.push(`/search/${type}?q=${q}&page=${p}`, undefined, { shallow: true });
-    }, [])
+    }, [type, q, page])
 
     const getItems = async <T,>(page: number, type: string) => {
         const { results, total_pages, total_results } = await moviesAPI.fetchSearchMovies<T>({
