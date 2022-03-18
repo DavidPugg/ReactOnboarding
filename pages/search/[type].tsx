@@ -6,7 +6,7 @@ import SearchContent from '../../components/organisms/SearchContent/SearchConten
 import SearchSidebar from '../../components/organisms/SearchSidebar/SearchSidebar';
 import MainTemplate from '../../components/templates/MainTemplate/MainTemplate';
 import { Movie, Tv, Person, Company, Keyword, Collection } from '../../interfaces/Movies';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { MoviesAPI } from '../../utils/MoviesAPI';
 import { useRouter } from 'next/router';
 import { SearchResponse } from 'interfaces/API';
@@ -67,19 +67,19 @@ const SearchPage = ({ initialItems }: Props) => {
             <MainTemplate
                 header={<MainMenu />}
                 sidebar={
-                    <SearchSidebar>
-                        {types.map((type) => (
-                            <SearchSidebarItem
-                                key={type}
-                                label={type
-                                    .split('')
-                                    .map((e, i) => (i == 0 ? e.toUpperCase() : e))
-                                    .join('')}
-                                to={type}
-                                count={(items.get(type) as MainObject<Movie>).count}
-                            />
-                        ))}
-                    </SearchSidebar>
+                    useMemo(() =>                    <SearchSidebar>
+                    {types.map((type) => (
+                        <SearchSidebarItem
+                            key={type}
+                            label={type
+                                .split('')
+                                .map((e, i) => (i == 0 ? e.toUpperCase() : e))
+                                .join('')}
+                            to={type}
+                            count={(items.get(type) as MainObject<Movie>).count}
+                        />
+                    ))}
+                </SearchSidebar>,[q])
                 }
                 footer={<Footer />}
             >

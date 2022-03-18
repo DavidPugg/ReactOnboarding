@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, memo } from 'react';
 import styles from './SearchSidebar.module.scss';
 
 const SearchSidebar = ({ children }: PropsWithChildren<{}>) => {
@@ -9,4 +9,4 @@ const SearchSidebar = ({ children }: PropsWithChildren<{}>) => {
         </div>
     );
 }
-export default SearchSidebar;
+export default memo(SearchSidebar);
