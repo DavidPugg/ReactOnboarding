@@ -1,0 +1,51 @@
+@import "@css/variables";
+
+.box {
+  position: relative;
+  min-width: 7rem;
+
+  &:hover .textbox .title {
+    color: $color-primary-light;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.imgbox {
+  position: relative;
+}
+
+.img {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.rating {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(30%) translateX(40%);
+}
+
+.textbox {
+  margin-top: .3rem;
+  padding: .5rem;
+
+  .title {
+    font-size: 0.85rem;
+    transition: all .1s ease;
+  }
+
+  .release {
+    font-size: 0.8rem;
+    color: $color-grey-dark;
+  }
+}
+
+.border {
+  border: 1px solid $color-grey-light;
+  box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.1);
+  border-radius: 0.5rem;
+}

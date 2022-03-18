@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
@@ -10,11 +10,28 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@css/*": ["css/*"]
-    }
+      "@components/*": [
+        "components/*"
+      ],
+      "@css/*": [
+        "css/*"
+      ],
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "resolveJsonModule": true
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "pages", "global.d.ts", "globals.d.ts", "utils", "interfaces", "components", "redux/store.ts", "redux/hooks.ts", "redux/filtersSlice.ts",],
+  "exclude": [
+    "pages/node_modules"
+  ]
 }

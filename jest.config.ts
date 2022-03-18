@@ -1,7 +1,13 @@
-export default {
+import nextJest from 'next/jest';
+
+const createJestConfig = nextJest({
+    dir: './'
+})
+
+const config = {
     verbose: true,
     testEnvironment: 'jsdom',
-    roots: ['<rootDir>/src'],
+    roots: ['<rootDir>/'],
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
     },
@@ -14,3 +20,5 @@ export default {
         "^.+\\.svg$": "jest-svg-transformer"
     },
 };
+
+module.exports = createJestConfig(config);

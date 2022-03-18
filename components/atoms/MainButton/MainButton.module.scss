@@ -1,0 +1,42 @@
+@import '@css/variables';
+
+.button {
+    color: darken($color-grey-dark, 25%);
+    background-color: $color-grey-light;
+    border: none;
+    padding: 0.8rem 1.6rem;
+    border-radius: 100px;
+    margin: 1rem 0;
+    width: 100%;
+    cursor: pointer;
+    transition: all .1s ease;
+}
+
+.updated {
+    background-color: $color-primary-light;
+    color: white;
+    &:hover {
+        background-color: darken($color-primary-light, 10%);
+    }
+}
+
+.primary {
+    background-color: $color-primary-light;
+    &:hover {
+        background-color: darken($color-primary-light, 10%);
+    }
+}
+
+.secondary {
+    background-color: green;
+    &:hover {
+        background-color: darken(green, 10%);
+    }
+}
+
+.danger {
+    background-color: red;
+    &:hover {
+        background-color: darken(red, 10%);
+    }
+}
