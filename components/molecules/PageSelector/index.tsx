@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PageSelectorButton from '../../atoms/PageSelectorButton';
 import styles from './PageSelector.module.scss';
 
@@ -28,4 +28,4 @@ const PageSelector = ({ totalPages, onPageChange, currentPage }: Props) => {
     );
 };
 
-export default PageSelector;
+export default memo(PageSelector);

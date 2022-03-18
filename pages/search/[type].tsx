@@ -6,7 +6,7 @@ import SearchContent from '../../components/organisms/SearchContent/SearchConten
 import SearchSidebar from '../../components/organisms/SearchSidebar/SearchSidebar';
 import MainTemplate from '../../components/templates/MainTemplate/MainTemplate';
 import { Movie, Tv, Person, Company, Keyword, Collection } from '../../interfaces/Movies';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { MoviesAPI } from '../../utils/MoviesAPI';
 import { useRouter } from 'next/router';
 import { SearchResponse } from 'interfaces/API';
@@ -46,9 +46,9 @@ const SearchPage = ({ initialItems }: Props) => {
         getItems<any>(Number(page), type as string);
     }, [page, type]);
 
-    const handlePageChange = (p: number) => {
+    const handlePageChange = useCallback((p: number) => {
         router.push(`/search/${type}?q=${q}&page=${p}`, undefined, { shallow: true });
-    };
+    }, [])
 
     const getItems = async <T,>(page: number, type: string) => {
         const { results, total_pages, total_results } = await moviesAPI.fetchSearchMovies<T>({
@@ -86,7 +86,7 @@ const SearchPage = ({ initialItems }: Props) => {
                 <SearchContent items={items} />
                 <PageSelector
                     totalPages={(items.get(type as string) as MainObject<any>).totalPages}
-                    onPageChange={(p: number) => handlePageChange(p)}
+                    onPageChange={handlePageChange}
                     currentPage={Number(page)}
                 />
             </MainTemplate>
