@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import Link from 'next/link';
 import styles from './SearchSidebarItem.module.scss';
@@ -21,11 +20,6 @@ const SearchSidebarItem = ({ label, to, count }: Props) => {
             </a>
         </Link>
     );
-};
-
-SearchSidebarItem.propTypes = {
-    label: PropTypes.string.isRequired,
-    count: PropTypes.number,
 };
 
 export default memo(SearchSidebarItem);

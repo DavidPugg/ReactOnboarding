@@ -1,4 +1,3 @@
-import SearchSidebarItem from '../../components/atoms/SearchSidebarItem/SearchSidebarItem';
 import PageSelector from '../../components/molecules/PageSelector';
 import Footer from '../../components/organisms/Footer/Footer';
 import MainMenu from '../../components/organisms/MainMenu/MainMenu';
@@ -13,6 +12,7 @@ import { SearchResponse } from 'interfaces/API';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import useMap, { MapOrEntries } from '@components/hooks/useMap';
+import { useIsMount } from '@components/hooks/isMount';
 
 const types = ['movie', 'tv', 'person', 'company', 'keyword', 'collection'];
 
@@ -32,23 +32,31 @@ const SearchPage = ({ initialItems }: Props) => {
     const router = useRouter();
     const { page, q, type } = router.query;
     const [items, itemActions] = useMap<string, MainObject<any>>(initialItems);
+    const isMount = useIsMount();
 
     useEffect(() => {
         itemActions.setAll(initialItems);
     }, []);
 
     useEffect(() => {
-        types.map((type) => getItems<any>(1, type));
+        if (isMount) return;
+        moviesAPI.fetchAllSearchMovies(q as string, types).then((res) => {
+            itemActions.setAll(res as MapOrEntries<string, MainObject<any>>);
+        });
     }, [q]);
 
     useEffect(() => {
+        if (isMount) return;
         window.scrollTo(0, 0);
         getItems<any>(Number(page), type as string);
     }, [page, type]);
 
-    const handlePageChange = useCallback((p: number) => {
-        router.push(`/search/${type}?q=${q}&page=${p}`, undefined, { shallow: true });
-    }, [type, q, page])
+    const handlePageChange = useCallback(
+        (p: number) => {
+            router.push(`/search/${type}?q=${q}&page=${p}`, undefined, { shallow: true });
+        },
+        [type, q, page],
+    );
 
     const getItems = async <T,>(page: number, type: string) => {
         const { results, total_pages, total_results } = await moviesAPI.fetchSearchMovies<T>({
@@ -56,8 +64,15 @@ const SearchPage = ({ initialItems }: Props) => {
             query: q as string,
             type,
         });
+        if ((results[0] as any).id == (items.get(type) as MainObject<any>).results[0].id) {
+            return;
+        }
         itemActions.set(type, { results, count: total_results, totalPages: total_pages });
     };
+
+    const getCounts = useMemo(() => {
+        return types.map((e) => (items.get(e) as MainObject<any>).count);
+    }, [items]);
 
     return (
         <>
@@ -66,21 +81,7 @@ const SearchPage = ({ initialItems }: Props) => {
             </Head>
             <MainTemplate
                 header={<MainMenu />}
-                sidebar={
-                    useMemo(() =>                    <SearchSidebar>
-                    {types.map((type) => (
-                        <SearchSidebarItem
-                            key={type}
-                            label={type
-                                .split('')
-                                .map((e, i) => (i == 0 ? e.toUpperCase() : e))
-                                .join('')}
-                            to={type}
-                            count={(items.get(type) as MainObject<Movie>).count}
-                        />
-                    ))}
-                </SearchSidebar>,[q])
-                }
+                sidebar={<SearchSidebar counts={getCounts} types={types} />}
                 footer={<Footer />}
             >
                 <SearchContent items={items} />
