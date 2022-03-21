@@ -1,5 +1,5 @@
 import { Language, Type } from 'interfaces/Language';
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useRef, MutableRefObject } from 'react';
 import LanguageSearch from '../../atoms/LanguageSearch';
 import MainLanguageOption from '../../atoms/MainLanguageOption/MainLanguageOption';
 import UniversalDropdown from '../../atoms/UniversalDropdown';
@@ -17,6 +17,7 @@ interface Props {
 const LanguageDropdown = ({ type, title, languages, currentLanguage, onLanguageChange }: Props) => {
     const [currentDropdown, setCurrentDropdown] = useState(false);
     const [filteredLanguages, setFilteredLanguages] = useState(languages);
+    const myRef = useRef<HTMLSpanElement>();
 
     const handleInput = (value: string) => {
         if (value == '' || value == undefined) {
@@ -31,21 +32,26 @@ const LanguageDropdown = ({ type, title, languages, currentLanguage, onLanguageC
             setFilteredLanguages(lang);
         }
     };
+
+    const handleClickOutside = () => {
+        setCurrentDropdown(false);
+    };
+
     return (
         <>
             <div className={styles.selection}>
                 <p className={styles.text}>{title}</p>
-                <MainLanguageOption
-                    onClick={() => setCurrentDropdown(!currentDropdown)}
-                    label={currentLanguage.label}
-                    code={currentLanguage.code}
-                />
+                <span ref={myRef as MutableRefObject<HTMLSpanElement>}>
+                    <MainLanguageOption
+                        onClick={() => setCurrentDropdown(true)}
+                        label={currentLanguage.label}
+                        code={currentLanguage.code}
+                    />
+                </span>
                 {currentDropdown && (
                     <UniversalDropdown
-                        onClickOutside={() => {
-                            setCurrentDropdown(false);
-                            setFilteredLanguages(languages);
-                        }}
+                        ref={myRef as MutableRefObject<HTMLSpanElement>}
+                        onClickOutside={handleClickOutside}
                         style={{ paddingRight: '0', paddingLeft: '0' }}
                     >
                         <LanguageSearch onInput={handleInput} />

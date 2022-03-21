@@ -1,5 +1,5 @@
 import { Language, Type } from 'interfaces/Language';
-import React, { MutableRefObject, useRef, useState, useEffect, memo, useCallback } from 'react';
+import React, { MutableRefObject, useRef, useState, memo, useCallback } from 'react';
 import styles from './LanguageSwitcher.module.scss';
 import UniversalDropdown from '../../atoms/UniversalDropdown';
 import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
@@ -11,19 +11,12 @@ interface Props {
 const LanguageSwitcher = React.forwardRef<HTMLDivElement, Props>(({ languages }, ref) => {
     const toggleRef = useRef() as MutableRefObject<HTMLParagraphElement>;
     const [dropdown, setDropdown] = useState(false);
-    const [currentLanguage, setCurrentLanguage] = useState<Language>({} as Language);
-    const [fallbackLanguage, setFallbackLanguage] = useState<Language>({} as Language);
+    const [currentLanguage, setCurrentLanguage] = useState<Language>(languages[0]);
+    const [fallbackLanguage, setFallbackLanguage] = useState<Language>(languages[1]);
 
-    useEffect(() => {
-        setCurrentLanguage(languages[0]);
-        setFallbackLanguage(languages[1]);
-    }, []);
-
-    const onLanguageChangeCallback = useCallback((args, type) => onLanguageChange(args, type), [])
-
-    const onLanguageChange = ({ code, label }: Language, type: Type) => {
+    const onLanguageChange = useCallback(({ code, label }: Language, type: Type) => {
         type == 'fallback' ? setFallbackLanguage({ code, label }) : setCurrentLanguage({ code, label });
-    };
+    }, [])
 
     return (
         <div ref={ref} className={styles.box}>
@@ -43,14 +36,14 @@ const LanguageSwitcher = React.forwardRef<HTMLDivElement, Props>(({ languages },
                         title='Default language'
                         languages={languages}
                         currentLanguage={currentLanguage}
-                        onLanguageChange={onLanguageChangeCallback}
+                        onLanguageChange={onLanguageChange}
                     />
                     <LanguageDropdown
                         type='fallback'
                         title='Fallback language'
                         languages={languages}
                         currentLanguage={fallbackLanguage}
-                        onLanguageChange={onLanguageChangeCallback}
+                        onLanguageChange={onLanguageChange}
                     />
                 </UniversalDropdown>
             )}

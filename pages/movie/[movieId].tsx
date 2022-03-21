@@ -3,7 +3,7 @@ import MainMenu from '../../components/organisms/MainMenu/MainMenu';
 import MovieDetails from '../../components/organisms/MovieDetails/MovieDetails';
 import HomeTemplate from '../../components/templates/HomeTemplate/HomeTemplate';
 import { CrewMember, Details } from '../../interfaces/Details';
-import React from 'react';
+import React, { memo } from 'react';
 import { MoviesAPI } from '../../utils/MoviesAPI';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head'
@@ -33,4 +33,4 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     return { props: { details, crew } };
 };
 
-export default DetailsPage;
+export default memo(DetailsPage);
