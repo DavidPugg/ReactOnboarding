@@ -1,6 +1,5 @@
 import { languages } from '@components/molecules/LanguageSwitcher/languages';
-import { useRouter } from 'next/router';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, memo } from 'react';
 import MainMenuLink from '../../atoms/MainMenuLink/MainMenuLink';
 import SearchToggle from '../../atoms/SearchToggle/SearchToggle';
 import clickOutside from '../../hooks/clickOutside';
@@ -13,11 +12,13 @@ import { menus } from './mainMenuArray';
 
 const MainMenu = () => {
     const [searchbar, setSearchbar] = useState(false);
-    const router = useRouter();
-    const query = router.query;
-
     const searchBarRef = useRef<HTMLDivElement>(null);
     const languageListenerRef = useRef<HTMLDivElement>(null);
+    
+    useEffect(() => {
+        document.addEventListener('keydown', (e: KeyboardEvent) => handler(e));
+        return () => document.removeEventListener('keydown', (e: KeyboardEvent) => handler(e));
+    }, []);
 
     clickOutside([searchBarRef], () => {
         setTimeout(() => {
@@ -39,14 +40,9 @@ const MainMenu = () => {
         }
     };
 
-    useEffect(() => {
-        document.addEventListener('keydown', (e: KeyboardEvent) => handler(e));
-        return () => document.removeEventListener('keydown', (e: KeyboardEvent) => handler(e));
-    }, []);
-
-    useEffect(() => {
+    const onFormSubmit = () => {
         setSearchbar(false);
-    }, [query]);
+    }
 
     return (
         <>
@@ -72,8 +68,8 @@ const MainMenu = () => {
                     </div>
                 </div>
             </div>
-            {searchbar && <SearchBar ref={searchBarRef} />}
+            {searchbar && <SearchBar onSubmit={onFormSubmit} ref={searchBarRef} />}
         </>
     );
 };
-export default MainMenu;
+export default memo(MainMenu);

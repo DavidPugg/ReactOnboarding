@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo } from 'react';
 import Link from 'next/link';
 import styles from './SearchSidebarItem.module.scss';
 
@@ -12,7 +11,7 @@ interface Props {
 
 const SearchSidebarItem = ({ label, to, count }: Props) => {
     const router = useRouter();
-    const { q, type } = router.query;
+    let { q, type } = router.query;
     return (
         <Link href={`/search/${to}?q=${q}&page=1`} shallow={true}>
             <a className={`${styles.label} ${type == `${to}` ? styles.selected : ''}`}>
@@ -23,9 +22,4 @@ const SearchSidebarItem = ({ label, to, count }: Props) => {
     );
 };
 
-SearchSidebarItem.propTypes = {
-    label: PropTypes.string.isRequired,
-    count: PropTypes.number,
-};
-
-export default SearchSidebarItem;
+export default memo(SearchSidebarItem);

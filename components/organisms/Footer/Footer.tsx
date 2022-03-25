@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import FooterColumn from '../../molecules/FooterColumn/FooterColumn';
 import styles from './Footer.module.scss';
 import { columns } from './columns';
@@ -16,4 +16,4 @@ const Footer = () => {
         </div>
     );
 };
-export default Footer;
+export default memo(Footer);

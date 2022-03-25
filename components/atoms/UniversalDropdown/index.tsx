@@ -14,7 +14,7 @@ const UniversalDropdown = React.forwardRef<HTMLElement, Props>(({ children, styl
         ref
             ? clickOutside([myRef, ref as RefObject<HTMLElement>], onClickOutside)
             : clickOutside([myRef], onClickOutside);
-    });
+    }, []);
 
     return (
         <div data-testid='universal-dropdown' ref={myRef} style={style} className={styles.dropdown}>

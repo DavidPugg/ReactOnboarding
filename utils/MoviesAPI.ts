@@ -20,6 +20,22 @@ export class MoviesAPI {
         return data;
     };
 
+    fetchAllSearchMovies = async (query: string, types: string[]) => {
+        let array = [];
+        for (let type of types) {
+            const { data } = await axios.get<SearchResponse<any>>(
+                `https://api.themoviedb.org/3/search/${type}?api_key=${process.env.API_KEY}&query=${query}&page=1`,
+            );
+            const mapItemData = {
+                results: data.results,
+                count: data.total_results,
+                totalPages: data.total_pages,
+            };
+            array.push([type, mapItemData]);
+        }
+        return array;
+    };
+
     fetchPopularMovies = async <T>({ type }: { type: string }) => {
         const { data } = await axios.get<PopularSearchResponse<T>>(
             `https://api.themoviedb.org/3/${type}/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`,
