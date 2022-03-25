@@ -1,0 +1,10 @@
+version: '3'
+services:
+  next:
+    build: .
+    container_name: nextapp_c
+    ports: 
+      - '3000:3000'
+    volumes: 
+      - .:/app
+      - /app/node_modules
