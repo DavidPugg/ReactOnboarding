@@ -31,14 +31,6 @@ describe('Check dropdowns', () => {
         let dropdown = queryByTestId('universal-dropdown');
         expect(dropdown).toBeInTheDocument()
     });
-
-    it('Dropdown should close', () => {
-        const button = getByTestId('main-language-option');
-        fireEvent.click(button);
-        fireEvent.click(button);
-        let dropdown = queryByTestId('universal-dropdown');
-        expect(dropdown).not.toBeInTheDocument()
-    });
 });
 
 describe('Check search filtering', () => {
