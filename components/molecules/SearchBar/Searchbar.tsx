@@ -5,6 +5,9 @@ import SearchInput from '../../atoms/SearchInput/SearchInput';
 import SearchResult from '../../atoms/SearchResult/SearchResult';
 import styles from './Searchbar.module.scss';
 
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
+
 interface Props {
     onSubmit: () => void;
 }
@@ -24,7 +27,7 @@ const Searchbar = React.forwardRef<HTMLDivElement,Props>(({onSubmit}, ref) => {
             return;
         }
         axios
-            .get(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${input}&page=1`)
+            .get(`https://api.themoviedb.org/3/search/multi?api_key=${publicRuntimeConfig.apiKey}&query=${input}&page=1`)
             .then((res) => {
                 setItems(res.data.results);
             });

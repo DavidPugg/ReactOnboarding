@@ -5,6 +5,9 @@ import { setFilters } from '../../../redux/filtersSlice';
 import GenreButton from '../../atoms/GenreButton';
 import SidebarItem from '../../molecules/SidebarItem';
 
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
+
 const PopularFilter = () => {
     const dispatch = useDispatch();
     const filters = useSelector((state: RootStateOrAny) => state.filters.value);
@@ -18,7 +21,7 @@ const PopularFilter = () => {
 
     useEffect(() => {
         axios
-            .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`)
+            .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${publicRuntimeConfig.apiKey}&language=en-US`)
             .then((res) => {
                 setGenres(res.data.genres);
             });
