@@ -5,7 +5,7 @@ export class MoviesAPI {
     fetchMovies = async ({ page, filters, sort }: FetchMovies) => {
         const { data } = await axios.get(
             `https://api.themoviedb.org/3/discover/movie?api_key=${
-                process.env.apiKey
+                process.env.NEXT_PUBLIC_API_KEY
             }&language=en-US&sort_by=${sort}&include_adult=false&include_video=false&page=${page}&with_genres=${filters.join(
                 ',',
             )}`,
@@ -15,7 +15,7 @@ export class MoviesAPI {
 
     fetchSearchMovies = async <T>({ page, type, query }: FetchSearchMovies) => {
         const { data } = await axios.get<SearchResponse<T>>(
-            `https://api.themoviedb.org/3/search/${type}?api_key=${process.env.apiKey}&query=${query}&page=${page}`,
+            `https://api.themoviedb.org/3/search/${type}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}&page=${page}`,
         );
         return data;
     };
@@ -24,7 +24,7 @@ export class MoviesAPI {
         let array = [];
         for (let type of types) {
             const { data } = await axios.get<SearchResponse<any>>(
-                `https://api.themoviedb.org/3/search/${type}?api_key=${process.env.apiKey}&query=${query}&page=1`,
+                `https://api.themoviedb.org/3/search/${type}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}&page=1`,
             );
             const mapItemData = {
                 results: data.results,
@@ -38,18 +38,18 @@ export class MoviesAPI {
 
     fetchPopularMovies = async <T>({ type }: { type: string }) => {
         const { data } = await axios.get<PopularSearchResponse<T>>(
-            `https://api.themoviedb.org/3/${type}/popular?api_key=${process.env.apiKey}&language=en-US&page=1`,
+            `https://api.themoviedb.org/3/${type}/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`,
         );
         return data;
     };
 
     fetchMovieDetails = async <T1, T2>(id: string) => {
         const details = await axios.get<T1>(
-            `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.apiKey}&language=en-US&page=1`,
+            `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`,
         );
 
         const crew = await axios.get<{ crew: Array<T2> }>(
-            `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.apiKey}&language=en-US`,
+            `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`,
         );
         return { details: details.data, crew: crew.data.crew };
     };

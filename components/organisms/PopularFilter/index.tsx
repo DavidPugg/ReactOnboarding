@@ -18,7 +18,7 @@ const PopularFilter = () => {
 
     useEffect(() => {
         axios
-            .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.apiKey}&language=en-US`)
+            .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`)
             .then((res) => {
                 setGenres(res.data.genres);
             });
