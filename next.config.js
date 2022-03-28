@@ -4,7 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
     env: {
-        API_KEY: process.env.API_KEY,
+        apiKey: process.env.API_KEY,
     },
     images: {
         domains: ['image.tmdb.org'],
